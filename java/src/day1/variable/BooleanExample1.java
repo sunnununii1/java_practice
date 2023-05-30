@@ -6,7 +6,6 @@ public class BooleanExample1 {
 		//boolean은 true 또는 false를 이용하여 초기화함
 		boolean isEven = false;
 		boolean isAdult = true;
-
 	}
 
 }

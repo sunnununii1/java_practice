@@ -15,10 +15,7 @@ public class CharExample1 {
 		// 십진수 41 : 10 *4 + 1 * 1
 		// 16진수 41 : 16 * 4 + 1 * 1 == 십진수 65(A)
 		// \n : 엔터, \t : tap키만큼 공백, \\ : \라는 문자, \' : '라는 문자, \" : "라는 문자
-		char ch5 = '\u0041', ch6 = 65;, ch7 = '\n', ch8 = '\\';
-		
-		System.out.println(ch5);
-		
+		char ch5 = '\u0041', ch6 = 65, ch7 = '\n', ch8 = '\\';
 	}
 
 }

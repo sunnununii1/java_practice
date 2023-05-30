@@ -13,7 +13,6 @@ public class JavaSample {
 	public static void main(String[] args) {
 		//콘슬창에 원하는 문구를 출력하는 기능을 가진 것
 		System.out.println("Hello Java!");
-
 	}
 
 }

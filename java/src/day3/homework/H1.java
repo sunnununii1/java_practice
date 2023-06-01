@@ -24,7 +24,6 @@ public class H1 {
 			System.out.println("Are you men?");
 		}
 		
-			
 	
 	sc. close();
 	

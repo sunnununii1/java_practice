@@ -13,6 +13,7 @@ public class Ex2 {
 		System.out.println("input score : ");
 		int score = sc.nextInt();
 		String result = score >= 60 ? "pass" : "fail";
+		//조건 연산자를 사용
 				
 				
 		System.out.println("Do you pass " + score + " point? " + result);

@@ -22,8 +22,7 @@ public class Ex4_even {
 		if(num % 2 == 0) {
 		System.out.println(num + "은 짝수이다.");
 		}
-	
-		
+
 		sc.close();
 	
 	}

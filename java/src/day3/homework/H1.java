@@ -1,5 +1,6 @@
 package day3.homework;
 
+import java.security.DrbgParameters.NextBytes;
 import java.util.Scanner;
 
 public class H1 {
@@ -10,18 +11,19 @@ public class H1 {
 		 * 
 		 */
 
-		int num;
+		char ch;
 		Scanner sc = new Scanner(System.in);
-		num = nextInt();
 		System.out.println("input gender : ");
+		ch = sc.next().charAt(0);
 		
-		if(num = 여자) { 
+		if(ch == 'w') { 
 			System.out.println("Are you women?");
 		}
 		
-		if(num = 남자) {
+		if(ch == 'm') {
 			System.out.println("Are you men?");
 		}
+		
 			
 	
 	sc. close();

@@ -23,11 +23,11 @@ public class H1 {
 		String result = ch == 'w' ? "true" : "false";
 				
 		if(ch == 'w') { 
-		System.out.println("Are you women?" + result);
+		System.out.println("Are you women? " + result);
 		}
 				
 		if(ch == 'm') {
-		System.out.println("Are you women?" + result);
+		System.out.println("Are you women? " + result);
 		}
 		
 	

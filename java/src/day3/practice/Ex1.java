@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Ex1 {
 
 	public static void main(String[] args) {
-		// 성적을 입력받아 입력받은 성적이 60점 이상인지 확인하는 코드를 작성하세요.
+		// 성적을 입력받아 입력받은 성적이 60점 이상인지 확인하는 코드를 작성해라.
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("input score : ");
@@ -16,6 +16,7 @@ public class Ex1 {
 		
 		
 		sc.close();
+		
 	}
 
 }

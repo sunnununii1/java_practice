@@ -8,12 +8,12 @@ public class NumberEx {
 		 * num를 출력하는 코드를 작성하세요.
 		 */
 		
-		int num = 7;
+		int num = 2;
 		
 		if(num % 2 == 0) {
 			System.out.println(num + 2);
 		}
-		if(num % 2 != 0) {
+		else if(num % 2 != 0) {
 			System.out.println(num + 1);
 		}
 	}

@@ -9,7 +9,8 @@ public class NestedIfEx {
 		
 		int num = 6;
 		
-		//2의 배수
+		// 2의 배수(2,4,6,8,10,12)
+		// **중첩 if문 사용**
 		if(num % 2 == 0) {
 			if(num % 3 ==0) {
 				System.out.println("A myltiple of 6");

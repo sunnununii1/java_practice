@@ -16,19 +16,42 @@ public class TriangleEx {
 		Able to create triangle.
 		**/
 		
-		int num1, num2, num3;
+		int a, b, c;
+		int max; // a,b,c 중 가장 큰 변의 길이
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("input integer num : ");
-		num1 = sc.nextInt();
-		num2 = sc.nextInt();
-		num3 = sc.nextInt();
+		System.out.println("input 3 integer num : ");
+		a = sc.nextInt();
+		b = sc.nextInt();
+		c = sc.nextInt();
 		
-		if(num1 + num2 > num3 ) {
-			System.out.println("able to create triangle");
+		if(a > b ) {
+			//a > b 이면 max에 a를 저장
+			if( a > c )
+			max = a;
+			}
+			// 아니면 c를 max에 저장
+		
+		else if (b > c){
+			// 아니면 b가 c보다 크면 max에 b를 저장
+			max = b;
+			}
+			// 아니면 max에 c를 저장
+		
+			else {
+			max = c;
+			}
+		
+		// max = a> b ? (a > c ? a : c) : (b > c ? b : c); >>같은 결과!
+		/* 작은 두 변의 합 > max
+		 * 세 변의 합 - max == 작은 두 변의 합
+		 * 세 변의 합에서 max를 뺀 값이 max보다 크면 삼각형이라고 출력, 아니면 아니라고 출력
+		 */
+		if( a + b + c - max > max) {
+			System.out.println("Able to create triangle.");
 		}
-		
 		else {
-			System.out.println("Unable to create triangle");
+			System.out.println("Unable to create triangle.");
 		}
 		
 		sc.close();

@@ -26,20 +26,24 @@ public class TriangleEx {
 		c = sc.nextInt();
 		
 		if(a > b ) {
-			//a > b 이면 max에 a를 저장
-			if( a > c )
-			max = a;
+				//a > b 이면 max에 a를 저장
+				if(a > c) {
+					max = a;
 			}
 			// 아니면 c를 max에 저장
-		
-		else if (b > c){
-			// 아니면 b가 c보다 크면 max에 b를 저장
-			max = b;
-			}
-			// 아니면 max에 c를 저장
-		
 			else {
-			max = c;
+				max = c;
+			}
+		}
+	
+		// 아니면 b가 c보다 크면 max에 b를 저장
+		else if (b > c){
+				max = b;
+			}
+			
+			// 아니면 max에 c를 저장
+			else {
+					max = c;
 			}
 		
 		// max = a> b ? (a > c ? a : c) : (b > c ? b : c); >>같은 결과!

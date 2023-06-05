@@ -1,5 +1,7 @@
 package day4.homework;
 
+import java.util.Scanner;
+
 public class NumberEx {
 
 	public static void main(String[] args) {
@@ -8,14 +10,29 @@ public class NumberEx {
 		 * num를 출력하는 코드를 작성하세요.
 		 */
 		
-		int num = 2;
+		int num;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("input number : ");
+		num = sc.nextInt();
+		// 정수 입력
+		
 		
 		if(num % 2 == 0) {
-			System.out.println(num + 2);
+			num = num / 2;
+			//num /= 2; 도 가능
 		}
-		else if(num % 2 != 0) {
-			System.out.println(num + 1);
+		else {
+			num = num + 1;
+			//num += 1; 도 가능
 		}
+		
+	
+			
+		System.out.println(num);
+		sc.close();
 	}
 
+
+	
+	
 }

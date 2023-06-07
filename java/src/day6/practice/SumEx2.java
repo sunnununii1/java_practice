@@ -19,7 +19,7 @@ public class SumEx2 {
 			 // i가 짝수이면 누적
 			if(i % 2 == 0) {
 			// i가 n보다 작거나 같으면 반복
-				sum += i;
+				sum += i; // sum = sum + 1 과 같음
 			}
 			++i;
 		}// 반복문을 이용하여 n까지 짝수의 합을 계산

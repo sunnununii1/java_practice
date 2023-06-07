@@ -17,22 +17,37 @@ public class UpDownEx {
 		 * Good !
 		 */
 		
-		int num;
+		
+		
+		int min = 1, max = 100;
+		int num = min - 1; // 최솟값 - 1은 랜덤에서 나올 수 없는 숫자 <로 초기화
 		Scanner sc = new Scanner(System.in);
-		System.out.println("input : ");
-		num = sc.nextInt();
 		
-		if(num >=1 && num < 45) {
+		
+		int random = (int)(Math.random() * (max-min+1) + min); 
+		System.out.println("random input : " + random);
+		
+		 
+		while(random != num) { 
+			 
+			System.out.println("input number (1~100) : ");
+			num = sc.nextInt(); // 정수를 입력
+			
+			if(num < random) {
 			System.out.println("Up !");
+			}else if(num > random) {
+			System.out.println("Down !");
+			}else {
+				System.out.println("Good !");
+			}
+			// 정수와 정답을 비교해서 판별
+			
 		}
-		else if(num == 45) {
-			System.out.println("Good !");
-		}
-		else {System.out.println("Down !");
-		}
-		
-		
 		sc.close();
+		}
+		
+		
 	}
+	
 
-}
+

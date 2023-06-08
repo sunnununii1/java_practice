@@ -20,7 +20,10 @@ public class EvenNumberEx {
 		while(++i<=10) {
 			if(i % 2 != 0) {
 				continue; 
-			} // while문은 continue시 증감식X 조건식(i<=10)으로 이동, if문에 증감식 추가 안할시 계속 아래 위로 무한루프
+			} /* while문은 continue시 증감식X 조건식(i<=10)으로 이동,
+			   * if문(continue 위)에 증감식 추가 안할시 계속 아래 위로 무한루프
+			   * (+while문 반복문 괄호에 전이해줘도 가능)
+			   * */
 			System.out.println(i);
 			i++;
 		}

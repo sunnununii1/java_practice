@@ -17,17 +17,17 @@ public class StarEx5 {
 			for(int j=i ; j<4 ; ++j) {
 				System.out.print(' ');
 			}
-			for(int j=1 ; j<=i*2+1 ; ++j) {
+			for(int j=0 ; j<=i*2+1 ; ++j) {
 			System.out.print('*');
 			}
 			System.out.println();
 		}
 		
 		for(int i=0 ; i<3 ; i++) {
-			for(int j=i ; j<3 ; ++j) {
+			for(int j=0 ; j<3 ; ++j) {
 				System.out.print(' ');
 			}
-			for(int j=0 ; j<=i*2-1 ; ++j) {
+			for(int j=0 ; j<=(3-i)*2+1 ; ++j) {
 				System.out.print('*');
 			}
 			System.out.println();

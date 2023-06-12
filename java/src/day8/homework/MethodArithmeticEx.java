@@ -11,44 +11,75 @@ public class MethodArithmeticEx {
 		 */
 	
 		int num1, num2;
-		int sum;
+		char operator;
+		double res;
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("input 2 number : ");
+		System.out.println("input (ex: 1 + 2) : ");
 		num1 = sc.nextInt();
+		operator = sc.next().charAt(0);
 		num2 = sc.nextInt();
 		
-		int res1 = Sum(num1,2);
-		System.out.println(num1 + " + " + num2 + " = " + res1);
+		res = arithmetic(num1, operator, num2);
+		System.out.println(num1 + " " + operator + " " + num2 + " = " + res);
 		
-		int res2 = Sub(num1,2);
-		System.out.println(num1 + " - " + num2 + " = " + res2);
-		
-		int res3 = Mul(num1,2);
-		System.out.println(num1 + " * " + num2 + " = " + res3);
-		
-		double res4 = Div((double)num1,2);
-		System.out.println(num1 + " / " + num2 + " = " + res4);
-		
-		int res5 = Mod(num1,2);
-		System.out.println(num1 + " % " + num2 + " = " + res5);
+		res = arithmetic2(num1, operator, num2);
+		System.out.println(num1 + " " + operator + " " + num2 + " = " + res);
 		
 		sc.close();
 	}
 	
-	public static int Sum(int num1, int num2) {
-		int res1 = num1 + num2;
-		return res1;
+	/** 두 정수와 산술 연산자가 주어지면 산술 연산 결과를 알려주는 메서드
+	 * 매개변수 : 두 정수와 산술 연산자 =>  int num1, char operator, int num2 (순서 자유)
+	 * 리턴타입 : 산술 연산 결과 => 실수 => double
+	 * 메서드명 : arithmetic
+	 */
+	public static double arithmetic(int num1, char operator, int num2) {
+		double res = 0.0; //초기값 설정
+		switch(operator) { //if문도 가능
+		case '+':
+			res = num1 + num2;
+			break;
+		case '-':
+			res = num1 - num2;
+			break;
+		case '*':
+			res = num1 * num2;
+			break;
+		case '/':
+			res = num1 / (double)num2;
+			break;
+		case '%':
+			res = num1 % num2;
+			break;
+			
+		default:
+		//throw new RuntimeException("Wrong operator!");
+		//잘못된 연산자인 경우 예외처리를 해야하는데, 아직 배우지 않아서 주석처리함(당장은 불필요한 줄)
+			
+		}
+		return res;
 	}
-	public static int Sub(int num1, int num2) {
-		return num1 - num2;
-	}
-	public static int Mul(int num1, int num2) {
-		return num1 * num2;
-	}
-	public static double Div(double num1, int num2) {
-		return num1 / num2;
-	}
-	public static int Mod(int num1, int num2) {
-		return num1 % num2;
+	
+	// switch-case문 안에 return이 들어가면 break문 필요없음!
+	public static double arithmetic2(int num1, char operator, int num2) {
+		switch(operator) { 
+		case '+':
+			return num1 + num2;
+			// break; //위에 return이 있기 때문에 break가 실행될 일은 없음 => 에러
+		case '-':
+			return num1 - num2;
+		case '*':
+			return num1 * num2;
+		case '/':
+			return num1 / (double)num2;
+		case '%':
+			return num1 % num2;
+			
+		default:
+			return 0.0; // switch문 밖에다 두기도 가능
+		}
+		
 	}
 }
+

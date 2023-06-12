@@ -24,7 +24,10 @@ public class AccessModifierEx {
 		//num1은 접근제어자가 private
 		//같은 패키지이든 아니든 다른 클래스에서는 접근 불가능
 		//a.num1 = 10;
+		
+		//setter를 통해서 값을 변경
 		a.setNum1(10);
+		//getter를 통해서 값을 가져옴
 		System.out.println(a.getNum1());
 		//b.num2 = 20;
 	}
@@ -36,8 +39,14 @@ class A{
 	int num2;
 	public int num3;
 	
+	/** 클래스 A의 객체 정보 중 num1을 출력하는 메서드
+	 * 매개변수 : 없음 => 이미 내 클래스 안에 있는 정보(num1)라서 누군가(매개변수)가 알려줄 필요없음!
+	 * 리턴타입 : 없음 => void
+	 * 메서드명 : print
+	 */
 	public void print() {
 		//num1은 private이기 때문에 같은 A클래스의 메서드에서는 호출 가능
+		//이미 알고 있는 내 정보를 활용하는 경우, 매개변수로 전달받지 않아도 됨
 		System.out.println(num1);
 	}
 	

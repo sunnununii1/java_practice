@@ -10,9 +10,10 @@ public class CarMain {
 		
 		//현재 내 차의 정보를 조회하는 코드
 		myCar.printInfo();
+		
+		//전원 켜고, 기어를 D로 변환
 		myCar.turn();
 		myCar.setGear('D');
-		
 		myCar.speedChange(false);
 		myCar.speedChange(false);
 		myCar.speedChange(false);

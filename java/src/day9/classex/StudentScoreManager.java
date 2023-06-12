@@ -46,6 +46,59 @@ class Score1{
 		semester = _semester;
 		title = _title;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public int getSemester() {
+		return semester;
+	}
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	public double getMidTerm() {
+		return midTerm;
+	}
+	public void setMidTerm(double midTerm) {
+		this.midTerm = midTerm;
+	}
+	public double getFinalExam() {
+		return finalExam;
+	}
+	public void setFinalExam(double finalExam) {
+		this.finalExam = finalExam;
+	}
+	public double getPerformance() {
+		return performance;
+	}
+	public void setPerformance(double performance) {
+		this.performance = performance;
+	}
+	public Score1(String title, int grade, int semester, double total, double midTerm, double finalExam,
+			double performance) {
+		this.title = title;
+		this.grade = grade;
+		this.semester = semester;
+		this.total = total;
+		this.midTerm = midTerm;
+		this.finalExam = finalExam;
+		this.performance = performance;
+	}
+	
 }
 
 //학생 클래스

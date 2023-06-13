@@ -15,7 +15,7 @@ public class CopyEx {
 		System.out.println("=========");
 		
 		/* 그러나, 참조변수는 값을 복사하면 주소가 복사되기 때문에
-		 * 공유가 된다.
+		 * 공유가 된다. (얕은 복사**)
 		 */
 		A a1 = new A();
 		A a2 = a1;
@@ -25,6 +25,9 @@ public class CopyEx {
 		
 		System.out.println("=========");
 		
+		/* 참조 변수를 복사하려면 복사 생성자를 이용하여 객체 생성 후
+		 * 멤버 변수들을 복사하려는 객체의 멤버 변수로 초기화 해주어야 함 (깊은 복사**) 
+		 */
 		A a3 = new A(a1);
 		System.out.println(a1.num1 + " , " + a3.num1);
 		a3.num1 = 50;

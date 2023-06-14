@@ -27,25 +27,11 @@ public class ArrayMethodEx1 {
 		printArr(arr1);
 		printArr(arr2);
 		
-		
-		for(int num : arr1) {
-			System.out.print(num + " ");
-		}
-		System.out.println();
-		for(int num : arr2) {
-			System.out.print(num + " ");
-		}
-		System.out.println();
-		
-		
-		System.out.println("===========");
-		printArr(arr1);
-		printArr(arr2);
-		
 		//두 배열을 교환
 		tmpArr = arr1;
 		arr1 = arr2;
 		arr2 = tmpArr;
+		
 		
 		System.out.println("===========");
 		printArr(arr1);

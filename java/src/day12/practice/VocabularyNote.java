@@ -43,34 +43,47 @@ public class VocabularyNote {
 		}
 	}
 	/** 단어가 주어지면 단어장에 추가하는 메서드
-	 * 매개변수 : 
-	 * 리턴타입 : 
-	 * 메서드명 : 
+	 * 매개변수 : 추가될 단어 => String word
+	 * 리턴타입 : void 
+	 * 메서드명 : plus
 	 */
-	public void
+	public void plus(String word) {
+		if(wordCount == wordList.length) {
+			System.out.println("filled");
+			return;
+		}
+		
+	}
 
 	/** 단어가 주어지면 단어장에서 삭제하는 메서드
-	 * 매개변수 : 
-	 * 리턴타입 : 
+	 * 매개변수 : 제거될 단어 => String word
+	 * 리턴타입 : void
 	 * 메서드명 : remove
 	 */
+	public void remove(String word) {
+		if(word == null) {
+			return;
+		}
+		for(int i=0; i<wordCount; i++) {
+		}
+	}
 
 	/**
 	 * 단어가 주어지면 단어장에 해당 단어를 출력하는 메서드
 	 * 매개변수 : 
-	 * 리턴타입 : 
+	 * 리턴타입 : void
 	 * 메서드명 : 
 	 */
 	
 	/** 단어와 뜻이 주어지고 없는 단어이면 새로 단어를 추가하고, 있으면 뜻만 새로 추가하는 메서드
 	 * 매개변수 : 
-	 * 리턴타입 : 
+	 * 리턴타입 : void
 	 * 메서드명 : 
 	 */
 	
 	/** 단어와 수정할 뜻의 번호와 수정할 뜻이 주어지면 단어의 뜻을 수정하는 메서드
 	 * 매개변수 : 
-	 * 리턴타입 : 
+	 * 리턴타입 : void
 	 * 메서드명 : 
 	 */
 	

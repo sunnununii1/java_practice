@@ -42,7 +42,11 @@ public class BaseballGameEx {
 		int ball = 0; //볼의 갯수
 		Scanner sc = new Scanner(System.in);
 		
-		Array.createRandomArray(min, max, com);
+		com[0] = (int)(Math.random() * (max-min+1) + min);
+		com[1] = (int)(Math.random() * (max-min+1) + min);
+		com[2] = (int)(Math.random() * (max-min+1) + min);
+		
+		//Array.createRandomArray(min, max, com);
 		//Array.printArray(com); //얜 나중에 주석처리
 		//1. 맞춰야할 숫자 3개 랜덤생성
 		

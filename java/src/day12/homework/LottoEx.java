@@ -26,7 +26,7 @@ public class LottoEx {
 		/*1. 랜덤으로 로또번호 6개와 보너스 번호 1개를 생성
 		 * => 7개짜리 배열에 로또번호 생성 (앞 6개는 로또번호, 마지막 1개는 보너스로)*/
 		
-		int min = 0, max = 100;
+		
 		int lotto[] = new int[7];
 		//7개짜리 배열에 로또번호 생성
 		Array.createRandomArray(1, 45, lotto);
@@ -55,14 +55,15 @@ public class LottoEx {
 		//3. 중복입력시 판별 안함(생략 가능)
 		if(Array.arrayCheck(user)) {
 			System.out.println("Wrong number!");
-			return;
 			sc.close();
+			//return;
 		}
 		
 		//4.등수 판별
 		int count = count(lotto2, user);
+		System.out.println(count);
 		printResult(count, Array.contains(user, bonus, user.length));
-		
+		sc.close();
 	}
 
 	/** 로또 번호와 사용자 번호가 주어지면 몇개가 같은지 알려주는 메서드
@@ -91,7 +92,7 @@ public class LottoEx {
 	 * 리턴타입 : void
 	 * 메서드명 : printResult
 	 */
-	public void printResult(int count, boolean checkBonus) {
+	public static void printResult(int count, boolean checkBonus) {
 		switch(count) {
 		case 6:
 			System.out.println("Winner of the lottery!");

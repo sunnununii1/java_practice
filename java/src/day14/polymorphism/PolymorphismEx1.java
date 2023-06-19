@@ -85,7 +85,7 @@ class HomeAppliances{
 	void turnOff() {
 		power = false;
 	}
-
+}
 	
 	
 //매개변수를 부모 클래스로 변환
@@ -113,5 +113,6 @@ class Radio1 extends HomeAppliances{
 	double frequecry;
 }
 
-}
+
+
 

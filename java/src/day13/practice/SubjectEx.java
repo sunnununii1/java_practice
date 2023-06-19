@@ -7,7 +7,6 @@ public class SubjectEx {
 		
 		Subject sub1 = new Subject("Kor");
 		sub1.print();
-		sub1.updateScore();
 		
 		System.out.println("==================");
 		

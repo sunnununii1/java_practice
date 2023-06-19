@@ -26,7 +26,7 @@ public class ClassInheritanceEx {
 		Phone p1 = new Phone("010-123-4567");
 		//문법적 에러는 없지만, 예외 발생(다운캐스팅이 안되는 경우라서)
 		if(p1 instanceof SmartPhone) {
-			SmartPhone.c1 = (SmartPhone) p1;
+			SmartPhone c1 = (SmartPhone) p1;
 			c1.call("국제번호");
 		}
 		

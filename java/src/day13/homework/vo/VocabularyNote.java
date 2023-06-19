@@ -199,7 +199,7 @@ public class VocabularyNote {
 			return false;
 		}
 		Word tmp = wordList[index];
-		if(tmp.deletMeaning(num)) {
+		if(tmp.removeMeaning(num)) {
 			return true;
 		}
 		return false;

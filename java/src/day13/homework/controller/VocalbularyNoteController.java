@@ -99,7 +99,7 @@ public class VocalbularyNoteController {
 		
 		//단어장에 추가하기
 		int result = note.insert(title, meaning);
-		
+				
 		switch(result) {
 		case 1: System.out.println("단어 추가 성공!"); break;
 		case -1:System.out.println("의미 추가 성공!"); break;

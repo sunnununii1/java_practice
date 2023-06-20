@@ -96,6 +96,7 @@ public class ShopManager {
 		System.out.println("수량 : ");
 		int amount = sc.nextInt();
 		
+		//수량이 음수로 입력되면 오류 있다는 메세지 출력
 		if(amount < 0) {
 			System.out.println("입고 수량이 잘못되었습니다.");
 			return;

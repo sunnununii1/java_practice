@@ -36,7 +36,7 @@ public class PolymorphismEx1 {
 	}
 
 }
-
+//상속 없는 ver. 매개변수 종류에 따라 코드 각각 만들어야함
 class RemoteCountrol{
 	public void turnOn(TV tv) {
 		tv.turnOn();
@@ -77,6 +77,7 @@ class Radio{
 	}
 }
 
+//가전제품 클래스 생성
 class HomeAppliances{
 	boolean power;
 	void turnOn() {
@@ -88,7 +89,7 @@ class HomeAppliances{
 }
 	
 	
-//매개변수를 부모 클래스로 변환
+//매개변수 다형성 이용으로, 한꺼번에 코드 변환 가능
 class RemoteCountrol1{
 	public void turnOn(HomeAppliances appliance) {
 		appliance.turnOn();
@@ -100,7 +101,7 @@ class RemoteCountrol1{
 	}
 }
 
-
+//가전제품을 상속받는 자식클래스(리모콘, 에어컨, 티비 등..) 생성
 class TV1 extends HomeAppliances{
 	int channel;
 }

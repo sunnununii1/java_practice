@@ -57,11 +57,11 @@ public class Product {
 	}
 
 	public void print() {
-		System.out.println("제품명 : name");
-		System.out.println("모델명 : modelName");
-		System.out.println("분류 : category");
-		System.out.println("재고 : amount");
-		System.out.println("가격 : price");
+		System.out.println("제품명 : " + name);
+		System.out.println("모델명 : " + modelName);
+		System.out.println("분류 : " + category);
+		System.out.println("재고 : " + amount);
+		System.out.println("가격 : " + price);
 	}
 	
 }

@@ -31,9 +31,15 @@ public class AbstractEx {
 		//다형성 : 하나의 객체에 여러타입이 온다
 		a = ca2; //업캐스팅에 의해 ca2객체를 a가 다룰 수 있음
 		a.test();
+		
+		
+		String str;
 	}
 
 }
+
+class Exstring extends 
+
 
 /* 추상 클래스는 추상 메서드를 가진다.
  * 추상 메서드가 있는 클래스 앞에 abstract 붙이지 않으면 에러! */

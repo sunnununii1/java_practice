@@ -20,6 +20,15 @@ public class Product {
 		this.category = category;
 	}
 	
+	//sell 판매정보의 복사생성자(깊은복사)
+	public Product(Product product) {
+		this.name = product.name;
+		this.modelName = product.modelName;
+		this.price = product.price;
+		this.amount = product.amount;
+		this.category = product.category;
+	}
+
 	//메소드
 	/** 제품의 입고 기능을 알려주는 메소드 => 현재 수량에 추가 수량을 더해 누적
 	 * 매개변수 : 추가할 수량 => int amount
@@ -45,6 +54,14 @@ public class Product {
 	}
 	private void accumulate(int amount) {
 		this.amount += amount;
+	}
+
+	public void print() {
+		System.out.println("제품명 : name");
+		System.out.println("모델명 : modelName");
+		System.out.println("분류 : category");
+		System.out.println("재고 : amount");
+		System.out.println("가격 : price");
 	}
 	
 }

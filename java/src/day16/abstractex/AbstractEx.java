@@ -31,27 +31,25 @@ public class AbstractEx {
 		//다형성 : 하나의 객체에 여러타입이 온다
 		a = ca2; //업캐스팅에 의해 ca2객체를 a가 다룰 수 있음
 		a.test();
-		
-		
-		String str;
 	}
 
 }
-
-class Exstring extends 
-
 
 /* 추상 클래스는 추상 메서드를 가진다.
  * 추상 메서드가 있는 클래스 앞에 abstract 붙이지 않으면 에러! */
 abstract class A{
 	public abstract void test();
+	//메서드에 final이 붙으면 메서드 오버라이딩 불가능!
+	public final void test2() {
+		System.out.println("Test2");
+	}
 }
 
 /* 추상 클래스 상속 받는 방법 
  * ① 추상 클래스 A를 상속받은 자식 클래스는 추상 클래스로 만들어야 함
  */
 abstract class ChildA1 extends A{
-	
+	//public void test2() {} //final 메서드를 오버라이딩 할 수 없음!
 }
 
 /* 추상 클래스 상속 받는 방법

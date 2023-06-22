@@ -85,14 +85,36 @@ public class BeverageMachineEx {
 			System.out.println("잘못된 입력");
 			return;
 		}
+		//자판기에 입력한 돈 저장하기
 	}
 		
 	private void getMenu() {
 		
+		//사이다, 콜라, 환타 메뉴 출력
+		for() {
+			
+		}
+		
+		//금액이 있으면 음료, 잔돈 출력
+		
+		//없으면 돈이 부족하다는 메세지와 잔돈 출력
 	}
 		
 	private void store() {
-			
+		//입고할 제품명 입력
+		System.out.println("입고 제품 : ");
+		String name = sc.nextLine();
+		
+		//입고할 제품 수량 입력
+		System.out.println("입고 수량 : ");
+		int amount = sc.nextInt();
+		
+		//수량이 음수이면 잘못됐다는 메세지 출력
+		if(amount < 0) {
+			System.out.println("수량 입력 오류");
+			return;
+		}
+		
 	}
 		
 }

@@ -17,19 +17,19 @@ public class ImgEx {
 		//split : 구분자를 구준으로 문자열 추출 후 순서대로 배열에 저장
 		String str = "jpg,bmp,png";
 		String imageList[] = str.split(",");
-		
-		//배열에 저장한 형식이면 Image 출력 
-		for(String file : imageList) {
-			System.out.println("input : ");
-			String image = sc.nextLine();
-		//아니라면 Not Image 출력
-			while(true) {
-				int index = str.indexOf("jpg",4);
-				System.out.println(image + " : Image");
-				break;
-			}
+		//반복문
+			//배열에 저장한 형식이면 Image 출력 
+			for(String file : imageList) {
+				System.out.println("input : ");
+				String image = sc.nextLine();
+				//아니라면 Not Image 출력
+				while(true) {
+					int index = str.indexOf("jpg",4);
+					System.out.println(image + " : Image");
+					break;
+				}
 			
-		}
+			}
 		sc.close();
 		
 	}

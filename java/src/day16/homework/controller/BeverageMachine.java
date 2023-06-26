@@ -6,7 +6,7 @@ import day16.homework.run.Run;
 
 import day16.homework.vo.Drink;
 
-public class BeverageMachineEx {
+public class BeverageMachine {
 
 		// 음료수를 뽑는 자판기 프로그램을 작성하세요. (단, 음료수는 사이다, 콜라, 환타 고정)
 		// 메뉴를 선택시 음료수와 잔액이 나옴(출력)
@@ -23,10 +23,13 @@ public class BeverageMachineEx {
 		
 	Scanner sc = new Scanner(System.in);
 		
-	private Drink drinkList[] = new Drink[10]; //총 10개까지의 음료리스트
-	private int drinkCount = 0;
+	private Drink drinkList[] = new Drink[3]; //총 3개까지의 음료리스트
+	private int money = 0; //자판기 안 금액
 	
-		
+	private final static int SPRITE = 0;
+	private final static int COKE = 0;
+	private final static int FANTA = 2;
+	
 	public void run() {
 	System.out.println("자판기 프로그램 시작");
 			

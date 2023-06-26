@@ -1,23 +1,22 @@
 package day16.homework.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+//@AllArgsConstructor /생성자 자동생성
 public class Drink {
 
 	//멤버변수
 	private String name; //음료수 이름
-	private int money; 	 //고객이 가진 돈
 	private int price;	 //가격
-	private int changes; //잔돈
 	private int amount;
 	
 	//생성자
-	public Drink(String name, int money, int price, int changes) {
+	public Drink(String name, int price, int amount) {
 		this.name = name;
-		this.money = money;
 		this.price = price;
-		this.changes = changes;
+		this.amount = amount;
 	}
 	
 	
@@ -37,8 +36,7 @@ public class Drink {
 	//메서드
 	public void print() {
 		System.out.println("음료수 이름 : " + name);
-		System.out.println("가진 돈 : " + money);
 		System.out.println("음료수 가격 : " + price);
-		System.out.println("잔돈 : " + changes);
+		System.out.println(" : " + amount);
 	}
 }

@@ -1,5 +1,7 @@
 package day20.homework.vo;
 
+import java.util.ArrayList;
+
 /* 여긴 단어장 클래스
  * - 단어들의 모임
  * => Word들의 모임
@@ -8,24 +10,17 @@ package day20.homework.vo;
 public class VocabularyNote {
 	//멤버변수
 	//단어들
-	private Word wordList[]; // 단어들 의미
-	private int wordCount; // 저장된 단어의 개수를 의미
+	private ArrayList<Word> wordList; // 단어들 의미
 	
 	//생성자
 	public VocabularyNote() {
-		wordList = new Word[10]; // 10개짜리 복사장 하나 만듦
+		wordList = new ArrayList<>(); // 복사장
 	}
 	
 	
-	public VocabularyNote(Word wordList[]) {
+	public VocabularyNote(ArrayList<Word> wordList) {
 		//기존 단어장의 크기와 10을 비교해서 큰 수로 단어장 크기로 선택
-		int size = wordList.length > 10 ? wordList.length : 10;
-	
-		this.wordList = new Word[size];
-		for(int i=0; i<wordList.length; i++) {
-			this.wordList[i] = new Word(wordList[i]); //Word 클래스에 복사생성자 따로 추가해서 깊은 복사로!
-		}
-		wordCount = wordList.length;
+		this.wordList = (ArrayList<Word>) wordList.clone();
 	}
 
 	//메서드
@@ -36,8 +31,8 @@ public class VocabularyNote {
 	 */
 	public void print() {
 		System.out.println("===================");
-		for(int i=0; i<wordCount; i++) {
-			wordList[i].print();
+		for(Word tmp : wordList) {
+			tmp.print();
 			System.out.println("===================");
 		}
 	}

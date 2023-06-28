@@ -48,7 +48,7 @@ public class VocabularyNote {
 			return;
 		}
 		//깊은 복사 위해 Word의 복사 생성자를 이용하여 새 단어를 생성 후 추가
-		wordList[wordCount++] = new Word(word);
+		wordList.add(new Word(word));
 	}
 		
 	/** 단어와 뜻이 주어지고 없는 단어이면 새로 단어를 추가하고 1을 리턴,

@@ -23,8 +23,8 @@ public class StreamEx2 {
 		//국어 성적이 60점 이상인 학생들의 이름 출력
 		Stream<Student> stream = list.stream();
 		stream.filter(s->s.getKor() >= 60)
-		.map(s->s.getName()) //선택
-		.forEach(name-> System.out.println(name));
+				.map(s->s.getName()) //선택
+				.forEach(name-> System.out.println(name));
 		
 		//국어 성적의 총합 출력
 		stream = list.stream();

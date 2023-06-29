@@ -54,6 +54,9 @@ public class StudentManager3 implements Program {
 			System.out.print("학년 : ");
 			final int grade1 = sc.nextInt();
 			final int fGrade = grade1;
+			/* filter는 매개변수로 predicate 인터페이스의 객체가 필요
+			 * 익명클래스(=filter())를 람다식으로 만든 후에 객체를 생성해서 전달 
+			 * std는 매개변수 이름.(수정가능) */
 			stream.filter(std->std.getGrade() == grade1)
 				  .forEach(std->System.out.println(std));
 			break;

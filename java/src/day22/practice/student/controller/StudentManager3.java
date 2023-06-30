@@ -1,14 +1,15 @@
-package day22.practice.controller;
+package day22.practice.student.controller;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
-import day22.practice.vo.Student;
+import day22.practice.student.vo.Student;
 
-public class StudentManager2 implements Program {
-	/* 람다식 버전으로 바꿔보기 */
+public class StudentManager3 implements Program {
+	/* 스트림 버전으로 바꿔보기 */
 	
 	private List<Student> list = Arrays.asList(
 			new Student(1,1,1,"Hong"),
@@ -43,16 +44,21 @@ public class StudentManager2 implements Program {
 
 	@Override
 	public void runMenu(int menu) {
+		Stream<Student> stream = list.stream();
 		switch(menu) {
 		case 1:
-			print(s->true); //학생 정보가 주어지면 true로 리턴하여 출력
+			stream.forEach(std->System.out.println(std));
 			break;
 		case 2:
 			//검색할 학년 입력
 			System.out.print("학년 : ");
 			final int grade1 = sc.nextInt();
-			final int fGrade = grade1; //람다식 안의 지역변수는 상수(final ..)만 가능(밖에서 사용하는 변수는 상수로 변환 필)
-			print(s->s.getGrade() == grade1);
+			final int fGrade = grade1;
+			/* filter는 매개변수로 predicate 인터페이스의 객체가 필요
+			 * 익명클래스(=filter())를 람다식으로 만든 후에 객체를 생성해서 전달 
+			 * std는 매개변수 이름.(수정가능) */
+			stream.filter(std->std.getGrade() == grade1)
+				  .forEach(std->System.out.println(std));
 			break;
 		case 3:
 			//검색할 학년, 반, 번호 입력
@@ -62,7 +68,8 @@ public class StudentManager2 implements Program {
 			final int classNum2 = sc.nextInt();
 			System.out.println("번호 : ");
 			final int num2 = sc.nextInt();
-			print(s->s.equals(new Student(grade2, classNum2, num2, "")));
+			stream.filter(std->std.equals(new Student(grade2, classNum2, num2, null)))
+				  .forEach(std->System.out.println(std));
 			break;
 		case 4:
 			System.out.println("종료");
@@ -70,7 +77,6 @@ public class StudentManager2 implements Program {
 		default:
 			System.out.println("잘못된 입력");
 		}
-	
 	}
 	
 	private void print(Predicate<Student> p) {

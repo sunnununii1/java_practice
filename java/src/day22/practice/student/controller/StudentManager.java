@@ -1,15 +1,12 @@
-package day22.practice.controller;
+package day22.practice.student.controller;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
-import day22.practice.vo.Student;
+import day22.practice.student.vo.Student;
 
-public class StudentManager3 implements Program {
-	/* 스트림 버전으로 바꿔보기 */
+public class StudentManager implements Program {
 	
 	private List<Student> list = Arrays.asList(
 			new Student(1,1,1,"Hong"),
@@ -44,32 +41,26 @@ public class StudentManager3 implements Program {
 
 	@Override
 	public void runMenu(int menu) {
-		Stream<Student> stream = list.stream();
+		int grade, classNum, num;
 		switch(menu) {
 		case 1:
-			stream.forEach(std->System.out.println(std));
+			printAll();
 			break;
 		case 2:
 			//검색할 학년 입력
 			System.out.print("학년 : ");
-			final int grade1 = sc.nextInt();
-			final int fGrade = grade1;
-			/* filter는 매개변수로 predicate 인터페이스의 객체가 필요
-			 * 익명클래스(=filter())를 람다식으로 만든 후에 객체를 생성해서 전달 
-			 * std는 매개변수 이름.(수정가능) */
-			stream.filter(std->std.getGrade() == grade1)
-				  .forEach(std->System.out.println(std));
+			grade = sc.nextInt();
+			printGrade(grade);
 			break;
 		case 3:
 			//검색할 학년, 반, 번호 입력
 			System.out.print("학년 : ");
-			final int grade2 = sc.nextInt();
+			grade = sc.nextInt();
 			System.out.print("반 : ");
-			final int classNum2 = sc.nextInt();
+			classNum = sc.nextInt();
 			System.out.println("번호 : ");
-			final int num2 = sc.nextInt();
-			stream.filter(std->std.equals(new Student(grade2, classNum2, num2, null)))
-				  .forEach(std->System.out.println(std));
+			num = sc.nextInt();
+			printSearch(grade, classNum, num);
 			break;
 		case 4:
 			System.out.println("종료");
@@ -77,14 +68,30 @@ public class StudentManager3 implements Program {
 		default:
 			System.out.println("잘못된 입력");
 		}
+	
 	}
 	
-	private void print(Predicate<Student> p) {
+
+	private void printSearch(int grade, int classNum, int num) {
 		for(Student tmp : list) {
-			//test의 조건을 만족하면 출력, 아니면 안함
-			if(p.test(tmp)) {
+			if(tmp.equals(new Student(grade, classNum, num, ""))) {
+			System.out.println(tmp);
+			}
+		}
+	}
+
+	private void printGrade(int grade) {
+		for(Student tmp : list) {
+			if(grade == tmp.getGrade()) {
 				System.out.println(tmp);
 			}
+			System.out.println(tmp);
+		}
+	}
+
+	private void printAll() {
+		for(Student tmp : list) {
+			System.out.println(tmp);
 		}
 	}
 

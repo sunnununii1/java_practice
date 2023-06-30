@@ -3,7 +3,7 @@ package day20.homework.controller;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import day13.homework.vo.VocabularyNote;
+import day20.homework.vo.VocabularyNote;
 import day17.interfaceex.RunInterface;
 
 public class VocalbularyNoteController implements RunInterface {

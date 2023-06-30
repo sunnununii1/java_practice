@@ -33,9 +33,10 @@ public class StreamEx2 {
 		
 		//국어 성적의 평균 출력
 		stream = list.stream();
-		double avg = stream.mapToInt(std->std.getKor())
-							.average()
-							.getAsDouble;
+		double avg = stream
+				.mapToInt(std->std.getKor())
+				.average()
+				.getAsDouble();
 		System.out.println(avg);
 		
 		//국어 성적의 총합(다른 방식)

@@ -1,13 +1,18 @@
 package day25.teacher.student.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import day25.student.vo.Student;
+import day25.teacher.student.vo.Student;
 
 public class StudentController4 {
-	//File 이용한 풀이
+	//File 이용한 풀이(load, save 추가하기)
 	
 	private Scanner sc = new Scanner(System.in);
 	private List<Student> list = new ArrayList<Student>();
@@ -81,4 +86,29 @@ public class StudentController4 {
 			System.out.println("=======");
 		}
 	}
+
+	@Override
+	public void load() {
+		try(FileInputStream fis = new FileInputStream("Student_File.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis)){
+			?? = (Student)ois.readObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public void save() {
+		try(FileOutputStream fos = new FileOutputStream("Student_File.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			oos.writeObject(??);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

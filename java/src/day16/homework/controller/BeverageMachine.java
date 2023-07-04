@@ -2,8 +2,6 @@ package day16.homework.controller;
 
 import java.util.Scanner;
 
-import day16.homework.run.Run;
-
 import day16.homework.vo.Drink;
 
 public class BeverageMachine {
@@ -21,105 +19,138 @@ public class BeverageMachine {
 		 * 4. 프로그램 종료
 		 */
 		
-	Scanner sc = new Scanner(System.in);
-		
-	private Drink drinkList[] = new Drink[3]; //총 3개까지의 음료리스트
-	private int money = 0; //자판기 안 금액
+	private Scanner sc = new Scanner(System.in);
+	private final static int EXIT = 4; //프로그램 종료 번호
 	
+	
+	private Drink list[] = new Drink[3]; //총 3개까지의 음료리스트
+	private int money; //자판기 안 금액
+	
+	//음료수별 번지를 상수로 지정 
 	private final static int SPRITE = 0;
-	private final static int COKE = 0;
+	private final static int COKE = 1;
 	private final static int FANTA = 2;
 	
-	public void run() {
-	System.out.println("자판기 프로그램 시작");
-			
-	int menu = -1;
-	final int EXIT = 6;
-			
-		//반복(선택한 메뉴가 종료가 아닐때)
-		do {
-			//메뉴 출력
-			printMenu();
-			
-			//메뉴 선택
-			menu = sc.nextInt();
-			
-			//선택 메뉴의 기능 실행
-			runMenu(menu);
-			
-		}while(menu != EXIT);	
-			System.out.println("프로그램 종료");
-		}
-		
+	
 	private void printMenu() {
-		System.out.println("\n메뉴");
+		System.out.println("============");
+		System.out.println("금액 : " + money);
+		System.out.println("============");
+		System.out.println("메뉴");
 		System.out.println("1. 금액 투입");
 		System.out.println("2. 메뉴 선택");
 		System.out.println("3. 제품 입고");
 		System.out.println("4. 프로그램 종료");
-		System.out.println("\n메뉴 선택 : ");
-		
+		System.out.print("메뉴 선택 : ");
 	}
-		
+	
+	public void run() {
+		int menu;
+		do {
+			//메뉴 출력
+			printMenu();
+			//메뉴 선택
+			menu = sc.nextInt();
+			System.out.println("============");
+			
+			//메뉴에 따른 기능 실행
+			runMenu(menu);
+		}while(menu != EXIT);
+	}
+	
 	private void runMenu(int menu) {
 		switch(menu) {
 		case 1:
-			getMoney();
+			insertCoin();
 			break;
 		case 2:
-			getMenu();
+			selectBeverage();
 			break;
 		case 3:
-			store();
+			insertBeverage();
 			break;
 		case 4:
 			break;
-		default :
-			System.out.println("잘못된 선택입니다.");
+		default:
+			System.out.println("잘못된 메뉴!");	
+		}
+
+	}
+
+	//음료 배출
+	private void generate(int beverage) {
+		int amount = list[beverage].getAmount();
+		if(amount<=0) {
+			System.out.println("제고 없음!");
+			return;
+		}
+		int money =list[beverage].getPrice(); 
+		if(this.money < money) {
+			System.out.println("금액 부족!");
+			return;
+		}
+		//음료수 배출 시 수량 1 감소 
+		list[beverage].setAmount(amount-1);
+		this.money -= money;
+
+		System.out.println(getBeverage(beverage)+"가 나옴");
+		System.out.println("거스름돈 : " + this.money);
+		this.money = 0;
+	}
+	
+	//선택한 음료(정수)에 따른 음료수명(문자열)을 알려주는 메서드
+	private String getBeverage(int beverage) {
+		switch(beverage) {
+		case SPRITE: return "사이다";
+		case COKE: return "콜라";
+		case FANTA: return "환타";
+		default: return "없음";
 		}
 	}
-		
-	private void getMoney() {
-		//넣을 돈 입력
-		System.out.print("넣으실 금액 : ");
+
+	private void insertCoin() {
+		System.out.print("금액 투입 : ");
 		int money = sc.nextInt();
-		//돈이 0보다 적으면 에러
-		if(money < 0) {
-			System.out.println("잘못된 입력");
-			return;
-		}
-		//자판기에 입력한 돈 저장하기
+		this.money += money;
 	}
-		
-	private void getMenu() {
-		
-		//사이다, 콜라, 환타 메뉴 출력
-		for() {
-			
-		}
-		
-		//금액이 있으면 음료, 잔돈 출력
-		
-		//없으면 돈이 부족하다는 메세지와 잔돈 출력
+
+	//음료 선택
+	private void selectBeverage() {
+		System.out.println("1. 사이다 : " + list[SPRITE].getPrice());
+		System.out.println("2. 콜라  : " + list[COKE].getPrice());
+		return;
 	}
+	
+	private void insertBeverage() {
+		System.out.println("1. 사이다");
+		System.out.println("2. 콜라");
+		System.out.println("3. 환타");
+		System.out.print("음료 선택 : ");
 		
-	private void store() {
-		//입고할 제품명 입력
-		System.out.println("입고 제품 : ");
-		String name = sc.nextLine();
-		
-		//입고할 제품 수량 입력
-		System.out.println("입고 수량 : ");
+		int selectBeverage = sc.nextInt() - 1;
+		System.out.print("수량 : ");
 		int amount = sc.nextInt();
-		
-		//수량이 음수이면 잘못됐다는 메세지 출력
-		if(amount < 0) {
-			System.out.println("수량 입력 오류");
+		//콜라, 사이다, 환타를 입력하면 입고, 아니면 알림메세지 출력.
+		switch (selectBeverage) {
+		case COKE:
+		case SPRITE:
+		case FANTA:
+			store(selectBeverage, amount);
+			break;
+		default:
+			System.out.println("잘못 선택!");
 			return;
 		}
-		
 	}
-		
+
+	private void store(int selectBeverage, int amount) {
+		if(amount < 0) {
+			System.out.println("수량 오류!");
+			return;
+		}
+		//선택한 음료수를 입고
+		list[selectBeverage].store(amount);
+		System.out.println("입고 완료!");
+	}
 }
-
-
+		

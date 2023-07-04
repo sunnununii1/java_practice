@@ -1,5 +1,7 @@
 package day22.homework.run;
 
+import day22.homework.controller.StudentManager;
+
 public class Manager {
 
 	public static void main(String[] args) {
@@ -12,6 +14,9 @@ public class Manager {
 		 * 필요 클래스 추가(vo에)
 		 * 기능 하나씩 구현
 		 * */
+		
+		StudentManager sm = new StudentManager();
+		sm.run();
 
 	}
 

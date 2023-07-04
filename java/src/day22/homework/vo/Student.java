@@ -1,5 +1,11 @@
 package day22.homework.vo;
 
-public class Student {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
+public class Student {
+	int grade, classNum, num;
+	String name;
 }

@@ -1,4 +1,4 @@
-package day23.stream;
+package day23;
 
 import java.io.File;
 import java.io.IOException;

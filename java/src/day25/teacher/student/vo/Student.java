@@ -1,6 +1,8 @@
 package day25.teacher.student.vo;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 	private String name,classNumber,major;
 	
 	public Student(String name, String classNumber, String major) {

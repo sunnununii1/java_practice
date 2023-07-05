@@ -21,7 +21,7 @@ public class StudentController4 {
 
 	public void run() {
 		int menu;
-		String fileName = "student.txt";
+		String fileName = "student_day25.txt";
 		load(fileName);
 		do {
 			//메뉴 출력

@@ -1,6 +1,8 @@
 package day25.teacher.student.controller;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,7 +21,8 @@ public class StudentController4 {
 
 	public void run() {
 		int menu;
-		
+		String fileName = "student.txt";
+		load(fileName);
 		do {
 			//메뉴 출력
 			printMenu();
@@ -29,9 +32,45 @@ public class StudentController4 {
 			runMenu(menu);
 		
 		}while(menu != 3);
-		
+		save(fileName);
+		sc.close();
 	}
 
+	public void save(String fileName) {
+		//학생 정보 저장(리스트에) => 하나씩 꺼내서 저장
+		// => 저장		 : OutputStream
+		// => 객체단위로 저장 : ObjectOutputStream(보조라서 기반 스트림인 FileOutputStream 필요) 
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+				//Student가 시리얼라이즈 된 클래스여야함(vo)
+			for(Student tmp : list) {
+				oos.writeObject(tmp);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void load(String fileName) {
+		try(ObjectInputStream ois 
+				= new ObjectInputStream(new FileInputStream(fileName))){
+				while(true) {
+					Student tmp = (Student)ois.readObject();
+					list.add(tmp);
+				}
+		} catch (FileNotFoundException e) {
+			System.out.println("불러올 파일 없음");
+		} catch (EOFException e) {
+			System.out.println("불러오기 완료");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			/* ObjectInputStream 이용해서 객체 단위로 읽어올 때, 
+			클래스가 Serializable 인터페이스를 구현하지 않을 시 발생 */
+			System.out.println("Student 클래스를 찾을 수 없음");
+		}
+	}
+	
 	private void runMenu(int menu) {
 		String name, classNumber, major;
 		Student tmp;
@@ -87,28 +126,5 @@ public class StudentController4 {
 		}
 	}
 
-	@Override
-	public void load() {
-		try(FileInputStream fis = new FileInputStream("Student_File.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis)){
-			?? = (Student)ois.readObject();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	@Override
-	public void save() {
-		try(FileOutputStream fos = new FileOutputStream("Student_File.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos)){
-			oos.writeObject(??);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 }

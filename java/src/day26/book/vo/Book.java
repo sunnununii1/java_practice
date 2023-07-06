@@ -11,20 +11,20 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = 466300774616839952L;
 	/* 도서 번호 : 도서관에서 저장
 	 * 도서명, 저자, ISBN */
-	private String name, writer, isbn, num;
+	private String num, name, writer, isbn;
 	private boolean borrow; //도서 대출 여부
 	
 	public String toString() {
 		return "도서 번호 : " + num +
-				"\n도서 제목 : " + name +
-				"\n저자 : " + writer +
-				"\nISBN : " + isbn + "\n";
+				"\n" + "도서 제목 : " + name +
+				"\n" + "저자 : " + writer +
+				"\n" + "ISBN : " + isbn;
 	}
 	public Book(String num, String name, String writer, String isbn) {
+		this.num = num;
 		this.name = name;
 		this.writer = writer;
 		this.isbn = isbn;
-		this.num = num;
 	}
 	public void borrowBook() {
 		this.borrow = true; //setBorrow(true);

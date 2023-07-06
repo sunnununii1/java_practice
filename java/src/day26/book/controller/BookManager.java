@@ -26,7 +26,9 @@ public class BookManager implements Program {
 	public void run() {
 		int menu;
 		String bookName = "book_day26.txt";
+		String loadBorrow = "borrow_day26.txt";
 		loadBook(bookName);
+		loadBorrow(loadBorrow);
 		do {
 			System.out.println("===========");
 			printMenu();
@@ -36,8 +38,38 @@ public class BookManager implements Program {
 			
 		}while(menu != EXIT);
 		saveBook(bookName);
+		saveBorrow(loadBorrow);
 		sc.close();
 	}
+	
+	private void saveBorrow(String fileName) {
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+				for(borrowBrowsing tmp : borrowList) {
+					oos.writeObject(tmp);
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+	}
+	private void loadBorrow(String fileName) {
+		try(ObjectInputStream ois 
+				= new ObjectInputStream(new FileInputStream(fileName))){
+					while(true) {
+						borrowBrowsing tmp = (borrowBrowsing)ois.readObject();
+						borrowList.add(tmp);
+					}
+		} catch(FileNotFoundException e) {
+			System.out.println("불러올 파일이 없음");
+		} catch(EOFException e) {
+			System.out.println("불러오기 완료");
+		} catch(IOException e) {
+			e.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			System.out.println("borrowBrowsing 클래스를 찾을 수 없음");
+		}
+	}
+	
 	
 	private void saveBook(String fileName) {
 		try(FileOutputStream fos = new FileOutputStream(fileName);
@@ -49,7 +81,6 @@ public class BookManager implements Program {
 				e.printStackTrace();
 			}
 		}
-
 
 	private void loadBook(String fileName) {
 		try(ObjectInputStream ois 
@@ -69,6 +100,7 @@ public class BookManager implements Program {
 		}
 		System.out.println(list);
 	}
+	
 
 	public void printMenu() {
 		System.out.println("1. 도서 등록");
@@ -99,17 +131,24 @@ public class BookManager implements Program {
 
 	private void insertBook() {
 		//책 제목, 저자, isbn(고유도서번호), 도서번호 입력
-		System.out.println("책 제목 : ");
-		String name = sc.next();
-		System.out.println("저자 이름 : ");
-		String writer = sc.next();
-		System.out.println("도서 번호 : ");
+		System.out.print("도서 번호 : ");
 		String num = sc.next();
-		System.out.println("ISBN : ");
+		System.out.print("도서 제목 : ");
+		String name = sc.next();
+		System.out.print("저자 이름 : ");
+		String writer = sc.next();
+		System.out.print("ISBN : ");
 		String isbn = sc.next();
 		
 		//책 객체 생성 후, 리스트에 추가
-		Book book = new Book(name, writer, isbn, num);
+		Book book = new Book(num, name, writer, isbn);
+		
+		//도서 번호 중복체크
+		if(list.contains(book)) {
+			System.out.println("이미 등록된 도서 번호입니다.");
+			return;
+		}
+		
 		list.add(book);
 		System.out.println(list);
 	}
@@ -164,35 +203,33 @@ public class BookManager implements Program {
 		//대출일 출력
 		System.out.println("대출일 : " + bb.getBorrowDateSrt());
 		//반납예정일 출력
-		System.out.println("반납 예정일 : " + bb.getreturnDateSrt());
+		System.out.println("반납일 : " + bb.getEstimatedDateStr());
 	}
 
 	private void returnBook() {
-		//반납할 책 이름 입력
+		//반납할 도서 번호 입력
 		System.out.print("반납할 도서 번호 : ");
 		String num = sc.next();
 		
 		//반납 신청
-		//도서 번호 올바른지 확인(대출 중이고 검색 도서 개수가 0이면 OK)
-		boolean possible =
-				list
-				.stream()
-				.filter(b->b.isBorrow() && b.getNum().equals(num))
-				.count() == 0;
-		//올바르지 않으면 반납 불가 출력
-		if(!possible) {
-			System.out.println("반납 불가, 대출 중이 아닙니다.");
-		}
+		//대출한 도서가 아니면 반납 불가 출력
 		int index = list.indexOf(new Book(num, null, null, null));
-		Date returnDate = new Date();
-		
-		borrowBrowsing bb 
-		= new borrowBrowsing(list.get(index), returnDate, 14);
-		
-		borrowList.remove(bb); //대출 리스트에서 제거
-		
-		//반납 완료 메세지 출력
-		System.out.println("반납 완료되었습니다.");
+		if(index == -1) {
+			System.out.println("대출한 도서가 아닙니다.");
+			return;
+		}
+		//반납 작업
+		//도서 상태를 대출 가능으로 수정
+		Book returnBook = list.get(index);
+		returnBook.returnBook();
+		//대출 열람 리스트에서 대출 도서의 반납일을 오늘로 수정
+		//반납 도서의 대출 열람을 찾아야 함 (마지막 기록이 대출이니까 lastIndexOf로 찾기)
+		int bbIndex = borrowList.lastIndexOf(new borrowBrowsing(returnBook, null, 14));
+		borrowBrowsing tmpbb = borrowList.get(bbIndex);
+		tmpbb.setReturnDate(new Date());
+		//완료 메세지 출력
+		System.out.println("대출일 : " + tmpbb.getBorrowDateSrt());
+		System.out.println("반납일 : " + tmpbb.getReturnDateSrt());
 		}
 	
 }

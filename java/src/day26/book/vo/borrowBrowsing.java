@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 //도서 대출 열람 클래스
-public class borrowBrowsing implements Serializable{
+public class BorrowBrowsing implements Serializable{
 	
 	private static final long serialVersionUID = 170869066542413329L;
 	
@@ -20,7 +20,7 @@ public class borrowBrowsing implements Serializable{
 	private Date returnDate; //반납일
 	private Date estimatedDate; //반납 예정일
 	
-	public borrowBrowsing(Book book, Date date, int borrowPeriod) {
+	public BorrowBrowsing(Book book, Date date, int borrowPeriod) {
 		this.book = book;
 		this.borrowDate = date;
 		//대출 기한을 이용하여 반납 예정일 추가
@@ -63,7 +63,7 @@ public class borrowBrowsing implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		borrowBrowsing other = (borrowBrowsing) obj;
+		BorrowBrowsing other = (BorrowBrowsing) obj;
 		return Objects.equals(book, other.book);
 	}
 

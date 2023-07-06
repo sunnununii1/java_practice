@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import day26.book.vo.Book;
-import day26.book.vo.borrowBrowsing;
+import day26.book.vo.BorrowBrowsing;
 
 public class BookManager implements Program {
 
 	private List<Book> list = new ArrayList<>(); //도서 리스트
-	private List<borrowBrowsing> borrowList = new ArrayList<>(); //대출 열람 리스트
+	private List<BorrowBrowsing> borrowList = new ArrayList<>(); //대출 열람 리스트
 	
 	Scanner sc = new Scanner(System.in);
 	public static final int EXIT = 4;
@@ -45,7 +45,7 @@ public class BookManager implements Program {
 	private void saveBorrow(String fileName) {
 		try(FileOutputStream fos = new FileOutputStream(fileName);
 				ObjectOutputStream oos = new ObjectOutputStream(fos)){
-				for(borrowBrowsing tmp : borrowList) {
+				for(BorrowBrowsing tmp : borrowList) {
 					oos.writeObject(tmp);
 				}
 			} catch(IOException e) {
@@ -56,7 +56,7 @@ public class BookManager implements Program {
 		try(ObjectInputStream ois 
 				= new ObjectInputStream(new FileInputStream(fileName))){
 					while(true) {
-						borrowBrowsing tmp = (borrowBrowsing)ois.readObject();
+						BorrowBrowsing tmp = (BorrowBrowsing)ois.readObject();
 						borrowList.add(tmp);
 					}
 		} catch(FileNotFoundException e) {
@@ -195,8 +195,8 @@ public class BookManager implements Program {
 		//도서 객체(도서, 대출일, 기간) 생성
 		int index = list.indexOf(new Book(num, null, null, null));
 		Date borrowDate = new Date();
-		borrowBrowsing bb 
-			= new borrowBrowsing(list.get(index), borrowDate, 14);
+		BorrowBrowsing bb 
+			= new BorrowBrowsing(list.get(index), borrowDate, 14);
 		//대출 열람 출력
 		borrowList.add(bb);
 		list.get(index).borrowBook(); //도서에 대출했다고 수정
@@ -224,8 +224,8 @@ public class BookManager implements Program {
 		returnBook.returnBook();
 		//대출 열람 리스트에서 대출 도서의 반납일을 오늘로 수정
 		//반납 도서의 대출 열람을 찾아야 함 (마지막 기록이 대출이니까 lastIndexOf로 찾기)
-		int bbIndex = borrowList.lastIndexOf(new borrowBrowsing(returnBook, null, 14));
-		borrowBrowsing tmpbb = borrowList.get(bbIndex);
+		int bbIndex = borrowList.lastIndexOf(new BorrowBrowsing(returnBook, null, 14));
+		BorrowBrowsing tmpbb = borrowList.get(bbIndex);
 		tmpbb.setReturnDate(new Date());
 		//완료 메세지 출력
 		System.out.println("대출일 : " + tmpbb.getBorrowDateSrt());

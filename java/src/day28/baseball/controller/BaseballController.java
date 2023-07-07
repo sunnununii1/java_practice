@@ -96,6 +96,7 @@ public class BaseballController implements Program{
 		List<Integer> user = new ArrayList<>();
 		int count = 0;
 		do {
+			user.clear(); //기존값 누적 방지
 			//사용자가 입력
 			System.out.print("user : ");
 			for(int i = 0; i<3; i++) {
@@ -110,7 +111,6 @@ public class BaseballController implements Program{
 			}
 			//결과 출력
 			bbGame.printResult();
-			user.clear(); //기존값 누적 방지
 			count++;
 			
 		}while(bbGame.getStrike() != 3);

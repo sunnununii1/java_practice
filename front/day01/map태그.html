@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>map 태그 예제</title>
+</head>
+<body>
+	<!--
+		<map> : 이미지 맵 정의할 때 사용, 클릭 가능한 영역일 때.
+					<map>에 name 지정, <img>에 usemap 속성값으로 <map>의 name 앞에 # 붙임, <area> 이용해 영역 지정
+			ㄴshape 속성 : 영역 모양 (default/rect/circle/poly)
+			ㄴcoords 속성 : 영역의 좌표 (shape에 따라 좌표개수 달라짐)
+			ㄴhref 속성 : 영역 클릭시 넘어갈 링크
+			ㄴalt 속성 : 실행되지 않을시 대체될 텍스트
+			ㄴtarget 속성 : 링크 실행될 위치 지정 (_self:현재 페이지/_blank:새탭/_parent:부모창/_top:최상위 페이지)
+	-->
+	<img src="../img/고양이.jpg" alt="고양이 이미지" height="400" usemap="#cat">
+	<map name="cat">
+		<!--<area shape="rect" coords="109,41,836,778" href="https://www.google.com/search?q=%EA%B3%A0%EC%96%91%EC%9D%B4&rlz=1C1IBEF_koKR1060KR1060&oq=%EA%B3%A0%EC%96%91%EC%9D%B4&aqs=chrome.0.0i131i355i433i512j46i131i433i512j46i131i340i433i512l2j0i131i433i512j0i512j0i433i512j0i3j0i131i433i512j46i131i433i512.2235j0j4&sourceid=chrome&ie=UTF-8" alt="고양이 검색">-->
+		<area target="_top" shape="poly" coords="127,133,567,5,705,219,845,457,571,785,187,455" href="https://www.google.com/search?q=%EA%B3%A0%EC%96%91%EC%9D%B4&rlz=1C1IBEF_koKR1060KR1060&oq=%EA%B3%A0%EC%96%91%EC%9D%B4&aqs=chrome.0.0i131i355i433i512j46i131i433i512j46i131i340i433i512l2j0i131i433i512j0i512j0i433i512j0i3j0i131i433i512j46i131i433i512.2235j0j4&sourceid=chrome&ie=UTF-8" alt="고양이 검색">
+	</map>
+</body>
+</html>

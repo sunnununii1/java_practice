@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>순서 관련 태그 예제</title>
+</head>
+<body>
+	<!--
+		<ul> : 순서가 없는 목록 만들 때 사용 (쌍태그, block태그)
+					<li>와 함께 사용됨. <li> 앞에 마커(모양)를 이용해서 표시
+					type 속성을 이용해서 모양 지정 가능하나, 보통은 css에서 지정함
+		<ol> : 순서가 있는 목록 만들 때 사용 (쌍태그, block태그)
+					<li>태그와 함께 사용. <li> 앞에 마커(숫자)를 이용해서 표시
+					type 속성을 이용해서 순서 표시방식 설정가능. 1|A|a|i|I(로마숫자). css로 처리가능
+					start 속성을 이용해서 시작 숫자 설정가능.
+		<dl> :용어 정의시 사용 (쌍태그, block태그)
+					<dt>와 <dd> 와 함께 사용. (<dt>:용어 정의/ <dd>:용어 설명), 자동 들여쓰기됨
+	-->
+	<ul type="square">
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>JS</li>
+	</ul>
+	<ol type="A" start="4">
+		<li>등원</li>
+		<li>1교시</li>
+		<li>2교시</li>
+		<li>점심</li>
+		<li>3교시</li>
+		<li>4교시</li>
+		<li>하원</li>
+	</ol>
+	<dl>
+		<dt>HTML</dt>
+		<dd>Hyper Text Language</dd>
+		<dd>화면 구현시 사용하는 언어</dd>
+	</dl>
+</body>
+</html>

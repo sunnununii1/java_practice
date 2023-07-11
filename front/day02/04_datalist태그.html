@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>datalist 태그 예제</title>
+</head>
+<body>
+	<!--
+		<input> 이 전제조건으로 감싸줘야 함
+			<datelist> : <input>과 함께 사용, list 속성값으로 datalist의 id명을 입력
+									<select>와 비슷하나, 선택 뿐만 아니라 검색을 통해 자동완성기능같이 결과 확인 가능하다.
+	-->
+	<form action="">
+		<input type="text" list="data_list">
+		<datalist id="data_list">
+			<option>남성</option>
+			<option>여성</option>
+			</datalist>
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>

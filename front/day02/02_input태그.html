@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>input 태그 예제</title>
+</head>
+<body>
+	<!--
+		type 속성
+			ㄴcolor : 색상정보 선택시 사용, 16진수로 전송
+								빨간색은 #ff0000. #은 인코딩되어 %23으로 전송됨
+								value 속성 이용해 초기 색상 설정 가능
+			ㄴdate/datetime-local/month/week : 날짜 선택시 사용
+																				min,max 속성 이용하여 범위 조정 가능
+																				value 속성으로 초기 날짜 설정 가능
+			ㄴnumber : 숫자만 입력 가능. 크기 조절 버튼으로 조절 가능 
+								min,max 속성 이용해 숫자 범위 조정 가능
+								step 속성 이용해 증가/감소 범위 조정 가능
+			ㄴrange : 바를 이용해 범위 조절할 때 사용
+			ㄴtel/email/url : 전번/이메일/url 형식에 맞는지 체크 후, 다르면 전송없이 안내문구 출력됨
+												tel은 patten 속성 이용해서 정규 표현식 지정해야 적용됨.
+	-->
+	<form action="">
+		<input type="color" name="color"> <br>
+		<input type="date" name="date" min="2023-01-01" max="2023-12-31" value="2023-07-11"> <br>
+		<input type="datetime-local" name="datetime-local"> <br>
+		<input type="month" name="month"> <br>
+		<input type="week" name="week"> <br>
+		<input type="number" name="number" min="1" max="10" step="2"> <br>
+		1 <input type="range" name="range" min="1" max="10" step="1"> 10 <br>
+		<input type="email" name="email"placeholder="이메일을 입력하세요."> <br>
+		<input type="tel" name="tel" placeholder="전화번호를 입력하세요." pattern="\d{3}-\d{4}-\d{4}"> <br>
+		<input type="url" name="url" placeholder="url을 입력하세요."> <br>
+
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>

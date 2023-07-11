@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=], initial-scale=1.0">
+	<title>lebel 태그 예제</title>
+</head>
+<body>
+	<!--
+		<label> : form 요소에 레이블을 붙이는 태그 (라벨 선택시, 연결된 <input>이 선택되게끔 함)
+		사용 방법 1. <label> 안에 <input> 배치
+			<label>
+				<input> 라벨명
+			<label>
+		사용 방법 2. <label> 과 <input> 를 따로 배치
+			<label for="아이디A">라벨명<label>
+			<input id="아이디A">
+	-->
+	<form action="">
+		<label for="input_id">아이디 : </label> 
+		<input type="text" name="id" id="input_id"> <br>
+		<span>좋아하는 과일을 선택하세요. (중복 선택 가능)</span> <br>
+		<!-- id를 지정하는 방식 -->
+		<input type="checkbox" name="fruit" id="apple" value="apple">
+		<label for="apple">사과</label>
+		<!-- for 없애고 input 태그를 label로 감싸는 방식 (단, 반드시 붙어있어야 함) -->
+		<label>
+			<input type="checkbox" name="fruit" id="" value="orange">오렌지
+		</label>
+		<label>
+			<input type="checkbox" name="fruit" id="" value="banana">바나나 <br>
+		</label>
+
+		<input type="button" value="전송">
+	</form>
+</body>
+</html>

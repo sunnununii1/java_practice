@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>select 태그 예제</title>
+</head>
+<body>
+	<!--
+		<select> : 미리 지정된 값을 선택 후 서버에 전송시 사용하는 태그 (ex. 생년월일, 성별, 통신사)
+							<option>과 함께 사용됨 : 전송값은 선택된 <option> 안의 value값이 전송됨
+							value값이 미지정시, <option> 안 문자열이 전송됨
+			ㄴsize 속성 : <select>의 값을 한번에 보여줄 수 있는 범위 개수 지정가능
+			ㄴmultiple 속성 : ctrl+클릭으로 중복 선택 가능하게 함
+		<optgroup> : option들을 묶어 이름 붙일 때 사용
+			ㄴlabel 속성 : <option>들의 묶음 이름 지정 가능
+
+		**<input>은 자체적으로 value가 붙고, <selsct>는 <opyion>에 value가 붙는 차이점**
+	-->
+	<form action="">
+		좋아하는 과일을 선택하세요.
+		<select name="fruit" size="2" multiple>
+			 <option value="0">없음</option>
+			 <option value="1">사과</option>
+			 <option value="2">오렌지</option>
+			 <option value="3">바나나</option>
+		</select>
+		<br>
+		취미를 선택하세요.
+		<select name="hobby">
+			<optgroup label="실내">
+				<option>독서</option>
+				<option>음악감상</option>
+				<option>영화보기</option>
+			</optgroup>
+			<optgroup label="실외">
+				<option>축구</option>
+				<option>농구</option>
+				<option>야구</option>
+			</optgroup>
+		</select>
+		<br>
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>

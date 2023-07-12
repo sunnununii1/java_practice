@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>width와 height 예제</title>
+	<style>
+		/* box-sizing
+			-content-box(너비/높이값이 컨텐츠값, 기본값), border-box(너비/높이값이 컨텐츠+패딩+테두리합)
+			width/height
+			-기본적으론 너비/높이 의미하나, box-sizing속성값에 따라 달라질 수 있음
+		*/
+			.box1{
+				width: 100px; height: 100px; background-color: red;
+				border: 20px solid burlywood;
+			}
+			.box2{
+				/*실제 컨텐츠 너비 100px - border의 20px씩 - (padding 크기) = 60px로 줆*/
+				box-sizing: border-box;
+				width: 100px; height: 100px; background-color: yellow;
+				border: 20px solid burlywood;
+			}
+			.container{width: 100px;}
+			.box3{
+				width: 100%; height: 30px; background-color: blue;
+			}
+	</style>
+</head>
+<body>
+	<div class="box box1">1</div>
+	<div class="box box2">2</div>
+	<div class="container">
+		<div class="box3">3</div>
+	</div>
+</body>
+</html>

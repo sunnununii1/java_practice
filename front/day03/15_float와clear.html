@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>float / clear 예제</title>
+	<style>
+		/* float : 이용시 주변의 다른 요소들과 자연스럽게 어울리도록 함
+			(ex. 웹페이지 레이아웃 설정에 자주 사용) */
+		.box{
+			width: 100px; height: 100px; background-color: yellow;
+			float: left;
+			/* display: inline-block; */
+		}
+		.box2{ height: 50px; float: right;}
+		.container::after{
+			/* clear : float 속성이 적용 후 나타나는 요소들의 동작을 조절
+				=>float과 세트. 플로트 이후 요소들이 영향없게 clear처리해주는 것.
+			 float요소가 적용된 부모 요소에 ::after 추가해 아래코드 추가 */
+			clear: right; content: ''; display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+	</div>
+	<p>안녕하세요. 제 이름은 홍길동입니다.</p>
+</body>
+</html>

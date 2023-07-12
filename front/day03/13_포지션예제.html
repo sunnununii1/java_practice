@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>위로가기</title>
+	<style>
+		body{
+			height: 1000px;
+		}
+		.btn-up{
+			width: 100px; height: 100px; line-height: 50px; text-align: center;
+			text-decoration: none; color: black;
+			border: 1px solid black; border-radius: 50%;
+			position: fixed;
+			right: 50px; bottom: 50px;
+		}
+	</style>
+</head>
+<body id="body">
+	<!--
+		원을 만들어 브라우저 하단에 고정, 원 클릭시 제일 상단으로 이동하도록 작성
+		원 크기는 100px X 100px
+	-->
+	<a href="#body" class="btn-up">UP</a>
+</body>
+</html>

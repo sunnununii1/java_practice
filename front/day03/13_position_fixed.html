@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>position: fixed 예제</title>
+	<style>
+		/*fixed: position
+		- 지정 방식은 뷰포트(viewport)를 기준으로 위치를 설정하는 방식
+		- 스크롤 내려도 고정위치로 항상 지정됨.*/
+		.box{
+			position: fixed;
+			width: 100px; height: 100px; background-color: yellow;
+			top: 50px; left: 50px;
+		}
+		body{
+			height: 1000px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

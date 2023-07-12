@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>선택자 연습예제</title>
+	<style>
+		/* 요소 선택위해 클래스나 아이디 추가해도 됨 */
+		/* 메뉴1이 쓰인 요소를 선택 위한 선택자 */
+		.first-item{}
+		/* 모든 메뉴를 선택하기 위한 선택자 */
+		.menu a{} 
+		.menu>li>a{}
+		/*또는, 메뉴1~3 <a> 안에 class="menu-link"을 추가한 뒤*/
+		.menu-link{}
+		ul{
+			/* A; */
+		}
+		li{
+			/* A; */
+		}
+		/* ul선택자와 li선택자를 함께 묶어 A스타일을 적용 */
+		ul, li{
+			/* A; */
+		}
+		/* 한 요소를 여러 선택자로 표현시, 선택자를 붙여서 표시 (순서 중요)
+		. 뒤는 class="" , # 뒤는 id=""  자동완성! */
+		ul.nemu{
+			
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul class="menu">
+				<li class="menu-itme">
+					<a href="#" class="first-item menu-link">메뉴1</a>
+				</li>
+				<li>
+					<a href="#" class="menu-link">메뉴2</a>
+				</li>
+				<li>
+					<a href="#" class="menu-link">메뉴3</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<ul>
+			<li class="menu">
+				<a href="#">링크1</a>
+			</li>
+			<li class="menu"></li>
+		</ul>
+	</main>
+	<div class="box"></div>
+	<div id="id"></div>
+</body>
+</html>

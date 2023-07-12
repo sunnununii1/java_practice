@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>테두리 예제</title>
+	<style>
+		.box1{
+			height: 50px;
+			border-top-style: solid;
+			border-right-style: dashed;
+			border-bottom-style: ridge;
+			border-left-style: dotted;
+
+			/* 각각 값 다르면 top>right>buttom>left 순으로 각각 입력(**자주 사용, 순서 중요) */
+			border-style: solid dashed double dotted;
+			/* 위에는 solid, 오른/왼쪽은 dashed, 아래는 double */
+			border-style: solid dashed double;
+			/* 위/아래는 solid, 좌우는 dashed */
+			border-style: solid dashed; 
+			/* 모두 같은 경우 */
+			border-style: solid;
+
+			border-width: 10px;
+			border-color: black;
+		}
+		.box2{
+			/* border-top-style,  border-top-wight, border-top-color 3개를 합침*/
+			border-top: 10px solid red;
+			border-right: 5px dashed blue;
+			border-bottom: 10px double green;
+			border-left: 5px dotted yellow;
+			/* 모든 테두리가 같은 값을 가질 때 사용 */
+			border: 10px red;
+		}
+		/*box3에 위를 뺀 나머지가 5px blue, 위 테두리는 5px soild green일 때 스타일 적용
+		*/
+		.box3{
+			border-style: 5px solid blue;
+			border-top-color: green;
+			height: 50px;
+			border-radius: 10px 20px 30px 40px;
+		}
+		/*border-radius: 둥근 테두리 (왼쪽 위부터 시계방향)*/
+		.box4{
+			width: 100px; height: 100px; border: 5px solid red;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>이분할 예제</title>
+	<style>
+		/*예제1*/
+		.container{ width: 500px; border: 3px solid red;}
+		.box{
+			width: 50%; height: 250px; background-color: blue;
+			float: left;
+		}
+		.box1{ background-color: black;}
+		.container::after{
+			content: ''; display: block; clear: both;
+		}
+		/*예제2*/
+		/* tip. float는 요소를 한줄 나란히 배치시 사용 (단, 엔터의 공백이 없어야함)
+		=> 부모요소에 ::after 추가해서 안에 포함되도록 작업하기! */
+		.container2{ width: 500px; height: 500px; border: 3px solid red;}
+		.container2 ::after{ content: ''; display: block; clear: both;}
+		.a{
+			width: 50%; height: 100%; background-color: yellow; float: left;
+			/*또는 .a에 width: 235px, height: 480px로 변경시 생기는 여백은
+			.container에 wight: 480px, padding: 10px; 처리 추가함*/
+		}
+		.a2{ background-color: blue;}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+	</div>
+	<br> <br>
+	<div class="container2">
+		<div class="a a1"></div>
+		<div class="a a2"></div>
+	</div>
+</body>
+</html>

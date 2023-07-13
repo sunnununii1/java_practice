@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>삼등분 나란히 예제</title>
+	<style>
+		/* 삼등분 예제 */
+		.container{
+			width: 500px; height: 500px; padding: 10px;
+			box-sizing: border-box; background-color: black;
+		}
+		/*.container::after{
+			content: ''; display: block; clear: both;
+		}*/ /*높이가 px로 지정되어 있으면 ::after 필요없음*/
+		.box{
+		 	float: left; background-color: blueviolet;
+			width: calc((100% - 2 * 10px) / 3);
+			height: 100%;
+		}
+		.box+.box{
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+		<div class="box box3"></div>
+	</div>
+</body>
+</html>

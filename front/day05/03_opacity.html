@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>투명도 예제</title>
+	<style>
+		/* opacity : 요소에 투명도 조절하는 속성 (범위는 0(완전투명) ~ 1(완전불투명))
+			단, 부모 요소의 투명도가 1이 아닐 땐 자식요소를 1로 해도 적용X
+			=> 부모요소의 background-color를 rgba()로 설정하면 해결
+				(텍스트가 아닌 이미지는X 투명도만으로 해결해야함)
+		*/
+		main{ height: 500px; background-color: brown;}
+		.box{
+			position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			/*background-color: black; opacity: 0.3;*/
+			background-color: rgba(0,0,0,.3);
+		}
+		.inner-box{
+			color: white; text-align: center; font-size: 30px; font-weight: bold;
+			opacity: 1; /*부모가 0.3일땐 적용X*/
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="inner-box">안녕하세요.</div>
+	</div>
+	<main>
+		컨텐츠
+	</main>
+</body>
+</html>

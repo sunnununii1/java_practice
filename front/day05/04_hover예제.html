@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>hover시 박스추가 예제</title>
+	<style>
+		.box1{
+			width: 100px; height: 100px; background-color: black;
+		}
+		.box2{
+			width: 100px; height: 100px; background-color: salmon;
+			display: none; /*처음엔 안보이게 처리*/
+		}
+		.container2{
+			margin-top: 100px;
+		}
+		.container1>.box1:hover~.box2{ 
+			display: block;
+		}
+		.container2:hover>.box2{ /*box2 hover해도 유지*/
+			display: block;
+		}
+		.container1, .container2{ float: left;}
+	</style>
+</head>
+<body>
+	<!-- box1만 hover시, box2가 나타난 뒤 유지되는 방법 
+		(ex.네이버 언론사 편지)-->
+	<div class="container1">
+		<div class="box1"></div>
+		<div class="box2"></div>
+	</div>
+	<!-- box1만 hover시, box2가 나타나고 box2를 hover해도 유지되는 방법 
+		(ex.github 메뉴) -->
+	<div class="container2">
+		<div class="box1"></div>
+		<div class="box2"></div>
+	</div>
+</body>
+</html>

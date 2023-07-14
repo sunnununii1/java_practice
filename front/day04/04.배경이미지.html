@@ -5,9 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>배경이미지</title>
 	<style>
+	/* background
+			ㄴrepeat : 반복 출력 설정
+			ㄴsize : 배경 크기 조절(auto는 원본/contain은 요소안에/cover는 요소범위 덮게)
+			ㄴposition : 배경 위치 조정
+			ㄴorigin : 배경 배치시 기준 지정
+			ㄴattachment : 페이지 움직여도 배경 고정하도록 함(scroll(기본)은 움직이게/fixed는 고정)
+	*/
 		.box{
 			height: 1000px; background-image: url(../img/고양이.jpg);
-			background-repeat: no-repeat;
+			background-repeat: no-repeat; 
 			background-size: 860px 1000px;
 			background-position: 0px 0px;
 			padding: 30px;

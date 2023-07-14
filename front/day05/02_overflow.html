@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>overflow 예제</title>
+	<style>
+		/* overflow : 요소가 부모 요소보다 클 때(범위 넘어갈 때), 그 부분을 결정해줌
+			 	ㄴvisible: 넘어가는 부분을 보이게 해줌 (기본값) 
+				ㄴhidden : 넘어가는 부분을 보이지 않게 감춰줌 **
+				ㄴscroll : 스크롤 추가해줌. 넘어가는 부분을 안보이게 + 스크롤로 나머지 보이게 함
+				ㄴauto	 : 요소가 부모 요소보다 작으면 스크롤 안보이게 / 크면 스크롤 추가
+		*/
+		.box{
+			width: 300px; height: 100px; border: 1px solid black;}
+		.inner-box{
+			width: 500px; height: 50px; background-color: mediumslateblue;}
+		.box1{
+			overflow: visible; /*기본값*/
+		}
+		.box2{
+			overflow: hidden;}
+		.box3{
+			overflow: scroll;}
+		.box4{
+			overflow: auto;}
+		.box3 .inner-box{ height: 500px; width: 200px;}
+		.box4 .inner-box{ height: 500px; width: 200px;}
+		/* overflow가 auto 또는 scroll 설정시, 스크롤 생기면 스크롤바 안보이게 하기 */
+		/* weblit : 크롬, 사파리, 오페라, 엣지에서만 동작 */
+		.box3::-webkit-scrollbar,
+		.box4::-webkit-scrollbar{
+			display: none;
+		}
+		.box3,
+		.box4{
+			/* 인터넷 익스플로러 */
+			-ms-overflow-style: none;
+			/* 파이어폭스 */
+			srcollbar-width: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="box box1">
+		<div class="inner-box">1</div>
+	</div>
+	<div class="box box2">
+		<div class="inner-box">2</div>
+	</div>
+	<div class="box box3">
+		<div class="inner-box">3</div>
+	</div>
+	<div class="box box4">
+		<div class="inner-box">4</div>
+	</div>
+</body>
+</html>

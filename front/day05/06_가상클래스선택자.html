@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>가상 클래스 선택자</title>
+	<style>
+		/*
+		:first-child : 첫번째 요소를 선택
+		:last-child	: 마지막 요소를 선택
+		:nth-child(정수) : 정수번째 요소를 선택
+		:nth-child(2n) : 짝수번째 요소를 선택 (홀수는 (2n+1))
+		
+		:first-of-type : 첫번째 요소를 선택
+		:last-of-child	: 마지막 요소를 선택
+		:nth-of-child(정수) : 정수번째 요소를 선택
+		:nth-of-child(2n) : 짝수번째 요소를 선택 (홀수는 (2n+1))
+
+		=> nth-child와 nth-of-type의 차이
+		- child는 태그 종류 상관X / of-type은 같은 태그 중에서만 선택 (보통은 앞에 태그명 붙음)
+		*/
+		.list :first-of-type{ color: darkred;} /*list자손들 중 첫번째만*/
+		.box :first-of-type{ color: darkred;}	/*box자손들 중 첫번째만(a,btn,div)*/
+		
+		.list :first-child{ font-size: 30px;}
+		.box :first-child{ font-size: 30px;}
+
+		.list :nth-child(3){color: darkgreen;}
+		.box :nth-child(3){color: darkgreen;}
+
+		.list :nth-child(2n+1){background-color: darkkhaki;} /*홀수번째만*/
+
+		/* <input> 관련 선택자들
+		:checked : 체크된 요소
+		:focus 	 : 활성화된 요소. 클릭/탭으로 요소 선택시
+		:enabled : 사용 가능한 요소
+		:disabled : 사용 불가능한 요소
+		:not(선택자) : 선택자가 아닌 요소들
+		*/
+		.check:checked+.name{
+			background-color: grey; /*체크시 홍길동 배경색 바꾸는 방법*/
+		}
+		.id:focus{
+			background-color: yellowgreen; /*입력시 입력창 배경색 바꾸는 방법*/
+		}
+		/*입력 가능한 창만 코랄색, 못하는 창은 초록색*/
+		input:enabled{
+			border: 1px solid coral;}
+		input:disabled{
+			border: 1px solid green;}
+		.box>:not(input){
+			background-color: darkgrey;} /*input태그 아닌 요소들만 배경색 바꿈*/
+	</style>
+</head>
+<body>
+	<ul class="list">
+		<li class="link">안녕하세요</li>
+		<li class="link">제 이름은 홍길동입니다.</li>
+		<li class="link">만나서 반갑습니다.</li>
+	</ul>
+	<div class="box">
+		<a href="#" class="link">링크</a>
+		<button class="link">버튼</button>
+		<div class="link">박스</div>
+		<a href="#" class="link">링크</a>
+		<button class="link">버튼</button>
+		<div class="link">박스</div>
+	</div>
+	<div class="box">
+		<input type="checkbox" name="" class="check">
+		<span class="name">홍길동</span>
+		<input type="text" class="id" placeholder="id를 입력하세요."> <br>
+		<input type="text" class="readonly" readonly>
+		<input type="text" class="readonly" disabled>
+	</div>
+</body>
+</html>

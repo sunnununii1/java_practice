@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>상하좌우 가운데 정렬 예제</title>
+	<style>
+		.box{
+			position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			border: 3px solid black;
+		}
+		/* margin에서 %는 부모 요소의 너비/높이와는 상관없음 */
+		.inner-box{
+			width: 300px; height: 300px; background-color: darkcyan;
+			position: absolute; top: 50%; left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="inner-box"></div>
+	</div>
+</body>
+</html>

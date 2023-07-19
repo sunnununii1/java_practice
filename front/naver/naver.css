@@ -1,13 +1,14 @@
 @charset "utf-8";
-*{ padding: 0; margin: 0; color: #101010;
+*{ padding: 0; margin: 0;
 	font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif
 }
-a{ text-decoration: none;}
+a{ text-decoration: none; color: #101010;}
 
 
 body{ min-width: 1340px;}
 ul,ol{ list-style: none;} /*마커제거*/
-html{ font-size: 10.5px; line-height: 10.5px;} /*rem단위 설정위함*/
+html{ font-size: 10.5px; line-height: 10.5px;
+			color: #101010; letter-spacing: -.4px;} /* font는 rem단위 설정위함*/
 
 /* 헤더 영역(검색창, 메뉴) */
 header{
@@ -266,7 +267,7 @@ header{
 
 /* 컨텐츠 왼쪽 영역 */
 #container .box-left{
-	float: left; width: 830px; height: 500px;
+	float: left; width: 830px;
 }
 /* 1번째 왼쪽 컨텐츠(배너 광고) */
 #container .box-left .box-banner{
@@ -327,7 +328,7 @@ header{
 
 /*box-header-sub 박스 기본설정*/
 #container .box-left .box-newsstand .box-header-sub{
-	margin-top: 17px; padding: 12px 20px; background-color: #f5f7f8;
+	margin: 0 20px; padding: 12px 20px; background-color: #f5f7f8;
 	border-radius: 4px; line-height: 26px; font-size: 1.4rem;
 	letter-spacing: -.4px;
 }
@@ -374,7 +375,7 @@ header{
 	overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
 
-/* 컨텐츠 오른쪽 영역 (뉴스스탠드ㅣ뉴스홈)*/
+/* 2-2번째 왼쪽 컨텐츠 영역 중 오른쪽(뉴스스탠드ㅣ뉴스홈)*/
 #container .box-left .box-newsstand .box-header-sub .box-sub-right{
 	float: right; line-height: 26px;
 }
@@ -390,23 +391,395 @@ header{
 	height: 26px; overflow: hidden;
 }
 
-#container .box-left .box-newsstand .box-newsstand-page{
+#container .box-left .page-container{
 	padding: 10px 0 11px; 
 	border-top: 1px solid #ebebeb;
 }
 
-/*3번째 컨텐츠 왼쪽 영역 (신문 구독)*/
-#container .box-left>.box-newsstand .box-header-main .subscription-group .subscription-frame{
-	position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+/*2-3번째 왼쪽 컨텐츠 (신문사 목록)*/
+#container .box-left>.box-newsstand .box-main{
+	margin: 18px 20px 18px 20px; position: relative;
 }
-#container .box-left>.box-newsstand .box-header-main .subscription-group .right1{
-	left: 0; right: 0; top: 56px; height: 1px; 
+/*테두리*/
+#container .box-left>.box-newsstand .box-main .list-contents{
+	border: 1px solid #ebebeb; height: 222px; overflow: hidden;
+	border-radius: 4px;
+	/*형제 중에 포지션: absolute 있을때, 형제요소 위로 올려야 하는 경우엔 
+	요소에 포지션: relative 추가하면 됨*/
+	position: relative;
 }
 
-#container .box-left>.box-newsstand .box-newsstand-page{
-	padding: 10px 0 11px;
+/*테두리 안*/
+#container .box-left .box-newsstand .box-main .item-contents{
+	width: 16.66%; height: 56px; float: left;
+	/*hover시 구독/기사보기 나오는 기준점을 item-contents로 잡기*/
+	position: relative;
+}
+/*신문사 로고이미지 정렬*/
+#container .box-left .box-newsstand .box-main .link-contents{
+	display: block; padding: 18px 0; text-align: center;
+}
+
+/*신문사 로고이미지 hover시 구독/기사보기 나오게*/
+#container .box-left .box-newsstand .box-main .box-contents-hover{
+	position: absolute; top: 0; right: 0; left: 0; bottom: 0;
+	background-color: #2868f2;
+	text-align: center;
+	padding: 13px 0; display: none;
+}
+
+/*신문사 로고 hover시 안보이던 box-contents-hover(구독/기사보기창)로 변환하기*/
+#container .box-left .box-newsstand .box-main .item-contents:hover .box-contents-hover{
+	display: block;
+}
+
+/*구독/기사보기 버튼 기본설정*/
+#container .box-left .box-newsstand .box-main .box-contents-hover .btn-subs,
+#container .box-left .box-newsstand .box-main .box-contents-hover .link-news-view{
+	font-size: 1.3rem; font-weight: 400; line-height: 30px; color: #fff;
+	letter-spacing: -0.4px;
+}
+#container .box-left .box-newsstand .box-main .box-contents-hover .link-news-view::before{
+	width: 1px; height: 12px; display: inline-block; content: '';
+	margin: 9px 10px 0; background-color: rgba(255, 255, 255, 0.3);
+	vertical-align: top;
+}
+/*구독/기사보기 중 하나 hover시 글씨 굵어짐*/
+#container .box-left .box-newsstand .box-main .box-contents-hover a:hover{
+	font-weight: bold; text-decoration: underline;
+}
+
+
+#container .box-left .box-newsstand .box-main .box-border{
+	position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+}
+/*가로줄(right)*/
+#container .box-left .box-newsstand .box-main .box-border .border-to-right{
+	position: absolute; left: 0; right: 0; z-index: 1;
+	height: 1px;
+	background-color: #ebebeb;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-right:nth-of-type(1){
+	top: 56px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-right:nth-of-type(2){
+	top: 113px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-right:nth-of-type(3){
+	top: 169px;
+}
+
+/*세로줄(bottom)*/
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom{
+	position: absolute; top: 0; bottom: 0; z-index: 1;
+	width: 1px;
+	background-color: #ebebeb;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom:nth-of-type(4){
+	left: 132px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom:nth-of-type(5){
+	left: 263px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom:nth-of-type(6){
+	left: 395px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom:nth-of-type(7){
+	left: 526px;
+}
+#container .box-left .box-newsstand .box-main .box-border .border-to-bottom:nth-of-type(8){
+	left: 657px;
+}
+
+
+/* 2-4번째 왼쪽 컨텐츠(언론사 더보기+이전/다음 버튼) */
+#container .box-left .page-container{
+	padding: 10px 0 11px; line-height: 0;
+	border-top: 1px solid #ebebeb;
+	text-align: center; position: relative;
+}
+
+#container .box-left .page-container .box-page{
+	display: inline-block;
+}
+
+/*이전/다음 페이지 버튼*/
+#container .box-left .page-container .box-page .btn-prev,
+#container .box-left .page-container .box-page .btn-next{
+	float: left; width: 36px; height: 36px; background-color: #fff;
+	border: 1px solid #dadcdf; border-radius: 50%; cursor: pointer;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .06); position: relative;
+}
+/*버튼 안 < 과 > 모양넣기*/
+#container .box-left .page-container .box-page .btn-prev::before,
+#container .box-left .page-container .box-page .btn-next::before{
+	position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+	display: block; content: '';
+	width: 10px; height: 12px; margin: auto;
+	background-image: url(../img/naver_icon.png);
+	background-size: 422px 405px;
+	background-position: -412px -39px;
+	transform: rotate(180deg);
+}
+/*페이지 화살표 하나를 180도 돌림*/
+#container .box-left .page-container .box-page .btn-next{
+	transform: rotate(180deg);
+}
+/* <나 > 버튼 hover시 색 진해짐*/
+#container .box-left .page-container .box-page>button:hover{
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
+	background-color: #fbfbfc;
+}
+#container .box-left .page-container .box-page>button:hover::before{
+	background-position: -412px -26px;
+}
+
+/*언론사 더보기*/
+#container .box-left .page-container .box-page .box-title{
+	min-width: 156px; padding: 0 16px; color: #606060;
+	font-size: 1.3rem; font-weight: 600;
+	line-height: 35px; box-sizing: border-box;
+}
+/*언론사(파랑) / 더보기(회색) / 1(회색) / /4(연한회색)*/
+#container .box-left .page-container .box-title .text-point{
+	color: #3a67ea;
+}
+#container .box-left .page-container .box-title .text-more,
+#container .box-left .page-container .box-title .page-current{
+	color: #606060;
+}
+#container .box-left .page-container .box-title .page-max{
+	color: rgba(96,96,96,.5);
+}
+
+/*리스트형/썸네일형*/
+#container .box-left .page-container .box-btn{
+	position: absolute; top: 0; right: 0; bottom: 0;
+}
+
+#container .box-left .page-container .box-btn>button{
+	padding: 18px 20px 18px 9px; float: left;
+	background-color: transparent; border: 0; outline: 0; cursor: pointer;
+	
+}
+#container .box-left .page-container .box-btn>button::before{
+	background-image: url(../img/naver_icon.png);
+	background-size: 422px 405px;
+	/* background-position: -191px -368px; */
+	display: block; content: ''; width: 20px; height: 20px;
+}
+
+/*썸네일형*/
+#container .box-left .page-container .box-btn .btn-thumb::before{
+	background-position: -296px -368px;
+}
+#container .box-left .page-container .box-btn .btn-thumb:hover::before{
+	background-position: -275px -368px;
+}
+#container .box-left .page-container .box-btn .btn-thumb[aria-checked]::before{
+	background-position: -391px 0px;
+}
+#container .box-left .page-container .box-btn .btn-thumb[aria-checked]:hover::before{
+	background-position: -359px -368px;
+}
+/*리스트형*/
+#container .box-left .page-container .box-btn .btn-list{
+	padding: 18px 9px 18px 20px;
+}
+#container .box-left .page-container .box-btn .btn-list::before{
+	background-position: -107px -368px;
+}
+#container .box-left .page-container .box-btn .btn-list:hover::before{
+	background-position: -86px -368px;
+}
+#container .box-left .page-container .box-btn .btn-list[aria-checked]::before{
+	background-position: -191px -368px;
+}
+#container .box-left .page-container .box-btn .btn-list[aria-checked]:hover::before{
+	background-position: -170px -368px;
+}
+
+/*3번째 왼쪽 컨텐츠(쇼핑박스)*/
+#container .box-left .box-shopping{
+	width: 830px; border-radius: 8px;
+	box-sizing: border-box; opacity: 1;
+	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
+}
+
+/*쇼핑~쇼핑라이브*/
+#container .box-left .box-shopping .box-shopping-header{
+	padding: 19px 20px 16px;
+}
+
+#container .box-left .box-shopping .box-shopping-header .header-list{
+	font-size: 1.4rem; line-height: 1.7rem;
+	letter-spacing: -.4px;
+}
+#container .box-left .box-shopping .box-shopping-header .header-item{
+	position: relative; display: inline-block;
+	font-size: 1.6rem; line-height: 23px;
+	font-weight: 800;
+}
+
+/*글자 간격*/
+#container .box-left .box-shopping .box-shopping-header .header-item+.header-item{
+	padding-left: 26px; 
+}
+
+/* / */
+#container .box-left .box-shopping .box-shopping-header .header-item+.header-item::before{
+	content: ''; display: block; position: absolute; top: 4px; left: 13px;
+	width: 1px; height: 15px;
+	background-color: #d3d5d7;
+	transform: skew(-15deg);
+}
+#container .box-left .box-shopping .box-shopping-header .header-item .btn-shopping::before{
+	content: ''; display: inline-block; 
+	width: 4px; height: 4px;
+	border-radius: 50%; 
+	margin: 9px 7px 0;
+	vertical-align: top;
+}
+
+/*기본 글자색*/
+#container .box-left .box-shopping .box-shopping-header .header-item>a{
+	color: rgba(8,8,8,.5);
+}
+
+/*누르면 진한색으로*/
+#container .box-left .box-shopping .box-shopping-header .header-item>a[aria-selected=true]{
+	color: #080808;
+}
+
+/*마우스 대면 밑줄*/
+#container .box-left .box-shopping .box-shopping-header .header-item>a:hover{
+	text-decoration: underline;
+}
+
+/*3-2번째 오늘의 혜택*/
+#container .box-left .box-shopping .box-shopping-body{
+	margin: 0 20px; display: flex;
+}
+#container .box-left .box-shopping .box-shopping-body .today-list{
+	padding: 15px 20px 14px; border-radius: 4px;
+	width: 668px; height: 50px; box-sizing: border-box;
+	line-height: 21px; font-weight: 700; background-color: #f5f7f8;
+}
+
+/*오늘의 혜택*/
+#container .box-left .box-shopping .box-shopping-body .today-list .today-item{
+	padding-right: 19px; font-weight: 700;
+	position: relative; line-height: 21px; font-size: 1.4rem;
+}
+
+/*CJ온스타일 로고*/
+#container .box-left .box-shopping .box-shopping-body .today-list .today-link .cj{
+	min-width: 0; height: 13px; line-height: 13px; padding-top: 4px;
+	font-weight: 700; font-size: 1.4rem;
+	vertical-align: top; display: inline-block; cursor: pointer;
+}
+
+/*오늘 종료되는~하러가기!*/
+#container .box-left .box-shopping .box-shopping-body .today-list .today-link{
+	min-width: 0; font-size: 1.4rem; overflow: hidden;
+	text-overflow: ellipsis; white-space: nowrap; font-weight: 500;
+}
+#container .box-left .box-shopping .box-shopping-body .today-list .today-link .text-link>em{
+color: #9858f5; font-style: normal;
+}
+#container .box-left .box-shopping .box-shopping-body .today-list .today-link .text-link:hover{
+	text-decoration: underline;
+}
+
+/*3-3번째 1/18 < > 전체상자*/
+#container .box-left .box-shopping .box-shopping-body .today-pick{
+	margin-left: auto; padding: 10px 0;
+}
+/* 1/18 */
+#container .box-left .box-shopping .box-shopping-body .today-pick .today-page{
+	display: inline-block; margin: 6px 9px 8px 0;
+	line-height: 16px; font-size: 1.3rem; font-weight: 600;
+	color: #606060; vertical-align: top;
+}
+/* /18을 연한색으로 */
+#container .box-left .box-shopping .box-shopping-body .today-pick .today-page .page-max{
+	color: rgba(113,113,113,.6);
+}
+
+/* <>버튼 */
+#container .box-left .box-shopping .box-shopping-body .today-pick>button{
+	width: 30px; height: 30px; display: inline-block;
+	border: 1px solid rgba(211, 213, 215, .8); 
+	vertical-align: top; background-color: transparent;
+	position: relative; cursor: pointer;
+	font-style: normal;
+}
+
+/*버튼 박스 모양 둥글게+붙이기*/
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-prev{
+	border-radius: 4px 0 0 4px;
+}
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-next{
+	border-radius: 4px 0 0 4px;
+	border-left: 0;
+}
+
+/* 버튼박스 안에 <> 화살표 위치 */
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-prev .arrow-prev,
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-next .arrow-next{
+	position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+}
+
+/* 버튼박스 안에 <> 화살표 넣기 */
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-prev .arrow-prev::before{
+	position: absolute; top: 50%; left: 50%; content: '';
+	width: 5px; height: 5px; margin-left: 1px;
+	border-left: 2px solid #80868c; border-bottom: 2px solid #80868c;
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+#container .box-left .box-shopping .box-shopping-body .today-pick .btn-next .arrow-next::before{
+	position: absolute; top: 50%; left: 50%; content: '';
+	width: 5px; height: 5px; margin-left: -1px;
+	border-right: 2px solid #80868c; border-top: 2px solid #80868c;
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+/*3-3번째 쇼핑 썸네일 목록*/
+#container .box-left .box-shopping .box-shopping-page{
+	height: 394px; padding: 18px 20px 1px; box-sizing: border-box;
+	display: flex;
+}
+#container .box-left .box-shopping .box-shopping-page .commerce-area{
+	width: 520px; margin-right: 20px;
+}
+/*쇼핑 썸네일 8개 전체박스- 마커 없애기*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list{
+	list-style: none;
+}
+
+/*썸네일 8개 하나씩 배치*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list>li:nth-child(4n+1){
+	padding-left: 0;
+}
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list>li{
+	float: left; padding: 0 0 20px 20px;
+}
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item{
+	width: 115px; height: 165px; position: relative;
+}
+
+
+/*3-4번째 쇼핑아이템 더보기+양쪽버튼*/
+#container .box-left .box-shopping .box-shopping-more{
+	padding: 10px 0 11px; line-height: 34px; text-align: center;
 	border-top: 1px solid #ebebeb;
 }
+
+/*쇼핑아이템 색*/
+#container .box-left .page-container .box-shopping-page .box-title .text-point{
+	color: #9858f5;
+}
+
 
 /* 컨텐츠 오른쪽 영역 */
 #container .box-right{
@@ -414,24 +787,24 @@ header{
 }
 
 /* 1번째 오른쪽 컨텐츠(로그인창) */
-#container .box-right>.box-account{
+#container .box-right .box-account{
 	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0,.04);
 	border-radius: 8px;
 	padding: 21px 20px 18px;
 	letter-spacing: -.4px;
 	font-size: 1.4rem;
 }
-#container .box-right>.box-account .box-title{
+#container .box-right .box-account .box-title{
 	text-align: center; line-height: 20px;
 }
-#container .box-right>.box-account .link-login{
+#container .box-right .box-account .link-login{
 	display: block; margin-top: 13px; padding: 17px 0;
 	line-height: 20px; text-align: center;
 	border: 1px solid rgba(0, 0, 0, .06); border-radius: 4px;
 	background-color: #03c75a;
 	text-decoration: none; color: #fff; cursor: pointer;
 }
-#container .box-right>.box-account .link-login .icon-login{
+#container .box-right .box-account .link-login .icon-login{
 	background-image: url(../img/naver_icon.png);
 	background-size: 422px 405px;
 	background-position: -120px -166px;
@@ -441,18 +814,18 @@ header{
 	/*로그인 글자와 나란히하며 크기 조정 필요하기 때문에 적용*/
 	display: inline-block;
 }
-#container .box-right>.box-account .link-login:hover{
+#container .box-right .box-account .link-login:hover{
 	background-color: #17b75e;
 }
 
-#container .box-right>.box-account .login-more{
+#container .box-right .box-account .login-more{
 	margin-top: 16px; font-size: 1.3rem; text-align: center; line-height: 20px;
 }
-#container .box-right>.box-account .login-more>a{
+#container .box-right .box-account .login-more>a{
 	display: inline-block; color: #606060;
 }
 /*두번째 <a>부터 ㅣ 추가*/
-#container .box-right>.box-account .login-more>a+a::before{
+#container .box-right .box-account .login-more>a+a::before{
 content: ''; display: inline-block;
 width: 1px; height: 12px; background-color: #d3d5d7;
 margin: 4px 12px 0; vertical-align: top;

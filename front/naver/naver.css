@@ -163,6 +163,7 @@ header{
 	background-position: -142px 0px;
 	top: -3px; left: -5px; width: 58px; height: 58px;
 }
+/*메일~더보기까지 아이콘 설정*/
 .shortcut-area>.shortcut-list .link-service .icon-service::after{
 	background-image: url(../img/naver_icon.png);
 	background-size: 422px 405px;
@@ -170,6 +171,7 @@ header{
 	position: absolute; top: 0px; left: 0px; right: 0; bottom: 0;
 	margin: auto;
 }
+/*메일~더보기까지 아이콘그림의 각각 위치*/
 .shortcut-area>.shortcut-list .link-service .icon-service.mail::after{
 	background-position: -250px -90px;
 }
@@ -200,9 +202,10 @@ header{
 .shortcut-area>.shortcut-list .link-service .icon-service.type-more::after{
 	background-position: -250px -135px;
 }
+/*검색창 밑 아이콘들 아래 글자*/
 .shortcut-area>.shortcut-list .link-service .name-service{
 	font-size: 14px; line-height: 20px; margin-top: 7px;
-	text-align: center;
+	text-align: center; font-size: 1.4rem;
 }
 
 /* 우측 상단 네이버페이 */
@@ -623,7 +626,7 @@ header{
 
 /*글자 간격*/
 #container .box-left .box-shopping .box-shopping-header .header-item+.header-item{
-	padding-left: 26px; 
+	padding-left: 26px;
 }
 
 /* / */
@@ -632,13 +635,6 @@ header{
 	width: 1px; height: 15px;
 	background-color: #d3d5d7;
 	transform: skew(-15deg);
-}
-#container .box-left .box-shopping .box-shopping-header .header-item .btn-shopping::before{
-	content: ''; display: inline-block; 
-	width: 4px; height: 4px;
-	border-radius: 50%; 
-	margin: 9px 7px 0;
-	vertical-align: top;
 }
 
 /*기본 글자색*/
@@ -656,17 +652,18 @@ header{
 	text-decoration: underline;
 }
 
-/*3-2번째 오늘의 혜택*/
+/*3-2번째 오늘의 혜택 위치*/
 #container .box-left .box-shopping .box-shopping-body{
 	margin: 0 20px; display: flex;
 }
+/*배경 회색박스*/
 #container .box-left .box-shopping .box-shopping-body .today-list{
-	padding: 15px 20px 14px; border-radius: 4px;
-	width: 668px; height: 50px; box-sizing: border-box;
-	line-height: 21px; font-weight: 700; background-color: #f5f7f8;
+	width: 668px; height: 50px; border-radius: 4px; background-color: #f5f7f8;
+	box-sizing: border-box; padding: 15px 20px 14px;
+	line-height: 21px; font-weight: 700;
 }
 
-/*오늘의 혜택*/
+/*오늘의 혜택 폰트*/
 #container .box-left .box-shopping .box-shopping-body .today-list .today-item{
 	padding-right: 19px; font-weight: 700;
 	position: relative; line-height: 21px; font-size: 1.4rem;
@@ -744,30 +741,191 @@ color: #9858f5; font-style: normal;
 	transform: translate(-50%,-50%) rotate(45deg);
 }
 
-/*3-3번째 쇼핑 썸네일 목록*/
+/*3-3번째 중 왼쪽 쇼핑 썸네일 목록*/
 #container .box-left .box-shopping .box-shopping-page{
 	height: 394px; padding: 18px 20px 1px; box-sizing: border-box;
 	display: flex;
 }
 #container .box-left .box-shopping .box-shopping-page .commerce-area{
-	width: 520px; margin-right: 20px;
-}
-/*쇼핑 썸네일 8개 전체박스- 마커 없애기*/
-#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list{
-	list-style: none;
+	width: 520px; margin-right: 20px; position: relative;
 }
 
-/*썸네일 8개 하나씩 배치*/
-#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list>li:nth-child(4n+1){
-	padding-left: 0;
-}
-#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list>li{
+/*썸네일 8개 가로로배치 */
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item{
 	float: left; padding: 0 0 20px 20px;
 }
-#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item{
-	width: 115px; height: 165px; position: relative;
+
+/*썸네일 이미지 크기 조정*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link>img{
+	width: 115px; height: 115px;
 }
 
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link>img::after{
+	content: ''; display: block;
+	position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+	border: 1px solid rgba(0, 0, 0, .06); border-radius: inherit;
+	background-color: rgba(0, 0, 0, .03);
+	transform: translateZ(0); perspective: 1px;
+}
+
+
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link>img{
+	transition: transform .2s cubic-bezier(.165,.84,.44,1);
+}
+/*이미지 hover시 줌*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link>img:hover{
+	transform: scale(1.03);
+}
+
+/*이미지 아래 텍스트링크*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link>div{
+	overflow: hidden; display: block;
+	line-height: 20px; letter-spacing: -.8px;
+	white-space: nowrap; color: inherit; text-decoration: none; font-size: 1.4rem;
+}
+/*이미지와 글자 사이 간격*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item .column-link .column-text1{
+	padding-top: 10px;
+}
+
+/*패딩 지정*/
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item:nth-child(4n+1){
+	padding-left: 0;
+}
+#container .box-left .box-shopping .box-shopping-page .commerce-area .column-list .column-item:nth-child(n+5){
+	padding-bottom: 24px;
+}
+
+/*3-3번째 중 오른쪽 퀵링크들 */
+#container .box-left .box-shopping .box-shopping-page .column-view{
+	width: 250px; height: 375px; flex: 1 1;
+}
+
+
+/*첫번째 쇼핑몰 링크목록 박스*/
+#container .box-left .box-shopping .box-shopping-page .box-quick-mall{
+	width: 250px; height: 90px;
+}
+
+/*박스에 패딩적용*/
+#container .box-left .box-shopping .box-shopping-page .box-quick-mall .quick-mall{
+	padding: 10px 12px 5px; border-radius: 4px;
+	background: rgba(245, 248, 251, .6);
+}
+
+/*퀵링크 3줄 사이 간격*/
+#container .box-left .box-shopping .box-shopping-page .quick-mall div{
+	display: flex;
+	padding-bottom: 5px;
+	justify-content: space-between;
+}
+
+#container .box-left .box-shopping .box-shopping-page .quick-mall span{
+	width: 3px; height: 3px; background-color: #d3d5d7;
+	display: inline-block; margin: 9px 0 0;
+	border-radius: 50%; vertical-align: top;
+}
+
+/*글씨 기본설정*/
+#container .box-left .box-shopping .box-shopping-page .quick-mall a{
+	color: #404040; font-size: 14px; line-height: 20px;
+	text-decoration: none; 
+}
+/*스트롱처리 된 글씨는 진하게*/
+#container .box-left .box-shopping .box-shopping-page .quick-mall strong{
+	color: #101010; font-weight: bold;
+}
+/*링크에 hover하면 밑줄*/
+#container .box-left .box-shopping .box-shopping-page .quick-mall a:hover{
+	text-decoration: underline;
+}
+
+
+/*퀵링크 내페이지*/
+#container .box-left .box-shopping .box-shopping-page .quick-my{
+	margin-top: 11px; padding: 9px 9px 8px; position: relative;
+	background: rgba(245, 248, 251, .6);
+}
+#container .box-left .box-shopping .box-shopping-page .quick-my::before{
+	content: ''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; 
+	border: 1px solid rgba(0,0,0,.05); border-radius: inherit;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-my .list-quick-menu{
+	position: relative;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-my .item-quick-menu{
+	width: 25%;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-my .link-quick-menu{
+	display: block; text-align: center;
+}
+
+/*my쇼핑홈~장바구니 기본설정*/
+#container .box-left .box-shopping .box-shopping-page .quick-my .img-quick-menu{
+	width: 32px; height: 32px; line-height: 32px; display: inline-block; position: relative;
+}
+/*my쇼핑홈*/
+#container .box-left .box-shopping .box-shopping-page .quick-my .item-quick-menu:nth-child(1) .img-quick-menu::before{
+	width: 32px; height: 32px;
+	content: ''; display: block;
+	background-image: url(../img/naver_icon2.png);
+	background-position: -34px 0; background-size: 122px 106px;
+	position: absolute; top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+}
+/*my홈*/
+#container .box-left .box-shopping .box-shopping-page .quick-my .item-quick-menu:nth-child(2) .img-quick-menu::before{
+	content: 'MY'; font-size: 1.2rem; background-image: none;
+}
+
+/*주문배송*/
+#container .box-left .box-shopping .box-shopping-page .quick-my .item-quick-menu:nth-child(3) .img-quick-menu::before{
+	width: 32px; height: 32px;
+	content: ''; display: block;
+	background-image: url(../img/naver_icon2.png);
+	background-position: -34px -34px; background-size: 122px 106px;
+	position: absolute; top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+}
+/*장바구니*/
+#container .box-left .box-shopping .box-shopping-page .quick-my .item-quick-menu:nth-child(4) .img-quick-menu::before{
+	width: 17px; height: 16px;
+	content: ''; display: block;
+	background-image: url(../img/naver_icon2.png);
+	background-position: -60px -68px; background-size: 122px 106px;
+	position: absolute; top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#container .box-left .box-shopping .box-shopping-page .quick-my .quick-my-list .text-quick-menu{
+	margin-top: 4px; font-size: 14px; line-height: 20px;
+	color: #404040;
+}
+
+
+/*퀵링크 광고배너*/
+#container .box-left .box-shopping .box-shopping-page .quick-ad{
+	display: block; margin-top: 11px;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-ad .box-ad-img{
+	width: 250px; height: 135px; overflow: hidden; display: block;
+	position: relative; border-radius: 4px;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-ad .box-ad-img::after{
+	content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+	border: 1px solid rgba(0, 0, 0, .06);
+	border-radius: inherit;
+}
+#container .box-left .box-shopping .box-shopping-page .quick-ad .box-ad-img>img{
+	transition: transform .2s cubic-bezier(.165,.84,.44,1);
+}
+#container .box-left .box-shopping .box-shopping-page .quick-ad .box-ad-img:hover>img{
+	transform: scale(1.03);
+}
+#container .box-left .box-shopping .box-shopping-page .quick-ad .text-ad{
+	margin-top: 10px; line-height: 20px; text-align: center; overflow: hidden;
+	white-space: nowrap; text-overflow: ellipsis; font-size: 1.4rem;
+}
 
 /*3-4번째 쇼핑아이템 더보기+양쪽버튼*/
 #container .box-left .box-shopping .box-shopping-more{

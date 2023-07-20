@@ -1,0 +1,7 @@
+@charset 'utf-8';
+
+@media screen and (max-width:900px) {
+	.inner-box{
+		width: 100%;
+	}
+}

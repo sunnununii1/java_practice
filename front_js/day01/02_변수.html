@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>변수</title>
+</head>
+<body>
+	
+	<script>
+		/*
+		- 자바와 자바스크립트는 크게는 비슷하나, 세부내용이 조금씩 달라 주의!
+
+		- 변수 선언
+			var 변수명;
+			let 변수명;
+
+		- 변수 특징
+			var로 선언된 변수는 중복선언 O
+			var 변수는 변수 사용 후 나중 선언도 가능
+			let로 선언된 변수는 중복선언 X
+			타입 지정하지 않음.
+			초기화되지 않아도 사용가능(undefined) (ex. java에서 초반 int num;처럼)
+
+		- 호이스팅
+			var로 선언된 변수에서만 나타남
+			var로 선언된 변수는 선언된 위치와 상관없이 실행 전 상단으로 변수선언 끌고 올려짐
+		*/
+		/*
+		var num1;
+		var num2;
+		var num3;
+
+		num1 = 1;
+		num1 = 2;
+		console.log(num3);
+		num4 = 10;
+		console.log(num4);
+		*/
+
+		var num1 = 1;
+		var num1 = 2;
+		let num2 = 1;
+		// let num2 = 2; //중복선언으로 에러 발생
+		var num3;
+		console.log(num3);
+
+		num4 = 10;
+		console.log(num4);
+		var num4;
+
+		/*
+		- 상수(const)
+		*/
+		const PI = 3.14;
+		//PI = 3.141592; //에러. 상수 수정하려고 해서
+	</script>
+</body>
+</html>

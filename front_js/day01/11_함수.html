@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>함수 예제</title>
+</head>
+<body>
+	<script>
+		/*
+		- 함수 : 하나의 기능을 하도록 모아놓은 코드
+
+		- 함수 선언 방법
+			ㄴ 1. 함수 선언 방식
+						function 함수명(매개변수들){
+							//구현;
+							return 값;
+						}
+			ㄴ 2. 함수 표현식
+						let 함수명 = function (매개변수들){
+							//구현;
+							return 값;
+						}
+
+		- 함수 특징
+			ㄴ리턴타입 쓰지않음
+			ㄴ호출시 매개변수 개수 많아도, 적어도 동작함
+			ㄴ매개변수의 초기값 추가 가능 (매개변수 개수 부족시, 초기값으로 초기화됨)
+		*/
+
+		//console.log(sum(1,2)); //호출 잘 됨(선언 방식)
+		//console.log(sum3(1,2)); //호출 안 됨(표현식)
+
+		//1. 함수 선언 방식
+		function sum(a, b=0){
+			return a + b;
+		}
+		console.log(sum(1,2));
+		console.log(sum(1,2,3)); //매개변수 추가 => 추가된 매개변수 무시
+		console.log(sum(1)); //매개변수 하나 뺌 => b가 undefined로 대체하여 동작됨
+
+		function sum2(a, b){
+			return ( a || 0) + (b || 0);
+		}
+		console.log(sum2(1,2));
+		console.log(sum2(1,2,3));
+		console.log(sum2(1));
+
+		//2. 함수 표현식
+		var sum3 = function(a, b){
+			return ( a || 0) + (b || 0);
+		}
+		console.log(sum3(1,2));
+		console.log(sum3(1,2,3));
+		console.log(sum3(1));
+
+		/*
+		함수 표현식과 선언방식 차이
+		=> 함수 선언 방식은 위치 상관없이 호출가능 (추천!)
+			 함수 표현식은 위치에 따라 호출시 에러 발생하기도 함
+		*/
+	</script>
+</body>
+</html>

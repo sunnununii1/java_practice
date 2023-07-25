@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>항변환</title>
+</head>
+<body>
+	<script>
+		/*
+		- propt()이나 <input>를 통해 입력받은 값은 항상 문자열
+
+		- 문자형으로 변환
+			ㄴString(값)
+			ㄴ"" + 값;
+
+		- 숫자형으로 변환
+			ㄴNumber(값)
+			ㄴparseInt(값) / parseFloat(값)
+			ㄴ값과 결과 
+					ㄴundefined: NaN
+					ㄴnull: 0
+					ㄴture/false: 1/0
+					ㄴstring: 처음과 끝 공백 제거 후, 남은 문자열 없으면 숫자 읽어옴(변환 실패시 NaN)
+
+		- 논리형으로 변환
+			ㄴBoolean(값)
+			ㄴfalse: 숫자 0, 빈문자열'', null, undefined, NaN
+			ㄴtrue: 그 외. (문자열"0"과 숫자 0은 다르다!)
+		*/
+		let str = '3.14';
+		let pi = Number(str);
+		console.log(`${pi} : ${typeof pi}`);
+		let b = Boolean(null);
+		console.log(`${b} : ${typeof b}`);
+	</script>
+</body>
+</html>

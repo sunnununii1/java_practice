@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스타일 상속</title>
+	<style>
+		html{
+			font-size: 10.5px; line-height: 18px; font-weight: bold; }
+		/*
+			- 요소에 스타일 적용시, 그 자손요소에게 자동상속됨
+			- 자손요소에 동일 스타일 적용 중이면 상속값 적용X
+		*/
+		body{ color: brown;}
+		p{ color: navy; font-size: 30px;} /*다시 덮어씌우기*/
+	</style>
+</head>
+<body>
+	<p>안녕하세요.</p>
+	<!--<body>에 적용한 색은 <a>에도 상속되나,
+		기본값으로 태그 스타일에 글자색 지정되기 때문에 덮어 씌워져서 적용X-->
+	<a href="#">링크</a> 
+</body>
+</html>

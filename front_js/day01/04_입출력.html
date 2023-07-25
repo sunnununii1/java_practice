@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>입출력 예제</title>
+</head>
+<body>
+	<script>
+		/*
+	- 출력
+	- console.log(값) : 값을 콘솔창에 출력
+	- alert(값) : 값을 알림창으로 띄움
+	- 입력
+	- confirm : 메세지를 출력 후 확인/취소(확인:true / 취소:false)
+	- propt(메세지) : 메세지 출력 후 값 입력받음. (확인:입력값 반환
+		*/
+		console.log('콘솔창에 출력');
+		alert('알림창');
+		let isAdult = confirm('성인입니까?');
+		console.log(`성인입니까? ${isAdult}`)
+		let age = prompt('나이를 입력하세요.')
+		console.log(`나이는 %{age}살입니다.`)
+	</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>flex 예제</title>
+	<style>
+		/*
+		- display:flex: 자식클래스가 부모클래스의 범위를 넘어가는 경우에도 너비 n분의 1 해줌
+				ㄴ주축(기본)과 교차축으로 나뉨
+
+		- flex-direction : 주축 방향 설정
+				ㄴrow:가로, 기본값
+				ㄴrow-reverse:역순방향 가로 (float:right와 같은 효과)
+				ㄴcolumn:세로
+				ㄴcolumn-reverse:역순방향 세로
+
+		- flex-wrap : 항목이 컨테이너 넘어갈시 줄바꿈 선택
+				ㄴno-wrap: 안함. 항목 너비 합>컨테이너이면 항목들 너비 줄어들 수 있음
+				ㄴwrap: 줄바꿈
+				ㄴwrap-reverse: 줄바꿈. 새 줄은 위에 추가됨
+
+		- flex-flow : direction과 wrap 합친 단축 속성
+
+		- justify-content : 주축에서 플렉스 항목간의 정렬방법
+				ㄴflex-start: 주축 시작점 기준. 기본값
+				ㄴflex-end: 주축 끝점 기준
+				ㄴcenter: 중앙 기준
+				ㄴspace-btween: 주축 시작점엔 첫번째 항목을, 끝점엔 마지막 항목 배치 후, 사이 간격 더함
+				ㄴspace-around: 모든 항목이 같은 간격으로.
+
+		- align-items : 교차축에서의 항목들 정렬방법
+				ㄴflex-start: 교차축 시작점 기준. 기본값
+				ㄴflex-end: 교차축 끝점 기준
+				ㄴcenter: 중앙 기준
+				ㄴspace-btween: 교차축 시작점엔 첫번째, 끝점엔 마지막 항목 배치 후 사이 간격 배치
+				ㄴspace-around:: 모든 항목이 같은 간격으로.
+				ㄴbaseline: 문자 기준선 기준
+				ㄴstretch: 항목 높이를 교차축에 가득차게 배치
+
+		- align-self : 특정 요소에만 항목 정렬 다르게 해줌
+				ㄴ(위와 같다.)
+		- align-content : 주축 줄바꿈으로 항목이 여러줄되면 위아래 간격 설정해줌
+				ㄴ(위와 같다.)
+				
+		- flex-items
+		- order : 항목의 순서 결정하는 속성 (순서 낮을 수록 앞으로 이동)
+		
+		*/
+		.flex-container{
+			border: 3px solid black;
+			display: flex;
+			/* display: inline-flex; */
+			width: 500px; height: 500px; margin-bottom: 50px;
+			flex-direction: row;
+			/* flex-direction: column-reverse; */
+			flex-wrap: wrap;
+			flex-flow: row wrap;
+			justify-content: space-around;
+			align-items: baseline;
+			align-content: space-around;
+		}
+		.flex-container:nth-child(2){
+			flex-wrap: wrap-reverse;
+		}
+		.box{
+			width: 30%; background-color: lightskyblue;
+		}
+		.flex-container .box:nth-child(2n){
+			background-color: plum;
+			/* width: 200%; */ /*부모 100%의 비율에 맞게 1:2:1화로*/
+			align-self: stretch;
+		}
+		.flex-container .box:nth-child(7){
+			order: -1;
+		}
+
+		.flex-container2{
+			border: 3px solid black;
+			display: flex;
+		}
+		.box2{
+			flex-basis: 200px; height: 50px; background-color: lightskyblue;
+		}
+		.box2:nth-child(2n){
+			background-color: aliceblue;
+		}
+		.box2:nth-child(1){
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex: 1 1 200px;
+		}
+		.box2:nth-child(2){
+			flex-grow: 2;
+			flex-shrink: 2;
+			flex: 2 2 200px;
+		}
+		.box2:nth-child(3){
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex: 1 1 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="flex-container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+		<div class="box">6</div>
+		<div class="box">7</div>
+	</div>
+	<div class="flex-container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+	</div>
+	<div class="flex-container2">
+		<div class="box2"></div>
+		<div class="box2"></div>
+		<div class="box2"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 예제</title>
+</head>
+<body>
+	<script>
+		/*
+		전역변수 : 현재 문서와 연결된 모든 문서에 사용가능한 변수
+		*/
+		var num = 10;
+		function test(){
+			var num2 = 20; //여기서 num2는 전역변수X, 함수 안에 있어서 함수O
+			console.log(num2);
+		}
+		test();
+
+		//지역변수
+		var num ;
+		function test(){
+			var num2;
+			num2 = 20;
+			console.log(num2);
+		}
+		num = 10;
+		test();
+
+		//배열
+		/*
+		push(값) : 배열 마지막에 요소 배치
+		pop() : 배열 마지막 요소를 제거 후 반환
+		unshift(값) : 배열 맨 앞에 요소 추가
+		shift() : 배열 맨 앞에 요소를 제거 후 반환
+
+		*/
+		var arr = [];
+		arr.push(1);
+		arr.push('2');
+		arr.push(3.0);
+		console.log(arr);
+
+		var data = arr.pop();
+		console.log(data);
+		console.log(arr);
+
+		arr.unshift('A');
+		arr.unshift('B');
+		console.log(arr);
+		console.log(arr.shift());
+		console.log(arr);
+
+		console.log(`arr.indexOf('1') : ${arr.indexOf('1')}`);
+		console.log(`arr.indexOf(1) : ${arr.indexOf(1)}`);
+		/*
+		- slice(start, end) : 배열에서 스타트부터 (엔드-1번지)까지 요소를 잘라낸 후의 부분배열을 복사
+			=> 단, 원본 배열은 수정되지 않는다.
+		- splice(start, delCount, elments) : start부터 del 개수만큼 제거 후, elements 추가
+			=> delCount는 생략가능하며, 원본 배열을 실제로 수정한다.
+		*/
+		var arr2 = arr.slice(0,2);
+		console.log(arr);
+		console.log(arr2);
+		arr.splice();
+		arr.splice(0,2,1,2,3); //0번지부터 2개 제거 후, 제거된 자리에 1,2,3 추가해라
+		console.log(arr);
+
+		var str = arr.join('-'); //join : 문자열들을 하나로 묶어줄 기능
+		console.log(str);
+		console.log('--------')
+		for(i=0; i<arr.length; i++){
+			console.log(arr+[i]);
+		}
+		console.log('--------')
+		//번지를 하나씩 꺼내어 index에 저장해서 활용
+		//for-in문은 배열보다는 객체에서 많이 사용
+		for(index in arr){
+			console.log(arr[index]);
+		}
+		console.log('--------')
+		//배열/객체에서 하나 꺼낸 값을 가져와 활용(java의 향상된 for문과 같다)
+		for(value of arr){
+			console.log(value);
+		}
+</script>
+</body>
+</html>

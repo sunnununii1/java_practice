@@ -31,18 +31,18 @@
 
 	<script>
 		let currentPage = 1;
-		const MAX_PAGE = 6; 
+		const MAX_PAGE = 6;
 		let btnPrev = document.querySelector('.btn-prev');
 		let btnNext = document.querySelector('.btn-next');
 		let pageCurrent = document.querySelector('.page-current');
 
-		btnPrev.onclick = () => {
-			currentPage = currentPage == 0 ? MAX_PAGE : currentPage;
+		btnPrev.onclick = ()=>{
+			currentPage = --currentPage == 0 ? MAX_PAGE : currentPage;
 			pageCurrent.innerText = currentPage;
 			/*if(currentPage == 0){
 				currentPage = MAX_PAGE;
 			}*/ //위에를 풀어쓴 식
-		}
+		}	
 		function next(){
 			currentPage = ++currentPage >MAX_PAGE ? 1 : currentPage;
 			pageCurrent.innerText = currentPage;

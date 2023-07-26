@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>window 객체</title>
+</head>
+<body>
+	<script>
+		/*
+		window.open(url, names, specs, replace);
+			=> widnow는 최상위객체. 다른 클래스 불러오기가 가능하다.
+			ㄴ url: 열어줄 새 창의 url (비워둘시 about:blank 뜸)
+			ㄴ name: 새 창의 이름(=> 같은 이름의 윈도우를 한번 열 수 있음) 또는 열어줄 창의 속성
+			ㄴ specs: 새로 열 윈도우창의 옵션들. "속성=값, 속성=값" 형식
+			ㄴ replace: 히스토리 목록에 새 항목을 만들지(false), 현재 항목을 대체(true)할지 설정
+		*/
+		let childWindow = window.open('01_배열.html','childWindow');
+
+		/*
+		setTimeout(함수, 시간);
+			=> 지정된 시간이 되면 함수를 !1번! 실행
+			ㄴ 시간: 지정된 시간 입력. 기본 단위는 ms
+		clearTimeout(id);
+			=> id와 일치하는 setTimeout(); 함수 종료
+		*/
+		setTimeout(function(){
+			alert('2초');
+		}, 2000);
+
+		/*
+		setInterval(함수, 시간);
+			=> 지정된 시간마다 함수를 !여러번! 실행
+			ㄴ id값을 리턴한다. => 나중에 중지 가능
+		clearInterval(id);
+			=> id와 일치하는 setInterval(); 함수 종료
+		*/
+		let id = setInterval(function(){
+			console.log('hi');
+		}, 1000);
+		//clearInterval(id);
+		//=> 브라우저 창-F12(개발자 도구 콘솔창)에서 hi 반복출력 확인 후, 위의 코드 입력하여 중지시킴
+	</script>
+</body> 
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>onload 예제</title>
+	<script>
+		/*
+		원래는 <script> 위치에 따라 출력 가능 여부가 나뉘지만,
+		window 객체의 로드가 완료되면 위치 상관없이 동작된다.(브라우저 요소들의 배치가 완료되면)
+		*/
+		window.onload = function(){
+			box.innerText = 'hi';
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

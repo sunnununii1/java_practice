@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>정규표현식</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<input type="text" id="id">
+	<div class="box"></div>
+	<script>
+		/*
+		regex.test() : 해당 문자열이 정규 표현식에 맞는지 체크해줌
+		*/
+		let regex = /^\d{5,8}$/; //숫자 5~8자리
+		$('#id').change(function(){
+			let text = $(this).val(); //입력된 정보 가져오기
+			if(regex.test(text)){
+				$('.box').text('정규표현식에 맞습니다.');
+			}else{
+				$('.box').text('숫자만 5~8자 입력하세요.');
+			}
+		});
+	</script>
+</body>
+</html>

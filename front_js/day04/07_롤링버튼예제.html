@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>양버튼 클릭시 롤링 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ 
+			width: 500px; height: 50px; border: 1px solid black;
+			position: relative;
+			overflow: hidden;
+		}
+		.view{
+			width: 400px; overflow: hidden;
+		}
+		.box-btns{
+			position: absolute; top: 0; bottom: 0; right: 0;
+		 }
+		.btn{
+		 width: 50px; height: 50px; box-sizing: border-box;
+		}
+		.list{
+			list-style: none; width: 300%; margin: 0; padding: 0;
+		}
+		.item{
+			float: left; width: 33.33%; height: 50px; background-color: khaki;
+		}
+		.bg-pink{ background-color: pink;}
+		.bg-orange{ background-color: orange;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="view">
+			<ul class="list">
+				<li class="item">1</li>
+				<li class="item bg-pink">2</li>
+				<li class="item bg-orange">3</li>
+			</ul>
+		</div>
+		<div class="box-btns">
+			<button class="btn btn-prev" onclick="moveToLeft()"><</button>
+			<button class="btn btn-next" onclick="moveToRight()">></button>
+		</div>
+	</div>
+	<script>
+		$('.box').hover(function(){
+			//롤링 중지
+			clearInterval(id);
+		}, function(){
+			//롤링 시작
+			id = rolling();
+		});
+
+		let id = rolling();
+		function rolling(){
+			return setInterval(()=>{
+				if($('.item').is(':animated')){
+					return;
+				}
+				moveToLeft();
+			}, 1500);
+		}
+		function moveToLeft(){
+			if($('.item').is(':animated')){
+					return;
+				}
+			let width = $('.item').width();
+			$('.item')
+				.first()
+				.animate({'margin-left':`-${width}px`}, 1200, function(){
+						$(this).detach().appendTo('.list').removeAttr('style');
+				});
+		}
+		function moveToRight(){
+			if($('.item').is(':animated')){
+					return;
+				}
+			let width = $('.item').width();
+			$('.item')
+				.last()
+				.detach()
+				.prependTo('.list')
+				.css('margin-left',`-${width}px`)
+				.animate({'margin-left':0},1200);
+		}
+	</script>
+</body>
+</html>

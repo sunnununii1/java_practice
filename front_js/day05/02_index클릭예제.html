@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>each 응용 클릭 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.bg-yellow{
+			background-color: khaki; }
+	</style>
+</head>
+<body>
+	<ul>
+		<li>항목1</li>
+		<li>항목2</li>
+		<li>항목3</li>
+	</ul>
+	<button class="btn">버튼1</button>
+	<button class="btn">버튼2</button>
+	<button class="btn">버튼3</button>
+	<br>
+	<button class="btn-prev">이전</button>
+	<button class="btn-next">다음</button>
+	<script>
+		let num = 0;
+		$('.btn').click(function(){
+				$('li').removeClass('bg-yellow');
+				let index = $(this).index()-1;
+				num = index;
+				$('li').eq(index).addClass('bg-yellow');
+			});
+
+			//방법2. 앞의 요소나 뒤의 요소가 있는지 없는지 확인 후 이동
+			$('.btn-prev').click(()=>{
+				//앞의 요소의 길이가 0이 아니라면, 앞 요소가 있다는 뜻
+				let index;
+				if($('.bg-yellow').prev().length !=0){
+				 index = $('.bg-yellow').prev().index();
+				}else{
+				index = $('li').length-1;
+				}
+				$('.btn').eq(index).click(); //if,else 둘 다 필요함 => 밖으로 빼서 한줄로 만듬
+			});
+			$('.btn-next').click(()=>{
+				let index;
+				if($('.bg-yellow').next().length !=0){
+				 index = $('.bg-yellow').next().index();
+				}else{
+				index = 0;
+				}
+				$('.btn').eq(index).click();
+			});
+	</script>
+</body>
+</html>

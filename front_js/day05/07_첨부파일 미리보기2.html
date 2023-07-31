@@ -46,6 +46,18 @@
 				$('.box-thumbnail').hide();
 				$('.btn-file').show();
 			}
+			//이미지 첨부창 옆에 추가
+			let element = `
+			<div class="container">
+				<input type="file" name="file" class="input-file" onchange="readUrl(this)">
+				<a href="#" class="btn-file">+</a>
+				<div class="box-thumbnail">
+					<img src="" alt="미리보기" id="preview" height="100" width="auto"
+					onclick="$('.input-file')".click();>
+				</div>
+			</div>
+			`;
+			$('.container').append(element);
 		}
 	</script>
 </body>

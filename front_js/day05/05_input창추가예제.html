@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>input 창 반복추가 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn">추가</button>
+	<div class="box"></div>
+	<script>
+		// 1번 방법 : append 이용 (추천!)
+		$('.btn').click(function(){
+			let input = `<input type="text"><br>`;
+			$('.box').append(input);
+		});
+		
+		//2번 방법 : before 이용
+		/*
+		$('.btn').click(function(){
+			let input = `<br><input type="text">`;
+			$('.box').before(input);
+		});
+		*/
+		//after 이용은 마지막 줄을 $(this).after(input); 로 바꾸면 성립됨
+
+		//3번 방법 : html 이용
+		/*
+		$('.btn').click(function(){
+			let input = `<br><input type="text">`;
+			let html = $('.box').html();
+			$('.box').html(html + input);
+		});
+		*/
+	</script>
+</body>
+</html>

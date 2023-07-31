@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>리스트 이벤트 예제</title>
+	<!-- 버튼을 누르면 항목 노란배경으로 바꾸기 -->
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.list{ list-style: none;}
+	</style>
+</head>
+<body>
+	<ul class="list">
+		<li>항목1</li>
+		<li>항목2</li>
+		<li>항목3</li>
+	</ul>
+	<button class="btn btn1">버튼1</button>
+	<button class="btn btn2">버튼2</button>
+	<button class="btn btn3">버튼3</button>
+	<script>
+		/* 1.각각 적용하는 방법
+		$('.btn1').click(()=>{
+			$('li').css('background-color', 'white');
+			$('li').eq(0).css('background-color', 'khaki');
+		});
+		$('.btn2').click(()=>{
+			$('li').css('background-color', 'white');
+			$('li').eq(1).css('background-color', 'khaki');
+		});
+		$('.btn3').click(()=>{
+			$('li').css('background-color', 'white');
+			$('li').eq(2).css('background-color', 'khaki');
+		});
+		*/
+		$('.btn').click(function(){
+			$('li').css('background-color', 'white');
+			let index = $(this).index()-1; //내가 누른 버튼이 몇번째인지 가져옴
+			$('li').eq(index).css('background-color', 'khaki');
+		});
+	</script>
+</body>
+</html>

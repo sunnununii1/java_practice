@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클릭 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.bg-yellow{ background-color: khaki;}
+		.bg-orange{ background-color: orange;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>항목1</li>
+		<li>항목2</li>
+		<li>항목3</li>
+		<li>항목4</li>
+		<li>항목5</li>
+		<li>항목6</li>
+		<li>항목7</li>
+	</ul>
+	<script>
+		$('li').click(function(){
+			//모든 <li>의 배경이 흰색이 되도록 처리
+				$('li').removeClass('bg-yellow bg-orange');
+			//현재 클릭된(=this!!!) <li>의 배경이 노란색 되도록 처리
+				$(this).addClass('bg-yellow');
+			//현재 클릭된 <li> 앞 요소의 배경이 주황색 되도록 처리
+				$(this).prev().addClass('bg-orange');
+			//현재 클릭된 <li> 뒤 요소의 배경이 주황색 되도록 처리
+				$(this).next().addClass('bg-orange');
+		});
+
+		//tip. <li>안에 <a>항목</a> 식으로 풀 때는, 중간에 부모요소 => parent() 추가해야함!
+	</script>
+</body>
+</html>

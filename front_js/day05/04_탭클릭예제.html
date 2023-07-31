@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>버튼 클릭시 박스색 바뀜 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ width: 400px; height: 300px; background-color: steelblue;}
+		.box2{
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+
+	<button class="btn btn1" data-target=".box1">버튼1</button>
+	<button class="btn btn2" data-target=".box2">버튼2</button>
+	<div class="container">
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+	</div>
+	<script>
+		$('.box').hide();
+		//1.data-target 이용하는 방법
+		/* $('.btn').click(function(){
+			let target = $(this).attr('target');
+			$('.box').hide();
+			$(target).show();
+		}); */
+
+		//2.내가 푼 방법
+		/* $('.btn1').click(function(){
+			$('.box1').toggle();
+			$('.box2').hide();
+		});
+		$('.btn2').click(function(){
+			$('.box2').toggle();
+			$('.box1').hide();
+		}); */
+
+		//3. 버튼 순서와 박스 순서가 같다는 성질 이용한 방법
+		$('.btn').click(function(){
+			let index = $(this).index();
+			//박스들을.감추고.index+1번째를.보여줌
+			$('.box').hide().eq(index).show();
+		});
+	</script>
+</body>
+</html>

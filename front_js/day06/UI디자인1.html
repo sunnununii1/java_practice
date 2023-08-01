@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>시험문제 1</title>
+	<style>
+		.box1{
+			width: 800px; height: 300px; border: 1px solid black;
+			position: relative;
+		}
+		[name=content]{
+			height: 100px; margin-top: 5px; margin-bottom: 5px;
+		}
+		ul{
+			list-style: none;
+		}
+		.btn-submit{
+			position: absolute; bottom: 10px; left: 150px;
+		}
+		.th-title{ width: 400px;}
+		.th-num, .th-view{ width: 50px;}
+		.th-writer, .th-date{ width: 140px;}
+		thead, tfoot{ background-color: coral; color: white;}
+		td{ background-color: lemonchiffon;}
+		.btn-form{ float: right;}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="inner-box">
+			<ul class="inner-box">
+				<li>
+					제목 <input type="text" name="title" placeholder="제목을 입력하시오." size="40">
+				</li>
+				<li>
+					내용 <input type="text" name="content" placeholder="내용을 입력하시오." size="40">
+				</li>
+				<li>
+					첨부파일 <input type="file" name="uploadFile" class="input-file" onchange="readUrl(this)">
+					<div class="box-thumbnail">
+						<img src="" alt="미리보기" id="preview" height="100" width="auto">
+					</div>
+				</li>
+			</ul>
+		</div>
+		<button class="btn-submit">작성하기</button>
+	</div>
+	<br>
+	<form action="insert.no">
+		<table border="1px">
+			<caption></caption>
+			<thead>
+				<tr>
+					<th class="th-num">번호</th>
+					<th class="th-title">제목</th>
+					<th class="th-writer">작성자</th>
+					<th class="th-date">작성일</th>
+					<th class="th-view">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>9</td>
+					<td>공지사항 제목 9<button class="btn-form">바로가기</button></td>
+					<td>user01</tdh>
+					<td>2021-03-29</td>
+					<td>34</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>공지사항 제목 6<button class="btn-form">바로가기</button></td>
+					<td>answ445</tdh>
+					<td>2021-03-12</td>
+					<td>67</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>공지사항 제목 3<button class="btn-form">바로가기</button></td>
+					<td>textg12</tdh>
+					<td>2021-03-01</td>
+					<td>98</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>공지사항 제목 2<button class="btn-form">바로가기</button></td>
+					<td>palwe3</tdh>
+					<td>2021-01-02</td>
+					<td>84</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>공지사항 제목 1<button class="btn-form">바로가기</button></td>
+					<td>xml23</tdh>
+					<td>2020-12-24</td>
+					<td>124</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<th colspan="3">전체공지사항 갯수</th>
+				<th colspan="2">5개</th>
+			</tfoot>
+		</table>
+	</form>
+	<script>
+		$('.btn-file').click(function(){
+			$('.input-file').click();
+		});
+		//이미지 출력 코드
+		function readUrl(input){
+			//<input>가 첨부파일이고, 첨부파일이 선택되면 
+			if(input.files && input.files[0]){
+				let reader = new FileReader();
+				reader.onload = function(e){
+					document.getElementById('preview').src =e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);
+				$('.box-thumbnail').show();
+				$('.btn-file').hide();
+			//첨부파일이 선택되지 않으면
+			} else{
+				document.getElementById('preview').src = '';
+				$('.box-thumbnail').hide();
+				$('.btn-file').show();
+			}
+		$([name=uploadFile]).click(function(){
+			let element = 
+			`
+			<input type="file" name="uploadFile" onchange="readUrl(this)">
+				<div class="box-thumbnail">
+					<img src="" alt="미리보기" id="preview" height="100" width="auto">
+				</div>
+			`;
+			$('.box-thumbnail').append(element);
+		});
+	}
+	</script>
+</body>
+</html>

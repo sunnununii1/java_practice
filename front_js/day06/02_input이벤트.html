@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>input 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<input type="text" id="input">
+	<script>
+		/*
+		change 이벤트는 focus가 해제되거나 엔터시 동작.
+		=> 복붙이나 입력 중엔 이벤트 발생 X
+
+		- keyup : 키보드를 눌렀다 뗐을 때 발생 => 마우스로 하는 복붙은 감지 못함
+		=> input 이벤트를 이용하여 <input>에 직접 입력/복붙해야 감지함.
+		*/
+
+		//숫자만 입력하는 예제
+		$('#input').on('input',function(){
+			let val  = $(this).val();
+			//입력한 값을 가져와서 숫자가 아닌 것들(0-9가 아닌)은 빈 공백으로 처리
+			val = val.replace(/[^0-9]/,'');
+			$(this).val();
+		});
+	</script>
+</body>
+</html>

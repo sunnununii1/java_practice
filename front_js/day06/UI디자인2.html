@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>시험문제 2</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>	
+	<style>
+		[class^=error]{ color: gray;}
+		[name^=email]{ width: 50%;}
+		form{
+			margin-top: 30px; margin-left: 10px; width: 400px;
+			font-size: 15px; font-weight: bold;
+		}
+		span{ width: 150px; letter-spacing: 1px;}
+		.form-group{
+			display: flex;
+		}
+		.btn{ background-color: rgb(169, 230, 155); color: black;
+			border: transparent; font-weight: bold; letter-spacing: 5px;}
+		.form-control{ border: 0; border-bottom: dashed black;}
+		.error-id, .error-pw, .error-pw2{ font-size: 12px; margin-left: 110px;}
+	</style>
+</head>
+<body>
+	<form action="">
+		<div class="form-group">
+			<span>아이디</span>
+			<input type="text" class="form-control" name="id" >
+		</div>
+		<div class="error-id"></div>
+		<div class="form-group">
+			<span>패스워드</span>
+			<input type="password" class="form-control" name="pw">
+		</div>
+		<div class="error-pw"></div>
+		<div class="form-group">
+			<span>패스워드 확인</span>
+			<input type="password" class="form-control" name="pw2">
+		</div>
+		<div class="error-pw2"></div>
+		<div class="form-group">
+			<span>이메일</span>
+			<input type="text" class="form-control" name="email1">@
+			<input type="text" class="form-control" name="email2">
+		</div>
+		<div class="error-email"></div>
+		<div class="form-group">
+			<span>주소</span>
+			<input type="text" class="form-control" name="adress">
+		</div>
+		<div class="form-group">
+			<span></span>
+			<input type="text" class="form-control" name="adress">
+		</div>
+		<div class="error-adress"></div>
+		<button class="btn btn-outline-success col-12">가입</button>
+	</form>
+	<script>
+		//1.패스워드 클릭시 하단에 문구 출력
+		$('[name=pw]').click(clickPw);
+		function clickPw(){
+			let pw = $('[name=pw]').val();
+			$('.error-pw').text('영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자');
+		}
+
+		//2.아이디,비번,비번확인 칸에 입력없이 이동시 하단에 문구 출력
+		$('[name=id]').change(checkId);
+		$('[name=pw]').change(checkPw);
+		$('[name=pw2]').change(checkPw2);
+		
+		$('form').submit(function(){
+			let ok = true;
+			if(!checkId()){
+				ok = false;
+			}
+			if(!checkPw()){
+				ok = false;
+			}
+			if(!checkPw2()){
+				ok = false;
+			}
+			return ok;
+		});
+		function checkId(){
+			let id = $('[name=id]').val();
+			let regex = /^\w{8,13}$/;
+			if(regex.test(id)){
+				$('.error-id').text();
+				return true;
+			}else{
+				$('.error-id').text('필수 입력 항목 입니다.');
+				return false;
+			}
+		}
+		function checkPw(){
+			let pw = $('[name=pw]').val();
+			let regex = /^[a-zA-Z0-9!@#$]{8,20}$/;
+			if(regex.test(pw)){
+				$('.error-pw').text();
+				return true;
+			}else{
+				$('.error-pw').text('필수 입력 항목 입니다.');
+				return false;
+			}
+		}
+		function checkPw2(){
+			let pw = $('[name=pw]').val();
+			let pw2 = $('[name=pw2]').val();
+			if(pw == pw2){
+				$('.error-pw2').text('');
+				return true;
+			}else{
+				$('.error-pw2').text('필수 입력 항목 입니다.');
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>

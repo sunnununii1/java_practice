@@ -60,12 +60,13 @@ NO ACTION : 제약조건 옵션을 선택하지 않은 경우 자동으로 선�
 SET DEFAULT : 참조되고 있으면 기본키의 값이 변하면 참조하는 테이블의 값이 기본값으로 바뀜 
 
 */
+-- 테이블 이름이 키워드인 경우, 실행을 막으려고 `` 기재
 -- 대학생(학번, 이름, 학과)
 create table if not exists course.`student`(
-	num char(10) not null,
+	num char(10) not null, 
     name varchar(20) not null,
     major varchar(20) not null,
-    primary key(num)
+    primary key(num) -- 기본키는 학번(num)
 );
 -- 과목(과목코드, 과목명, 학점, 시수)
 -- 과목코드 앞 3자리는 종류, 뒤 3자리는 숫자 MSC001
@@ -87,7 +88,8 @@ create table if not exists course(
     year int not null,
     semester varchar(10) not null default '1',
     primary key(num),
-    foreign key(subject_code) references subject(code),
+    -- 외래키(타 테이블 기본키 참조) : 참조 무결성위해 추가
+    foreign key(subject_code) references subject(code), 
     foreign key(student_num) references student(num)
 );
 /*
@@ -105,6 +107,7 @@ alter table 테이블명 add constraint 제약조건명 제약조건내용;
 - 제약 조건 삭제
 alter table 테이블명 drop 제약조건명; 
 */
+-- 밑은 연습용이라 따로 실행 필요 X
 -- 학생 테이블에 주소 속성을 추가 
 alter table student add address varchar(50) not null default '';
 -- 학생 테이블에 주소를 최대 40자로 수정 

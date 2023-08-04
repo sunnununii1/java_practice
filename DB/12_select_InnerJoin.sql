@@ -18,6 +18,8 @@ ON
 [ORDER BY절]
 [LIMIT절]
 */
+use course;
+
 SELECT 
     COURSE.*, TITLE
 FROM
@@ -28,18 +30,11 @@ ON
 	SUBJECT_CODE = CODE;
 
 -- 대학물리를 수강하는 학생들 수를 조회하는 쿼리 
-SELECT 
-    SUBJECT_CODE AS 과목코드, COUNT(*) AS 수강생수
-FROM
-    COURSE
-WHERE
-    SUBJECT_CODE IN (SELECT 
-            CODE
-        FROM
-            SUBJECT
-        WHERE
-            TITLE = '대학물리')
-GROUP BY SUBJECT_CODE;
+SELECT SUBJECT_CODE AS 과목코드, COUNT(*) AS 수강생수
+	FROM COURSE
+	WHERE SUBJECT_CODE IN (SELECT CODE FROM SUBJECT WHERE TITLE = '대학물리')
+	GROUP BY SUBJECT_CODE;
+
 SELECT 
 	SUBJECT_CODE AS 과목코드, COUNT(*) AS 수강생 
 FROM 

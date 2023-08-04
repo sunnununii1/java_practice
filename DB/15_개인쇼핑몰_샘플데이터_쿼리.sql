@@ -26,5 +26,3 @@ insert into `option`(op_name, op_pr_code) values('무선','ABC001'),('유선','A
 select * from product 
 	join `option` on pr_code = op_pr_code
 	where pr_code = 'ABC001';
-    
-select * from member;

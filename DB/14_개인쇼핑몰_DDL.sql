@@ -21,6 +21,7 @@ CREATE TABLE `member` (
 DROP TABLE IF EXISTS `address`;
 
 CREATE TABLE `address` (
+	-- AUTO_INCREMENT는 기본키에만 추가 가능
 	`ad_num`	int	NOT NULL  PRIMARY KEY AUTO_INCREMENT,
 	`ad_name`	varchar(15)	NOT NULL,
 	`ad_addr`	varchar(50)	NOT NULL,

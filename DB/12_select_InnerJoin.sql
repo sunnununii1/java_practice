@@ -12,6 +12,10 @@ INNER JOIN | LEFT JOIN | RIGHT JOIN -- INNER조인, OUTER조인 둘 다 가능
 	테이블2
 ON
 	테이블1.외래키 = 테이블2.기본키
+[ INNER JOIN | LEFT JOIN | RIGHT JOIN 
+	테이블3
+ON
+	테이블1.외래키 = 테이블3.기본키 ]
 [WHERE 절]
 [GROUP BY절]
 [HAVING절]

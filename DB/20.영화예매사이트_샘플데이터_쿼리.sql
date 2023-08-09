@@ -144,3 +144,6 @@ insert into movie_file(mf_fi_num, mf_mo_num)
 
 
 -- 좌석 등록
+
+
+-- 영화 스케쥴 등록

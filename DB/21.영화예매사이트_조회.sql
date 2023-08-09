@@ -38,3 +38,4 @@ FROM
 WHERE
     mo_title = '오펜하이머'
     group by fi_state;
+    

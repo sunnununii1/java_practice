@@ -173,66 +173,29 @@ LIMIT 3;
  - dense_rank() over(over(order by 속성 속성방법) : 예로, 4명 중 1등 점수가 3명으로 중복시, 1위가 3명 2위 1명
 */
 -- 사용 금액 같은 회원이 여러명일 때, 아래 쿼리는 여러명 모두 등수에 포함시 모두 받는다.
-SELECT *
-FROM (SELECT 
-		ME_ID AS 아이디,
-		누적금액,
-		RANK() OVER(ORDER BY 누적금액 DESC) AS 순위
-		FROM(SELECT *,
-			 SUM(CASE
-             WHEN NOW() >= CONCAT(MS_DATE, ' ', MS_START_TIME)
-             THEN RV_PRICE
-             ELSE 0
-			 END) AS 누적금액
+SELECT 
+	me_id as 아이디,
+    누적금액,
+    RANK() OVER(order by 누적금액 desc) as 순위
+FROM
+    (SELECT *,
+    ifnull(sum(case
+				when now() >= concat(ms_date, ' ', ms_start_time)
+				THEN rv_price
+                ELSE 0
+                END),
+                0) as 누적금액
 	FROM
-		RESERVATION
-			JOIN MOVIE_SCHEDULE ON RV_MS_NUM = MS_NUM
-			RIGHT JOIN MEMBER ON RV_ME_ID = ME_ID
-			GROUP BY RV_ME_ID
-		) AS A
-	) AS B
-WHERE 순위 <= 3;
+		reservation
+			JOIN movie_schedule ON rv_ms_num = ms_num
+			RIGHT JOIN member ON rv_me_id = me_id
+			GROUP BY rv_me_id
+			) as A
+	) as B
+WHERE 순위 <= 3
 
 -- 영화인별로 배우로 참여한 영화 개수를 정리하는 쿼리
-SELECT
-	fp_name as 영화인, ifnull(count(ro_num),0) as '참여영화수(배우)'
-FROM  film_person
-	LEFT JOIN 
-		(SELECT * FROM role where ro_role = '배우')
-		AS role2 ON ro_fp_num = fp_num
-GROUP BY fp_num;
-
-
--- 각 스케쥴별로 예약한 좌석 조회하는 쿼리
-SELECT 
-	mo_title as 영화,
-	ms_date as 상영일,
-	ms_start_time as 상영시간,
-    sc_total_seat - ms_possible_seat as 예약좌석수
-FROM movie_schedule
-	JOIN screen ON ms_sc_num = sc_num
-	JOIN movie ON ms_mo_num = mo_num;
-    
--- 영화관별 상영 영화목록 보여주는 쿼리
-SELECT
-	mo_title as 영화,
-    th_name as 영화관,
-    ms_date as 상영일,
-	ms_start_time as 상영시간
-FROM theater
-	JOIN screen ON sc_th_num = th_num
-	JOIN movie_schedule ON ms_sc_num = sc_num
-    JOIN movie ON ms_mo_num = mo_num
-WHERE now() < concat(MS_DATE, ' ', MS_START_TIME)
-GROUP BY th_num, ms_mo_num;
-
-
--- 오펜하이머를 상영하는 영화관 보여주는 쿼리
-SELECT
-    th_name as 영화관
-FROM theater
-	JOIN screen ON sc_th_num = th_num
-	JOIN movie_schedule ON ms_sc_num = sc_num
-    JOIN movie ON ms_mo_num = mo_num
-WHERE now() < concat(MS_DATE, ' ', MS_START_TIME) AND mo_title = '오펜하이머'
-GROUP BY th_num, ms_mo_num;
+select * 
+from movie 
+	JOIN role ON ro_mo_num = mo_num
+    JOIN film_person ON ro_fp_num = fp_num;

@@ -308,3 +308,17 @@ FROM
 	ON RV_MS_NUM = MS_NUM) * 100)
 WHERE
     MO_NUM = 2;
+    
+    
+-- 'abc123'회원이 콘크리트 유토피아 리뷰를 작성할 때 쿼리 (내용: 재미있어요)
+insert into review(re_content, re_mo_num, re_me_id, re_total_like)
+	value('재미있어요.',2,'abc123',0);
+
+-- abc123회원이 작성한 콘크리트 유토피아 리뷰를 admin 회원이 추천할 때 쿼리 (리뷰번호 알고있다고 가정함)
+UPDATE review 
+SET 
+    re_total_like = re_total_like + 1
+WHERE
+    re_num = 1;
+
+

@@ -320,5 +320,3 @@ SET
     re_total_like = re_total_like + 1
 WHERE
     re_num = 1;
-
-

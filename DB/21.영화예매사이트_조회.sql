@@ -236,3 +236,5 @@ FROM theater
     JOIN movie ON ms_mo_num = mo_num
 WHERE now() < concat(MS_DATE, ' ', MS_START_TIME) AND mo_title = '오펜하이머'
 GROUP BY th_num, ms_mo_num;
+
+

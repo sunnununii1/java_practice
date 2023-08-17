@@ -52,10 +52,10 @@ from member
 	left join loan on me_id = lo_me_id
 group by me_id;
 
--- 도서를 가장 많이 대여한 회원 1명을 조회하는 쿼리
+-- 도서를 가장 많이 대여한 회원 1명을 조회하는 쿼리 (횟수 같으면 아이디순으로 정렬한 첫번째 회원)
 select me_id as 아이디, count(lo_num) as 대출도서수
 from member
 	left join loan on me_id = lo_me_id
 group by me_id
-order by 대출도서수 desc
+order by 대출도서수 desc, 아이디 asc
 limit 1; 

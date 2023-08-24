@@ -13,15 +13,12 @@ import kr.kh.app.vo.MemberVO;
 
 public class Withdraw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MemberService memberService = new MemberServiceImp();
-       
-    
+    private MemberService memberService = new MemberServiceImp();
     public Withdraw() {
         super();
     }
 
-	
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/withdraw.jsp").forward(request, response);
 	}
 	

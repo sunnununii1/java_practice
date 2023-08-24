@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
   <display-name>project</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -21,13 +21,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Signup</display-name>
-    <servlet-name>Signup</servlet-name>
-    <servlet-class>kr.kh.app.controller.Signup</servlet-class>
+    <display-name>Singup</display-name>
+    <servlet-name>Singup</servlet-name>
+    <servlet-class>kr.kh.app.controller.Singup</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Signup</servlet-name>
-    <url-pattern>/signup</url-pattern>
+    <servlet-name>Singup</servlet-name>
+    <url-pattern>/singup</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -38,5 +38,55 @@
   <servlet-mapping>
     <servlet-name>Withdraw</servlet-name>
     <url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>List</display-name>
+    <servlet-name>List</servlet-name>
+    <servlet-class>kr.kh.app.controller.List</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>List</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardInsert</display-name>
+    <servlet-name>BoardInsert</servlet-name>
+    <servlet-class>kr.kh.app.controller.BoardInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardInsert</servlet-name>
+    <url-pattern>/board/insert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardDetail</display-name>
+    <servlet-name>BoardDetail</servlet-name>
+    <servlet-class>kr.kh.app.controller.BoardDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardDetail</servlet-name>
+    <url-pattern>/board/detail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardDelete</display-name>
+    <servlet-name>BoardDelete</servlet-name>
+    <servlet-class>kr.kh.app.controller.BoardDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardDelete</servlet-name>
+    <url-pattern>/board/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardUpdate</display-name>
+    <servlet-name>BoardUpdate</servlet-name>
+    <servlet-class>kr.kh.app.controller.BoardUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardUpdate</servlet-name>
+    <url-pattern>/board/update</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Message {
 	private String url, msg;
 	
-	public String toSting() {
+	public String toString() {
 		return "{ " + "msg : '" + msg + "', url : '" + url + "' }";
 	}
 }

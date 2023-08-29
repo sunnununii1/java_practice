@@ -68,13 +68,13 @@ public class MemberController {
 	public String memberLogout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		Message msg = new Message("/", "");
+		Message msg = new Message("/", null);
 		
 		if(user != null) {
 			session.removeAttribute("user");
 			msg.setMsg("로그아웃에 성공했습니다.");
 		}
-		model.addAttribute("user",user);
+		model.addAttribute("msg",msg);
 		return "message";
 	}
 }

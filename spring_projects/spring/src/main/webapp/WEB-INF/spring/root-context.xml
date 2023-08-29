@@ -17,12 +17,14 @@
 	    <property name="url"
 	              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=Asia/Seoul">
 	    </property>
+	    <!-- 계정 이름/ 비번 -->
 	    <property name="username" value="root"></property>
 	    <property name="password" value="root"></property>
 	</bean>  
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
+	    <!-- **은 폴더가 있을 수도, 없을 수도 있다는 뜻 + 파일명 소/대문자 구분과 오타 주의! -->
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
 	<mybatis-spring:scan base-package="kr.kh.spring.dao"/>

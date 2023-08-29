@@ -20,17 +20,23 @@
   
   <!-- Links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="<c:url value='/signup' />">회원가입</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
+  	<c:if test="${user == null}"> <!-- user가 null이면 회원가입,로그인 버튼 안 보임 -->
+	    <li class="nav-item">
+	      <a class="nav-link" href="<c:url value='/member/signup' />">회원가입</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="<c:url value='/member/login' />">로그인</a>
+	    </li>
+    </c:if>
+    <c:if test="${user != null }">
+	    <li class="nav-item">
+	      <a class="nav-link" href="<c:url value='/member/logout' />">로그아웃</a>
+	    </li>
+    </c:if>
   </ul>
 </nav>
+
+<%-- ${user } <!-- 서버>화면 보내기 --> --%>
 
 </body>
 </html>

@@ -2,15 +2,12 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
  pageEncoding="utf-8" %>
+ <!doctype html>
 <html>
 <head>
-	<title>Home</title>
+	<title>스프링 복습</title>
 </head>
 <body>
-<h1>
-	Hello world!
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+		<a href="<c:url value='/member/signup'/>">회원가입</a>
 </body>
 </html>

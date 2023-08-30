@@ -1,7 +1,13 @@
 package kr.kh.study.dao;
 
-public interface MemberDAO {
+import org.apache.ibatis.annotations.Param;
 
-	int selectCountMember();
+import kr.kh.study.vo.MemberVO;
+
+public interface MemberDAO {
+	
+	MemberVO selectMember(@Param("me_id")String me_id);
+
+	void insertMember(@Param("m")MemberVO member);
 
 }

@@ -1,5 +1,7 @@
 package kr.kh.study.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +24,7 @@ public class MemberController {
 	
 	@PostMapping("/member/signup") //@RequestMapping과 같다
 	public String membersignupPost(Model model, MemberVO member) {
-		String msg = "테스트";
-		String url = "/";
+		String url, msg;
 		System.out.println(member);
 		
 		if(memberService.signup(member)) {
@@ -36,7 +37,45 @@ public class MemberController {
 		
 		model.addAttribute("url",url);
 		model.addAttribute("msg",msg);
-		return "/util/message";
+		return "util/message";
+	}
+	
+	
+	@GetMapping("/member/login")
+	public String memberLogin() {
+		return "/member/login";
+	}
+	
+	@PostMapping("/member/login")
+	public String memberLoginPost(Model model, MemberVO member) {
+		String url, msg;
+//		System.out.println(member); //성공 확인
+		MemberVO user = memberService.login(member);
 		
+		if(user != null) {
+			msg = "로그인 성공";
+			url = "/";
+		}else {
+			msg = "로그인 실패";
+			url = "/member/login";
+		}
+		model.addAttribute("url",url);
+		model.addAttribute("msg",msg);
+		model.addAttribute("user",user);
+		
+		return "util/message";
+	}
+	
+	@GetMapping("/member/logout")
+	public String memberLogout(Model model, HttpSession session) {
+		String msg = "로그아웃 성공";
+		String url = "/";
+		
+		session.removeAttribute("user");
+
+		model.addAttribute("url",url);
+		model.addAttribute("msg",msg);
+		
+		return "/util/message";
 	}
 }

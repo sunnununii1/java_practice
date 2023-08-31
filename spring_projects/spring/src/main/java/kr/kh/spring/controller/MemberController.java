@@ -26,7 +26,7 @@ public class MemberController {
 	@RequestMapping(value="/member/signup", method=RequestMethod.GET)
 	public String signup() {
 		
-		return "member/signup";
+		return "/member/signup";
 	}
 	
 	//signup의 method가 post이므로 입력 후 전송코드는 이걸로
@@ -46,7 +46,7 @@ public class MemberController {
 	//url과 jsp 경로가 같은 경우엔 void + return 경로입력 생략 가능
 	@GetMapping(value="/member/login")
 	public String memberLogin() {
-		return "member/login";
+		return "/member/login";
 	}
 	
 	@PostMapping(value="/member/login")

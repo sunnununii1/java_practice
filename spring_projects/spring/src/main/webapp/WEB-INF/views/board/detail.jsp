@@ -45,6 +45,7 @@
 	</div>
 	
 	<!-- 목록으로 돌아가기 버튼 -->
-	<a href="<c:url value='/board/list'/>" class="btn btn-outline-primary">목록으로</a>
+	<!-- ${cri.currentUrl} 추가하면 이전페이지 그대로 잔류기능 -->
+	<a href="<c:url value='/board/list${cri.currentUrl}'/>" class="btn btn-outline-primary">목록으로</a>
 </body>
 </html>

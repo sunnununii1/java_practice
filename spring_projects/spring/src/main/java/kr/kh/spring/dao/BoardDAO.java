@@ -14,4 +14,8 @@ public interface BoardDAO {
 	List<BoardVO> selectBoardList(@Param("cri")Criteria cri);
 
 	int selectBoardCount(@Param("cri")Criteria cri);
+
+	BoardVO selectBoard(@Param("bo_num")Integer bo_num);
+
+	int updateBoardViews(@Param("bo_num")Integer bo_num);
 }

@@ -21,29 +21,29 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//url Ã£¾ÆÁÖ´Â ¿ªÇÒ
-	//=> Å¬¶óÀÌ¾ğÆ®°¡ url¿¡ signupÀ» ¿äÃ»ÇÏ¸é ½ÇÇàÇØÁØ´Ù.
+	//url ì°¾ì•„ì£¼ëŠ” ì—­í• 
+	//=> í´ë¼ì´ì–¸íŠ¸ê°€ urlì— signupì„ ìš”ì²­í•˜ë©´ ì‹¤í–‰í•´ì¤€ë‹¤.
 	@RequestMapping(value="/member/signup", method=RequestMethod.GET)
 	public String signup() {
 		
 		return "member/signup";
 	}
 	
-	//signupÀÇ method°¡ postÀÌ¹Ç·Î ÀÔ·Â ÈÄ Àü¼ÛÄÚµå´Â ÀÌ°É·Î
+	//signupì˜ methodê°€ postì´ë¯€ë¡œ ì…ë ¥ í›„ ì „ì†¡ì½”ë“œëŠ” ì´ê±¸ë¡œ
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public String signupPost(MemberVO member, Model model) {
 		
-		Message msg = new Message("/member/signup", "È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+		Message msg = new Message("/member/signup", "íšŒì›ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 		
 		if(memberService.signup(member)) {
-			msg = new Message("/", "È¸¿ø°¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù.");
+			msg = new Message("/", "íšŒì›ê°€ì…ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 		}
 		
 		model.addAttribute("msg", msg);
 		return "message";
 	}
 	
-	//url°ú jsp °æ·Î°¡ °°Àº °æ¿ì¿£ void + return °æ·ÎÀÔ·Â »ı·« °¡´É
+	//urlê³¼ jsp ê²½ë¡œê°€ ê°™ì€ ê²½ìš°ì—” void + return ê²½ë¡œì…ë ¥ ìƒëµ ê°€ëŠ¥
 	@GetMapping(value="/member/login")
 	public String memberLogin() {
 		return "member/login";
@@ -51,12 +51,12 @@ public class MemberController {
 	
 	@PostMapping(value="/member/login")
 	public String memberLoginPost(MemberVO member, Model model) {
-		Message msg = new Message("/member/login", "·Î±×ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+		Message msg = new Message("/member/login", "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 		
 		MemberVO user = memberService.login(member);
 				
 		if(user != null) {
-			msg = new Message("/", "·Î±×ÀÎ¿¡ ¼º°øÇß½À´Ï´Ù.");
+			msg = new Message("/", "ë¡œê·¸ì¸ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 		}
 		model.addAttribute("user",user);
 		model.addAttribute("msg",msg);
@@ -64,7 +64,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/logout")
-	// HttpServletRequest request´Â Å¬¶óÀÌ¾ğÆ®°¡ ¿äÃ»ÇÑ ¸®Äù½ºÆ®¸¦ ¶æÇÔ
+	// HttpServletRequest requestëŠ” í´ë¼ì´ì–¸íŠ¸ê°€ ìš”ì²­í•œ ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ ëœ»í•¨
 	public String memberLogout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -72,7 +72,7 @@ public class MemberController {
 		
 		if(user != null) {
 			session.removeAttribute("user");
-			msg.setMsg("·Î±×¾Æ¿ô¿¡ ¼º°øÇß½À´Ï´Ù.");
+			msg.setMsg("ë¡œê·¸ì•„ì›ƒì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 		}
 		model.addAttribute("msg",msg);
 		return "message";

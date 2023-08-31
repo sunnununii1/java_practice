@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import kr.kh.spring.dao.MemberDAO;
 import kr.kh.spring.vo.MemberVO;
 
-@Service //@Service°¡ ¾øÀ¸¸é @Atuowired ÀÎ½Ä ºÒ°¡(¼¼Æ®)
+@Service //@Serviceê°€ ì—†ìœ¼ë©´ @Atuowired ì¸ì‹ ë¶ˆê°€(ì„¸íŠ¸)
 public class MemberServiceImp implements MemberService{
 
-	//@Atuowired·Î dy¿Í ´Ù¸£°Ô »ı¼ºÀÚ(try-catch¹®) »ı·«°¡´ÉÇØÁü
+	//@Atuowiredë¡œ dyì™€ ë‹¤ë¥´ê²Œ ìƒì„±ì(try-catchë¬¸) ìƒëµê°€ëŠ¥í•´ì§
 	@Autowired 
 	private MemberDAO memberDao;
 	
@@ -25,27 +25,27 @@ public class MemberServiceImp implements MemberService{
 			return false;
 		}
 		
-		//¾ÆÀÌµğ Áßº¹È®ÀÎ -> Dao¿¡°Ô È¸¿øÁ¤º¸(id) ¿äÃ»
+		//ì•„ì´ë”” ì¤‘ë³µí™•ì¸ -> Daoì—ê²Œ íšŒì›ì •ë³´(id) ìš”ì²­
 		MemberVO dbMember = memberDao.selectMember(member.getMe_id());
-		//°¡ÀÔÇÏ·Á´Â ¾ÆÀÌµğ°¡ ÀÌ¹Ì °¡ÀÔµÈ °æ¿ì
+		//ê°€ì…í•˜ë ¤ëŠ” ì•„ì´ë””ê°€ ì´ë¯¸ ê°€ì…ëœ ê²½ìš°
 		if(dbMember != null) {
 			return false;
 		}
-		//¾ÆÀÌµğ, ºñ¹ø nullÃ¼Å© + À¯È¿¼º °Ë»ç
-		String idRegex = "^[a-zA-Z][a-zA-Z0-9]{5,14}$"; //¿µ¹®À¸·Î ½ÃÀÛ, 5~14ÀÚ
-		String pwRegex = "^[a-zA-Z0-9!@#$%]{6,15}$"; //¿µ¹®,¼ıÀÚ,!@#$%¿¡ 6~15ÀÚ
-		//¾ÆÀÌµğ°¡ À¯È¿¼º°ú ¸ÂÁö ¾ÊÀ¸¸é
+		//ì•„ì´ë””, ë¹„ë²ˆ nullì²´í¬ + ìœ íš¨ì„± ê²€ì‚¬
+		String idRegex = "^[a-zA-Z][a-zA-Z0-9]{5,14}$"; //ì˜ë¬¸ìœ¼ë¡œ ì‹œì‘, 5~14ì
+		String pwRegex = "^[a-zA-Z0-9!@#$%]{6,15}$"; //ì˜ë¬¸,ìˆ«ì,!@#$%ì— 6~15ì
+		//ì•„ì´ë””ê°€ ìœ íš¨ì„±ê³¼ ë§ì§€ ì•Šìœ¼ë©´
 		if(!Pattern.matches(idRegex, member.getMe_id())) {
 			return false;
 		}
-		//ºñ¹øÀÌ À¯È¿¼º°ú ¸ÂÁö ¾ÊÀ¸¸é
+		//ë¹„ë²ˆì´ ìœ íš¨ì„±ê³¼ ë§ì§€ ì•Šìœ¼ë©´
 		if(!Pattern.matches(pwRegex, member.getMe_pw())) {
 			return false;
 		}
-		//ºñ¹ø ¾ÏÈ£È­
+		//ë¹„ë²ˆ ì•”í˜¸í™”
 		String encPw = passwordEncoder.encode(member.getMe_pw());
-		member.setMe_pw(encPw); //¾ÏÈ£È­µÈ ºñ¹øÀ» ´Ù½Ã ÁöÁ¤
-		//È¸¿ø°¡ÀÔ ÁøÇà
+		member.setMe_pw(encPw); //ì•”í˜¸í™”ëœ ë¹„ë²ˆì„ ë‹¤ì‹œ ì§€ì •
+		//íšŒì›ê°€ì… ì§„í–‰
 		return memberDao.insertMember(member);
 	}
 
@@ -56,11 +56,11 @@ public class MemberServiceImp implements MemberService{
 		}
 		MemberVO dbMember = memberDao.selectMember(member.getMe_id());
 		
-		//¾ÆÀÌµğ¿Í ÀÏÄ¡ÇÏ´Â °èÁ¤ÀÌ ¾øÀ¸¸é
+		//ì•„ì´ë””ì™€ ì¼ì¹˜í•˜ëŠ” ê³„ì •ì´ ì—†ìœ¼ë©´
 		if(dbMember == null) {
 			return null;
 		}
-		//ºñ¹ø È®ÀÎ(¾ÏÈ£È­ ¾ÈµÈ ¹®ÀÚ¿­, ¾ÏÈ£È­µÈ ¹®ÀÚ¿­)
+		//ë¹„ë²ˆ í™•ì¸(ì•”í˜¸í™” ì•ˆëœ ë¬¸ìì—´, ì•”í˜¸í™”ëœ ë¬¸ìì—´)
 		if(passwordEncoder.matches(member.getMe_pw(), dbMember.getMe_pw())){
 			return dbMember;
 		}

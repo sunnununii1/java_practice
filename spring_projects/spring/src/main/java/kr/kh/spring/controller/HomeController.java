@@ -11,17 +11,17 @@ public class HomeController {
 	
 	@RequestMapping(value = "/")
 	public String home(Model model) {
-		//È­¸é¿¡ µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÏ´Â ¹æ¹ı: model¿¡ ´ã¾Æ¼­ Àü¼Û
-		//model.addAttribute("È­¸é¿¡¼­ »ç¿ëÇÒ ÀÌ¸§",Àü¼ÛÇÒ°ª);
+		//í™”ë©´ì— ë°ì´í„°ë¥¼ ì „ì†¡í•˜ëŠ” ë°©ë²•: modelì— ë‹´ì•„ì„œ ì „ì†¡
+		//model.addAttribute("í™”ë©´ì—ì„œ ì‚¬ìš©í•  ì´ë¦„",ì „ì†¡í• ê°’);
 		model.addAttribute("name","abc");
 		return "home";
 	}
 	
 	@RequestMapping(value = "/test1")
-	//³ªÀÌ¸¦ int ´ë½Å Integer·Î ÇÏ¸é ºñ¿ö¼­ Àü¼ÛÇØµµ nullÃ³¸® µÇ¾î ÄÚµå°¡ ´õ ¾ÈÁ¤µÊ
+	//ë‚˜ì´ë¥¼ int ëŒ€ì‹  Integerë¡œ í•˜ë©´ ë¹„ì›Œì„œ ì „ì†¡í•´ë„ nullì²˜ë¦¬ ë˜ì–´ ì½”ë“œê°€ ë” ì•ˆì •ë¨
 	public String test1(Model model, String id, Integer age) {
-		System.out.println("¾ÆÀÌµğ : " + id);
-		System.out.println("³ªÀÌ : " + age);
+		System.out.println("ì•„ì´ë”” : " + id);
+		System.out.println("ë‚˜ì´ : " + age);
 		return "test1";
 	}
 	

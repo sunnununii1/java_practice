@@ -1,8 +1,11 @@
 package kr.kh.study.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class FileVO {
 	
 	int fi_num;

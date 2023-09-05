@@ -6,6 +6,7 @@
 	<!-- 메인-게시글 누르면 보이는 전체게시글 -->
 	<select id="selectBoardList" resultType="kr.kh.study.vo.BoardVO">
 		select * from board order by bo_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<!-- 게시글 상세페이지-->
 	<select id="selectBoard" resultType="kr.kh.study.vo.BoardVO">
@@ -41,5 +42,18 @@
 	
 	<select id="selectFileList" resultType="kr.kh.study.vo.FileVO">
 		select * from file where fi_bo_num = #{bo_num}
+	</select>
+	
+	<delete id="deleteFile">
+		delete from file where fi_num = #{fi_num}
+	</delete>
+	
+	<select id="selectFile" resultType="kr.kh.study.vo.FileVO">
+		select * from file where fi_num = #{fi_num}
+	</select>
+	
+	<!-- 페이지메이커 -->
+	<select id="selectBoardTotalCount" resultType="int">
+		select count(*) from board
 	</select>
 </mapper>

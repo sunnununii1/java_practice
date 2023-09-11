@@ -42,7 +42,14 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insert")
-	public String insert() {
+	public String insert(Model model, Integer bo_ori_num, HttpSession session) {
+		//로그인한 회원이 작성가능한 게시판 타입을 가져오기 필요
+		//로그인한 회원 정보 가져오기
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		List<BoardTypeVO> typeList = boardService.getBoardTypeList(user);
+		
+		
 		return "/board/insert";
 	}
 	

@@ -26,11 +26,17 @@
 	
 	<!-- loginInterceptor라는 객체 만들기 -->
 	<beans:bean id="loginInterceptor" class="kr.kh.study.interceptor.LoginInterceptor"/>
+	<beans:bean id="autoLoginInterceptor" class="kr.kh.study.interceptor.AutoLoginInterceptor"/>
 	
+	<!-- 로그인 / 자동로그인 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/login"/>
 			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:ref bean="autoLoginInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

@@ -7,6 +7,7 @@
 	<title>스프링 복습</title>
 </head>
 <body>
+	<h2>메인</h2>
 	<c:if test="${user == null }">
 		<a href="<c:url value='/member/signup'/>">회원가입</a>
 		<a href="<c:url value='/member/login'/>">로그인</a>

@@ -31,5 +31,7 @@ public interface BoardDAO {
 	FileVO selectFile(@Param("fi_num")int fi_num);
 
 	int selectBoardTotalCount();
+
+	void updateBoardComment(@Param("bo_num")int co_bo_num);
 	
 }

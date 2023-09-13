@@ -70,6 +70,7 @@ public class BoardServiceImp implements BoardService{
 			return false;
 		}
 		//로그인한 회원아이디로 작성자 만들어줌
+		
 		board.setBo_me_id(user.getMe_id());
 		//둘 다 아니라면 게시글 등록
 		boolean res = boardDao.insertBoard(board);

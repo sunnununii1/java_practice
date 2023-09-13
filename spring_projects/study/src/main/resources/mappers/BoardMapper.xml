@@ -35,6 +35,7 @@
 		delete from board where bo_num = #{bo_num}
 	</delete>
 	
+	<!-- 첨부파일 추가, 보기, 삭제 -->
 	<insert id="insertFile">
 		insert into file(fi_name, fi_ori_name, fi_bo_num)
 			value(#{file.fi_name}, #{file.fi_ori_name}, #{file.fi_bo_num})
@@ -56,4 +57,13 @@
 	<select id="selectBoardTotalCount" resultType="int">
 		select count(*) from board
 	</select>
+	
+	<!-- 게시글 옆에 댓글수 -->
+	<update id="updateBoardComment">
+		update board
+		set
+			bo_comment = (select count(*) from comment where co_bo_num = #{bo_num})
+		where
+			bo_num = #{bo_num}
+	</update>
 </mapper>

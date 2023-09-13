@@ -93,38 +93,144 @@
 			}
 		})
 	});
+	
+	//삭제버튼 이벤트
+	$(document).on('click', '.btn-del', function(){
+		
+		let comment = {
+				co_num : $(this).data('num')
+		}
+		
+		//ajax로 서버에 전송
+		$.ajax({
+				async : false,
+				method: 'post',
+				url : '<c:url value="/comment/delete"/>',
+				data: JSON.stringify(comment),
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'json',
+				success : function(data){
+					if(data.res){
+						alert('댓글 삭제 성공')
+						getCommentList(cri);
+					}else{
+						alert('댓글 삭제 실패');
+					}
+			}
+		});
+	})
+	
+	//수정버튼 이벤트
+	$(document).on('click', '.btn-update', function(){
+		//조상요소의 자손요소 댓글을 찾아서 숨기기
+		let item = $(this).parents('.comment-item'); 
+			item.find('.comment-contents').hide();
+			item.find('.comment-writer').hide();
+			item.find('.btn-update').hide();
+			item.find('.btn-del').hide();
+			
+			let co_num = $(this).data('num');
+			//위에서 감춰놓은 text값 가져옴
+			let co_contents = item.find('.comment-contents').text();
+			item.find('.comment-contents').after(`<textarea class="comment-update">\${co_contents}</textarea>`)
+			item.find('.btn-del').after(`<button class="btn-complete" data num="\${co_num}">수정완료</button>`);
+	})			
+
+	//ajax로 서버 보내기
+	$(document).on('click', '.btn-update', function(){
+			
+			let co_num = $(this).data('num');
+			let co_contents = $(this).parents('.comment-item').find('.comment-update').val();
+			let comment = {
+					co_num : co_num,
+					co_contents : co_contetns
+			}
+		
+		$.ajax({
+			async : false,
+			method: 'post',
+			url : '<c:url value="/comment/update"/>',
+			data: JSON.stringify(comment),
+			contentType : 'application/json; charset=utf-8',
+			dataType : 'json',
+			success : function(data){
+				console.log(data)
+				if(data.res){
+					alert('댓글 수정 성공')
+					getCommentList(cri);
+				}else{
+					alert('댓글 수정 실패');
+				}
+			}
+		});
+		
+	})
+	
+	
 	//댓글 조회
 	let cri = {
 			page : 1
 	}
-	
-	//현재 페이지 정보를 주면서 ajax 가져오기
 	getCommentList(cri);
 	
+	//현재 페이지 정보를 주면서 ajax 가져오기
 	function getCommentList(cri){
 		$.ajax({
 			async : false,
 			method: 'post',
-			url : '<c:url value="/comment/list/"/>' + '${board.bo_num}',
+			url : '<c:url value="/comment/list/"/>'+'${board.bo_num}',
 			data: JSON.stringify(cri),
 			contentType : 'application/json; charset=utf-8',
 			dataType : 'json',
 			success : function(data){
-// 				console.log(data);
-				let str = '';
+				let str ='';
 				for(comment of data.list){
+					let btnStr = '';
+					if('${user.me_id}' == comment.co_me_id){
+						btnStr = `
+							<button class="btn-update" data-num="\${comment.co_num}">수정</button>
+							<button class="btn-del" data-num="\${comment.co_num}">삭제</button>
+						`;
+					}
+					
 					str += `
 					<li class="comment-item">
 						<span class="comment-contents">\${comment.co_contents}</span>
 						<span class="comment-writer">[\${comment.co_me_id}]</span>
-						<button>수정</button>
-						<button>삭제</button>
+						\${btnStr}
 					</li>`
 				}
+				
+				
+				//페이지네이션
+// 				${console.log(data)}
 				$('.comment-list').html(str);
+				
+				//이전버튼 배치
+				//javascript:void(0); <클릭시 위로 올라감 제거
+				let pm = data.pm;
+				str = '';
+				if(pm.prev){
+					str += `<a href="javascript:void(0);" onclick="changePage(\${pm.startPage-1})"> 이전</a>`;
+				}
+				//숫자(반복문)
+				for(i = pm.startPage; i<=pm.endPage; i++){
+					str += `<a href="javascript:void(0);" onclick="changPage(\${i})"> \${i}</a>`
+				}
+				//다음버튼 배치
+				if(pm.next){
+					str += `<a href="javascript:void(0);" onclick="changPage(\${pm.endPage+1})"> 다음</a>`
+				}
+				${'pagination'}.html(str);
 			}
-		})
+		});
 	}
+	
+	function changePage(page){
+		cri.page = page;
+		getCommentList(cri);
+	}
+	
 	
 	</script>
 </body>

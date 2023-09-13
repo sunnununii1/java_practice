@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>게시글 리스트</h1>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -23,7 +23,7 @@
 			<c:forEach items="${list}" var="board">
 				<tr>
 					<td>${board.bo_num}</td>
-					<td><a href="<c:url value='/board/detail?bo_num=${board.bo_num}'/>">${board.bo_title }</a></td>
+					<td><a href="<c:url value='/board/detail?bo_num=${board.bo_num}'/>">${board.bo_title }(${board.bo_comment})</a></td>
 					<td>${board.bo_me_id }</td>
 					<td>${board.bo_views }</td>
 					<td>${board.bo_up}/${board.bo_down}</td>
@@ -33,13 +33,13 @@
 	</table>
 	<div>
 		<c:if test="${pm.prev}">
-			<a href="<c:url value='/board/list${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
+			<a href="<c:url value='/board/list${pm.cri.getUrl(pm.startPage-1) }'/>">이전</a>
 		</c:if>
-		<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
-			<a href="<c:url value='/board/list${pm.cri.getUrl(i)}'/>">${i}</a>
+		<c:forEach begin="${pm.startPage }" end="${pm.endPage}" var="i">
+			<a href="<c:url value='/board/list${pm.cri.getUrl(i) }'/>">${i}</a>
 		</c:forEach>
 		<c:if test="${pm.next}">
-			<a href="<c:url value='/board/list${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
+			<a href="<c:url value='/board/list${pm.cri.getUrl(pm.endPage+1) }'/>">다음</a>
 		</c:if>
 	</div>
 	<a href="<c:url value='/board/insert'/>"><button>글쓰기</button></a>

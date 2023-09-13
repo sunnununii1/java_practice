@@ -22,4 +22,21 @@
 	<select id="selectCommentCount" resultType="int">
 		select count(*) from comment where co_bo_num = #{bo_num}
 	</select>
+	
+	<!-- 삭제위해 댓글 조회->삭제 -->
+	<select id="selectComment" resultType="kr.kh.study.vo.CommentVO">
+		select * from comment where co_num = #{co_num}
+	</select>
+	<delete id="deleteComment">
+		delete from comment where co_num = #{co_num}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment">
+		update comment
+		set
+			co_contents = #{comment.co_contents}
+		where
+			co_num = #{comment.co_num}
+	</update>
 </mapper>

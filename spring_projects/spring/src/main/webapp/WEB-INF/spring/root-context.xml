@@ -2,32 +2,49 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 	
+
 	<bean id="dataSource"
 	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 	    <property name="url"
 	              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=Asia/Seoul">
 	    </property>
-	    <!-- 계정 이름/ 비번 -->
 	    <property name="username" value="root"></property>
 	    <property name="password" value="root"></property>
 	</bean>  
-
+		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
-	    <!-- **은 폴더가 있을 수도, 없을 수도 있다는 뜻 + 파일명 소/대문자 구분과 오타 주의! -->
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+		<property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml"></property>
 	</bean>
-	<mybatis-spring:scan base-package="kr.kh.spring.dao"/>
+	<mybatis-spring:scan base-package="kr.kh.spring.dao"/>	
 	
-		
+	<!-- 메일보내기  -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="qmljreut@gmail.com" />
+	    <property name="password" value="앱비밀번호" />
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.transport.protocol">smtp</prop>
+	            <prop key="mail.smtp.auth">true</prop>
+	            <prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.debug">true</prop>
+	            <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	
 </beans>

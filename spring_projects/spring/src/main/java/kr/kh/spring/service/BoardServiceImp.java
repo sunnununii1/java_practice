@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.dao.BoardDAO;
-import kr.kh.spring.pagenation.Criteria;
+import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.util.UploadFileUtils;
+import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Service
@@ -21,7 +23,7 @@ public class BoardServiceImp implements BoardService{
 	BoardDAO boardDao;
 	
 	String uploadPath = "D:\\uploadfiles";
-	
+
 	@Override
 	public boolean insertBoard(BoardVO board, MemberVO user, MultipartFile[] files) {
 		if(user == null || user.getMe_id() == null) {
@@ -31,16 +33,15 @@ public class BoardServiceImp implements BoardService{
 			return false;
 		}
 		board.setBo_me_id(user.getMe_id());
-		
-		//게시글 등록에 실패하면
 		if(!boardDao.insertBoard(board)) {
 			return false;
 		}
-		//첨부파일 업로드
+		//첨부파일을 업로드
 		if(files == null || files.length == 0) {
 			return true;
 		}
-
+		
+			//첨부파일을 서버에 업로드 하고, DB에 저장
 		uploadFileAndInsert(files, board.getBo_num());
 		
 		return true;
@@ -51,7 +52,6 @@ public class BoardServiceImp implements BoardService{
 			return;
 		}
 		for(MultipartFile file : files) {
-		//파일이 없거나, 파일 이름이 0글자이면 업로드X
 			if(file == null || file.getOriginalFilename().length() == 0) {
 				continue;
 			}
@@ -62,7 +62,7 @@ public class BoardServiceImp implements BoardService{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}							
+		}
 	}
 
 	@Override
@@ -93,28 +93,25 @@ public class BoardServiceImp implements BoardService{
 	public void updateViews(Integer bo_num) {
 		if(bo_num == null) {
 			return;
-		}		
+		}
 		boardDao.updateBoardViews(bo_num);
 	}
 
 	@Override
 	public boolean updateBoard(BoardVO board, MultipartFile[] files, Integer[] delFiles, MemberVO user) {
-		if(board == null || 
-			board.getBo_title() == null ||
-			board.getBo_title().length() == 0) {
+		if(board == null || board.getBo_title()==null || board.getBo_title().length() == 0 ) {
 			return false;
 		}
-		//게시글 정보 가져옴(로그인한 회원과 작성자가 같은지 확인용)
+		//게시글 정보를 가져옴(로그인한 회원과 작성자가 같은지 확인을 위해) 
 		BoardVO dbBoard = boardDao.selectBoard(board.getBo_num());
-		//db에 해당 게시글이 없거나, 게시글 작성자와 로그인 회원이 다르면
+		//db에 해당 게시글이 없거나 게시글 작성자와 로그인한 회원이 다른 경우
 		if(dbBoard == null || !dbBoard.getBo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		//게시글 수정에 실패하면
 		if(!boardDao.updateBoard(board)) {
 			return false;
 		}
-		//첨부파일 업데이트
+		//첨부파일 업데이트 
 		//추가된 첨부파일을 서버에 업로드 및 DB에 추가
 		uploadFileAndInsert(files, board.getBo_num());
 		
@@ -150,14 +147,14 @@ public class BoardServiceImp implements BoardService{
 			return false;
 		}
 		BoardVO board = boardDao.selectBoard(bo_num);
-		//없는 게시글이거나 작성자가 아니면
+		//없는 게시글이거나 작성자가 아니면 
 		if(board == null || !board.getBo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		//첨부파일이 서버에 존재하는지 확인> 삭제
+		//첨부파일 삭제
 		List<FileVO> fileList = board.getFileVoList();
 		deleteFile(fileList);
-		//게시글 삭제
+		//게시글 삭제 
 		boardDao.deleteBoard(bo_num);
 		return true;
 	}
@@ -166,14 +163,122 @@ public class BoardServiceImp implements BoardService{
 		if(fileList == null || fileList.size() == 0) {
 			return;
 		}
-		//List<FileVO>를 Integer[]로 변경
-		//fileList길이만큼 반복문을 해서 꺼내주기
+		//List<FileVO> => Integer[]
 		Integer [] nums = new Integer[fileList.size()];
 		for(int i = 0; i<nums.length; i++) {
 			nums[i] = fileList.get(i).getFi_num();
 		}
 		deleteFile(nums);
 	}
-	
-	
+
+	@Override
+	public int like(LikeVO likeVo) {
+		if(likeVo == null || likeVo.getLi_me_id() == null) {
+			return -100;
+		}
+		//기존 추천 정보를 가져옴(게시글 번호와 아이디)
+		LikeVO dbLikeVo = boardDao.selectLike(likeVo.getLi_bo_num(), likeVo.getLi_me_id());
+		
+		//기존 추천 정보가 없으면
+		if(dbLikeVo == null) {
+			//추가
+			boardDao.insertLike(likeVo);
+		}
+		else {//있으면
+			//db에 있는 추천 상태와 화면에 누른 추천 상태가 같으면 => 취소 
+			if(dbLikeVo.getLi_state() == likeVo.getLi_state()) {
+				likeVo.setLi_state(0);
+			}
+			//업데이트
+			boardDao.updateLike(likeVo);
+		}
+		boardDao.updateBoardLike(likeVo.getLi_bo_num());
+		return likeVo.getLi_state();
+	}
+
+	@Override
+	public LikeVO getBoardLike(Integer bo_num, MemberVO user) {
+		if(bo_num == null || user == null) {
+			return null;
+		}
+		return boardDao.selectLike(bo_num, user.getMe_id());
+	}
+
+	@Override
+	public List<BoardTypeVO> getBoardTypeList() {
+		return boardDao.selectBoardTypeList();
+	}
+
+	@Override
+	public boolean insertBoardType(BoardTypeVO boardType) {
+		if(boardType == null || boardType.getBt_title() == null || boardType.getBt_authority() == null) {
+			return false;
+		}
+		//게시판명이 중복되는걸 방지하기 위해
+		try {
+			boolean res = boardDao.insertBoardType(boardType);
+			if(!res) {
+				return false;
+			}
+		}catch(Exception e) {
+			return false;
+		}
+		switch (boardType.getBt_authority()) {
+		case "USER":
+			boardDao.insertBoardAuthority(boardType.getBt_num(), "USER");
+		case "ADMIN":
+			boardDao.insertBoardAuthority(boardType.getBt_num(), "ADMIN");
+			break;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteBoardType(BoardTypeVO boardType) {
+		if(boardType == null) {
+			return false;
+		}
+		//등록된 게시글이 있는지 확인 
+		int count = boardDao.selectBoardCountByBoardType(boardType.getBt_num());
+		//있으면 삭제 실패
+		if(count != 0) {
+			return false;
+		}
+		//등록된 게시판 타입이 몇개 있는지 확인
+		int btCount = boardDao.selectBoardTypeCount();
+		
+		//1개 있으면 삭제 실패 
+		if(btCount == 1) {
+			return false;
+		}
+		//게시판 타입을 삭제
+		return boardDao.deleteBoardType(boardType.getBt_num());
+	}
+
+	@Override
+	public boolean updateBoardType(BoardTypeVO boardType) {
+		if(boardType == null || boardType.getBt_title() == null) {
+			return false;
+		}
+		try {
+			return boardDao.updateBoardType(boardType);
+		}catch(Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<BoardTypeVO> getBoardTypeList(MemberVO user) {
+		//매개변수 체크
+		if(user == null || user.getMe_role() == null) {
+			return null;
+		}
+		return boardDao.selectBoardTypeListByRole(user.getMe_role());
+	}
 }
+
+
+
+
+
+

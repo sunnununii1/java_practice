@@ -21,60 +21,59 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//url 찾아주는 역할
-	//=> 클라이언트가 url에 signup을 요청하면 실행해준다.
 	@RequestMapping(value="/member/signup", method=RequestMethod.GET)
 	public String signup() {
 		
 		return "/member/signup";
 	}
 	
-	//signup의 method가 post이므로 입력 후 전송코드는 이걸로
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public String signupPost(MemberVO member, Model model) {
-		
-		Message msg = new Message("/member/signup", "회원가입에 실패했습니다.");
+		Message msg = new Message("/member/signup", "회원 가입에 실패했습니다.");
 		
 		if(memberService.signup(member)) {
-			msg = new Message("/", "회원가입에 성공했습니다.");
+			msg = new Message("/", "회원 가입에 성공했습니다.");
 		}
-		
 		model.addAttribute("msg", msg);
 		return "message";
 	}
 	
-	//url과 jsp 경로가 같은 경우엔 void + return 경로입력 생략 가능
 	@GetMapping(value="/member/login")
 	public String memberLogin() {
 		return "/member/login";
 	}
-	
 	@PostMapping(value="/member/login")
 	public String memberLoginPost(MemberVO member, Model model) {
 		Message msg = new Message("/member/login", "로그인에 실패했습니다.");
-		
-		MemberVO user = memberService.login(member);
-				
+		//DB에서 로그인 정보를 이용하여 가져온 회원정보. 자동로그인 여부가 없음
+		MemberVO user = memberService.login(member); 
 		if(user != null) {
-			msg = new Message("/", "로그인에 성공했습니다.");
+			msg = new Message("", "로그인에 성공했습니다.");
+			//화면에서 선택/미선택한 자동로그인 여부를 user에 저장해서 인터셉터에게 전달 
+			user.setAutoLogin(member.isAutoLogin());
 		}
-		model.addAttribute("user",user);
-		model.addAttribute("msg",msg);
+		model.addAttribute("user", user);
+		model.addAttribute("msg", msg);
 		return "message";
 	}
-	
 	@GetMapping("/member/logout")
-	// HttpServletRequest request는 클라이언트가 요청한 리퀘스트를 뜻함
 	public String memberLogout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		user.setMe_session_limit(null);
+		memberService.updateMemberSession(user);
 		Message msg = new Message("/", null);
-		
 		if(user != null) {
 			session.removeAttribute("user");
 			msg.setMsg("로그아웃에 성공했습니다.");
 		}
-		model.addAttribute("msg",msg);
+		model.addAttribute("msg", msg);
 		return "message";
 	}
+	
 }
+
+
+
+
+

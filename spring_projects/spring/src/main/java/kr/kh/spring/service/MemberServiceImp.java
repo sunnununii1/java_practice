@@ -2,18 +2,24 @@ package kr.kh.spring.service;
 
 import java.util.regex.Pattern;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.kh.spring.dao.MemberDAO;
 import kr.kh.spring.vo.MemberVO;
 
-@Service //@Service가 없으면 @Atuowired 인식 불가(세트)
-public class MemberServiceImp implements MemberService{
-
-	//@Atuowired로 dy와 다르게 생성자(try-catch문) 생략가능해짐
-	@Autowired 
+@Service
+public class MemberServiceImp implements MemberService {
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@Autowired
 	private MemberDAO memberDao;
 	
 	@Autowired
@@ -25,27 +31,31 @@ public class MemberServiceImp implements MemberService{
 			return false;
 		}
 		
-		//아이디 중복확인 -> Dao에게 회원정보(id) 요청
+		//아이디 중복 확인
 		MemberVO dbMember = memberDao.selectMember(member.getMe_id());
 		//가입하려는 아이디가 이미 가입된 경우
 		if(dbMember != null) {
 			return false;
 		}
-		//아이디, 비번 null체크 + 유효성 검사
-		String idRegex = "^[a-zA-Z][a-zA-Z0-9]{5,14}$"; //영문으로 시작, 5~14자
-		String pwRegex = "^[a-zA-Z0-9!@#$%]{6,15}$"; //영문,숫자,!@#$%에 6~15자
-		//아이디가 유효성과 맞지 않으면
+		//아이디, 비번 null 체크 + 유효성 검사
+		//아이디는 영문으로 시작하고, 6~15자
+		String idRegex = "^[a-zA-Z][a-zA-Z0-9]{5,14}$";
+		//비번은 영문,숫자,!@#$%로 이루어지고 6~15자 
+		String pwRegex = "^[a-zA-Z0-9!@#$%]{6,15}$";
+		
+		//아이디가 유효성에 맞지 않으면
 		if(!Pattern.matches(idRegex, member.getMe_id())) {
 			return false;
 		}
-		//비번이 유효성과 맞지 않으면
+		//비번이 유효성에 맞지 않으면
 		if(!Pattern.matches(pwRegex, member.getMe_pw())) {
 			return false;
 		}
-		//비번 암호화
+		
+		//비번 암호화 
 		String encPw = passwordEncoder.encode(member.getMe_pw());
-		member.setMe_pw(encPw); //암호화된 비번을 다시 지정
-		//회원가입 진행
+		member.setMe_pw(encPw);
+		//회원가입
 		return memberDao.insertMember(member);
 	}
 
@@ -55,17 +65,50 @@ public class MemberServiceImp implements MemberService{
 			return null;
 		}
 		MemberVO dbMember = memberDao.selectMember(member.getMe_id());
-		
-		//아이디와 일치하는 계정이 없으면
+		//가입된 아이디가 아니면
 		if(dbMember == null) {
 			return null;
 		}
-		//비번 확인(암호화 안된 문자열, 암호화된 문자열)
-		if(passwordEncoder.matches(member.getMe_pw(), dbMember.getMe_pw())){
+		//비번확인
+		//matches(암호화안된문자열, 암호화된문자열)
+		if(passwordEncoder.matches(member.getMe_pw(), dbMember.getMe_pw())) {
 			return dbMember;
 		}
 		return null;
 	}
 
+	@Override
+	public void updateMemberSession(MemberVO user) {
+		if(user == null) {
+			return;
+		}
+		memberDao.updateMemberSession(user);
+	}
 
+	@Override
+	public MemberVO getMemberBySession(String session_id) {
+		return memberDao.selectMemberBySession(session_id);
+	}
+
+	@Override
+	public boolean sendMail(String to, String title, String contents) {
+		try {
+	        MimeMessage message = mailSender.createMimeMessage();
+	        MimeMessageHelper messageHelper 
+	            = new MimeMessageHelper(message, true, "UTF-8");
+
+	        messageHelper.setFrom("qmljreut@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
+	        messageHelper.setTo(to);     // 받는사람 이메일
+	        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+	        messageHelper.setText(contents, true);  // 메일 내용, true는 내용이 html일때 html코드를 바로 적용해주도록 함
+
+	        mailSender.send(message);
+	        return true;
+	    } catch(Exception e){
+	        System.out.println(e);
+	    }
+		return false;
+	}
+
+	
 }

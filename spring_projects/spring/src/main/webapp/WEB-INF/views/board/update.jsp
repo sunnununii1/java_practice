@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
- pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" 
+	pageEncoding="utf-8" %>
 <!doctype html>
 <html lang="ko">
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<h1>게시글 수정</h1>
@@ -37,14 +37,13 @@
 		<button class="btn btn-outline-success col-12">수정하기</button>
 	</form>
 	
-	 <script>
-	 $('#summernote').summernote({
-	        placeholder: '내용을 입력하세요.',
-	        tabsize: 2,
-	        height: 400
-	      });
-      //클릭시 현재 첨부파일 삭제
-       $('#summernote').summernote('code', '${board.bo_contents}');
+	<script>
+      $('#summernote').summernote({
+        placeholder: '내용을 입력하세요.',
+        tabsize: 2,
+        height: 400
+      });
+      $('#summernote').summernote('code', '${board.bo_contents}');
       $('.btn-del').click(function(e){
     	  e.preventDefault();
     	  let fi_num = $(this).data('num');
@@ -55,3 +54,7 @@
     </script>
 </body>
 </html>
+
+
+
+

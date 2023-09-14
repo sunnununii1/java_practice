@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.kh.spring.service.MemberService;
 import kr.kh.spring.util.Message;
+import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Controller
@@ -56,6 +60,7 @@ public class MemberController {
 		model.addAttribute("msg", msg);
 		return "message";
 	}
+	
 	@GetMapping("/member/logout")
 	public String memberLogout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -69,6 +74,13 @@ public class MemberController {
 		}
 		model.addAttribute("msg", msg);
 		return "message";
+	}
+	
+	@ResponseBody
+	@PostMapping("/member/check/id")
+	public Object ajaxTest4(@RequestParam("id")String id){
+
+		return memberService.checkId(id);
 	}
 	
 }

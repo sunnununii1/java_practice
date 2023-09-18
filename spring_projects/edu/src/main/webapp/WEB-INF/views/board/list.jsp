@@ -4,10 +4,10 @@
 <!doctype html>
 <html>
 <head>
-	<title>Home</title>
+<meta charset="UTF-8">
+<title>List</title>
 </head>
 <body>
-	<a href="<c:url value='?id=abc'/>">?를 이용하여 전송</a> <br>
-	<a href="<c:url value='/abc'/>">경로에 데이터를 전송</a>
+	<h2>게시글 조회</h2>
 </body>
 </html>

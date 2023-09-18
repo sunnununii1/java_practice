@@ -1,10 +1,14 @@
 package kr.kh.edu.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.kh.edu.service.MemberService;
 import kr.kh.edu.vo.MemberVO;
@@ -36,4 +40,44 @@ public class MemberController {
 		}
 		return "/main/message";
 	}
+	
+	@ResponseBody
+	@PostMapping("/member/id/check")
+	public boolean ajaxtTest3(@RequestParam("id") String id){
+		return memberService.checkId(id);
+	}
+	
+	@GetMapping("/member/login")
+	public String login() {
+		return "/member/login";
+	}
+	
+	@PostMapping("/member/login")
+	public String login(Model model, MemberVO member) {
+		//화면에서 보내온 아이디와 비번 가져와 확인
+		System.out.println(member);
+		//입력받은 회원정보와 일치하느 회원정보가 있으면 가져오라고 요청
+		MemberVO user = memberService.login(member);
+		//있으면(로그인 성공하면)
+		if(user != null) {
+			model.addAttribute("user", user);
+			model.addAttribute("msg", "로그인 성공!");
+			model.addAttribute("url", "");
+		}else {
+			model.addAttribute("msg", "로그인 실패!");
+			model.addAttribute("url", "member/login");
+		}
+		return "/main/message";
+	}
+	
+	@GetMapping("/member/logout")
+	public String logout(HttpSession session, Model model) {
+		
+		session.removeAttribute("user");
+		
+		model.addAttribute("msg","로그아웃");
+		model.addAttribute("url","");
+		return "/main/message";
+	}
+	
 }

@@ -15,15 +15,14 @@
 			  	<a class="nav-link" href="<c:url value='/member/login'/>">로그인</a>
 			</li>
 		</c:if>
-		<c:if test="${user != null }">
-			<li class="nav-item">
-				 <a class="nav-link" href="<c:url value='/member/logout'/>">로그아웃</a>
-			</li>
-		</c:if>
 		<li class="nav-item">
 		  	<a class="nav-link" href="<c:url value='/ajax/test'/>">ajax 테스트</a>
 		</li>
-		
+		<c:if test="${user != null }">
+			<li class="nav-item">
+			  	<a class="nav-link" href="<c:url value='/member/logout'/>">로그아웃</a>
+			</li>
+		</c:if>
 		<!-- Dropdown -->
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -31,7 +30,7 @@
 			</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="<c:url value='/board/list'/>">게시글 조회</a>
-				<a class="dropdown-item" href="#">Link 2</a>
+				<a class="dropdown-item" href="<c:url value='/board/insert'/>">게시글 등록</a>
 				<a class="dropdown-item" href="#">Link 3</a>
 			</div>
 		</li>

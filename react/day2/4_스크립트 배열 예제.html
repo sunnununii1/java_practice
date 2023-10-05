@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>기본 배열 예제</title>
+</head>
+<body>
+	<script>
+		let arr = ['apple', 'banana'];
+		//arr에 orange를 제일 뒤에 추가해보기
+		//기존 형식
+		//arr.push('orange'); //맨 뒤에 추가
+		//arr.unshift('orange'); //맨 앞에 추가
+
+		arr = ['orange', ...arr]; //state에서 추가
+		console.log(arr)
+	</script>
+</body>
+</html>

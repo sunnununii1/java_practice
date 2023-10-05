@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>state 배열 예제</title>
+	<script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const root = document.getElementById("root");
+	
+		function App(){
+			//input태그 이용하여 오늘의 할일을 입력받고, '추가'버튼 클릭시 오늘의 할일이 리스트에 추가되게 하기
+			let [todo, setTodo] = React.useState("");
+			let [todos, setTodos] = React.useState([]);
+
+			console.log(todos);
+			const onChange = (e)=>setTodo(e.target.value)
+			const onClick = ()=>{
+				setTodos((beforeTodos)=>[todo, ...beforeTodos]);
+				setTodo("");
+			};
+
+			return (
+				<div>
+					<h1>To do List</h1>
+					<input type="text" onChange={onChange} value={todo}/>
+					<button onClick={onClick}>추가</button>
+					<ul>
+						{todos.map(item=><li>{item}</li>)}
+					</ul>
+				</div>
+			)
+		}
+
+		ReactDOM.render(<App/>, root);
+	</script>
+	
+</body>
+</html>

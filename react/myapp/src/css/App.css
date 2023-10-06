@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.footer{
+  padding: 30px; height: 100px;
+  background-color: silver;
+}
+
+.body{
+	min-height: calc(100vh - 56px - 210px);
+}
+
+.body .container{
+	height: auto;
+	min-height: 600px;
+	display: flex;
+}
+
+.body .box1{
+	background-color: slategray;
+	border: 1px solid black;
+	width: 300px; height: 200px;
+	margin: auto;
+	position: relative;
+}
+
+.body .box2{
+	background-color: lightskyblue;
+	border: 1px solid black;
+	width: 300px; height: 200px;
+	margin: auto;
+}
+
+.body .pageNation{
+	position: absolute; bottom: 0;
+	margin-bottom: 10px;
+}
